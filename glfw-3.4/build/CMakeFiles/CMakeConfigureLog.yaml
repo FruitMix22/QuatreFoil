@@ -24,9 +24,9 @@ events:
       The output was:
       0
       MSBuild version 17.11.9+a69bbaaf5 for .NET Framework
-      Build started 02/04/2025 10:44:01 AM.
+      Build started 02/04/2025 10:58:34 AM.
       
-      Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\4.0.0\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\4.0.0\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Creating directory "Debug\\CompilerIdC.tlog\\".
@@ -38,7 +38,7 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\4.0.0\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\4.0.0\\CompilerIdC\\CompilerIdC.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -46,13 +46,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\4.0.0\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\4.0.0\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.75
+      Time Elapsed 00:00:00.60
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -60,7 +60,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/4.0.0/CompilerIdC/CompilerIdC.exe
+        C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/4.0.0/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "try_compile-v1"
@@ -71,8 +71,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-wkro5b"
-      binary: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-wkro5b"
+      source: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-61krz5"
+      binary: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-61krz5"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
@@ -81,39 +81,39 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-wkro5b'
+        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-61krz5'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ce797.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_cf518.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.11.9+a69bbaaf5 for .NET Framework
-        Build started 02/04/2025 10:44:03 AM.
+        Build started 02/04/2025 10:58:35 AM.
         
-        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wkro5b\\cmTC_ce797.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-61krz5\\cmTC_cf518.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_ce797.dir\\Debug\\".
-          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wkro5b\\Debug\\".
-          Creating directory "cmTC_ce797.dir\\Debug\\cmTC_ce797.tlog\\".
+          Creating directory "cmTC_cf518.dir\\Debug\\".
+          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-61krz5\\Debug\\".
+          Creating directory "cmTC_cf518.dir\\Debug\\cmTC_cf518.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_ce797.dir\\Debug\\cmTC_ce797.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_ce797.dir\\Debug\\cmTC_ce797.tlog\\unsuccessfulbuild".
+          Creating "cmTC_cf518.dir\\Debug\\cmTC_cf518.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_cf518.dir\\Debug\\cmTC_cf518.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ce797.dir\\Debug\\\\" /Fd"cmTC_ce797.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_cf518.dir\\Debug\\\\" /Fd"cmTC_cf518.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32546 for x64
           CMakeCCompilerABI.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ce797.dir\\Debug\\\\" /Fd"cmTC_ce797.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_cf518.dir\\Debug\\\\" /Fd"cmTC_cf518.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wkro5b\\Debug\\cmTC_ce797.exe" /INCREMENTAL /ILK:"cmTC_ce797.dir\\Debug\\cmTC_ce797.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-wkro5b/Debug/cmTC_ce797.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-wkro5b/Debug/cmTC_ce797.lib" /MACHINE:X64  /machine:x64 cmTC_ce797.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_ce797.vcxproj -> C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wkro5b\\Debug\\cmTC_ce797.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-61krz5\\Debug\\cmTC_cf518.exe" /INCREMENTAL /ILK:"cmTC_cf518.dir\\Debug\\cmTC_cf518.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-61krz5/Debug/cmTC_cf518.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-61krz5/Debug/cmTC_cf518.lib" /MACHINE:X64  /machine:x64 cmTC_cf518.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_cf518.vcxproj -> C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-61krz5\\Debug\\cmTC_cf518.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_ce797.dir\\Debug\\cmTC_ce797.tlog\\unsuccessfulbuild".
-          Touching "cmTC_ce797.dir\\Debug\\cmTC_ce797.tlog\\cmTC_ce797.lastbuildstate".
-        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wkro5b\\cmTC_ce797.vcxproj" (default targets).
+          Deleting file "cmTC_cf518.dir\\Debug\\cmTC_cf518.tlog\\unsuccessfulbuild".
+          Touching "cmTC_cf518.dir\\Debug\\cmTC_cf518.tlog\\cmTC_cf518.lastbuildstate".
+        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-61krz5\\cmTC_cf518.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.49
+        Time Elapsed 00:00:00.46
         
       exitCode: 0
   -
@@ -155,50 +155,50 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-kl78xx"
-      binary: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-kl78xx"
+      source: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-7y38ej"
+      binary: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-7y38ej"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/modules"
+      CMAKE_MODULE_PATH: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-kl78xx'
+        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-7y38ej'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ab9bb.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_abb59.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.11.9+a69bbaaf5 for .NET Framework
-        Build started 02/04/2025 10:44:04 AM.
+        Build started 02/04/2025 10:58:36 AM.
         
-        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\cmTC_ab9bb.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\cmTC_abb59.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_ab9bb.dir\\Debug\\".
-          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\Debug\\".
-          Creating directory "cmTC_ab9bb.dir\\Debug\\cmTC_ab9bb.tlog\\".
+          Creating directory "cmTC_abb59.dir\\Debug\\".
+          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\Debug\\".
+          Creating directory "cmTC_abb59.dir\\Debug\\cmTC_abb59.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_ab9bb.dir\\Debug\\cmTC_ab9bb.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_ab9bb.dir\\Debug\\cmTC_ab9bb.tlog\\unsuccessfulbuild".
+          Creating "cmTC_abb59.dir\\Debug\\cmTC_abb59.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_abb59.dir\\Debug\\cmTC_abb59.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ab9bb.dir\\Debug\\\\" /Fd"cmTC_ab9bb.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\src.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_abb59.dir\\Debug\\\\" /Fd"cmTC_abb59.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\src.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32546 for x64
           src.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ab9bb.dir\\Debug\\\\" /Fd"cmTC_ab9bb.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\src.c"
-        C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\cmTC_ab9bb.vcxproj]
-        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\cmTC_ab9bb.vcxproj" (default targets) -- FAILED.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_abb59.dir\\Debug\\\\" /Fd"cmTC_abb59.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\src.c"
+        C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\cmTC_abb59.vcxproj]
+        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\cmTC_abb59.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\cmTC_ab9bb.vcxproj" (default target) (1) ->
+        "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\cmTC_abb59.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
-          C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kl78xx\\cmTC_ab9bb.vcxproj]
+          C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\src.c(1,10): fatal  error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-7y38ej\\cmTC_abb59.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.33
+        Time Elapsed 00:00:00.31
         
       exitCode: 1
   -
@@ -211,52 +211,52 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-f571gb"
-      binary: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-f571gb"
+      source: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-60u2sq"
+      binary: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-60u2sq"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/modules"
+      CMAKE_MODULE_PATH: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-f571gb'
+        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-60u2sq'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b36e9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1ea53.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.11.9+a69bbaaf5 for .NET Framework
-        Build started 02/04/2025 10:44:04 AM.
+        Build started 02/04/2025 10:58:37 AM.
         
-        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\cmTC_b36e9.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\cmTC_1ea53.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_b36e9.dir\\Debug\\".
-          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\Debug\\".
-          Creating directory "cmTC_b36e9.dir\\Debug\\cmTC_b36e9.tlog\\".
+          Creating directory "cmTC_1ea53.dir\\Debug\\".
+          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\Debug\\".
+          Creating directory "cmTC_1ea53.dir\\Debug\\cmTC_1ea53.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_b36e9.dir\\Debug\\cmTC_b36e9.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_b36e9.dir\\Debug\\cmTC_b36e9.tlog\\unsuccessfulbuild".
+          Creating "cmTC_1ea53.dir\\Debug\\cmTC_1ea53.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_1ea53.dir\\Debug\\cmTC_1ea53.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b36e9.dir\\Debug\\\\" /Fd"cmTC_b36e9.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1ea53.dir\\Debug\\\\" /Fd"cmTC_1ea53.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32546 for x64
           CheckFunctionExists.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b36e9.dir\\Debug\\\\" /Fd"cmTC_b36e9.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\CheckFunctionExists.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1ea53.dir\\Debug\\\\" /Fd"cmTC_1ea53.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\CheckFunctionExists.c"
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\Debug\\cmTC_b36e9.exe" /INCREMENTAL /ILK:"cmTC_b36e9.dir\\Debug\\cmTC_b36e9.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-f571gb/Debug/cmTC_b36e9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-f571gb/Debug/cmTC_b36e9.lib" /MACHINE:X64  /machine:x64 cmTC_b36e9.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\cmTC_b36e9.vcxproj]
-        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\cmTC_b36e9.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\Debug\\cmTC_1ea53.exe" /INCREMENTAL /ILK:"cmTC_1ea53.dir\\Debug\\cmTC_1ea53.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-60u2sq/Debug/cmTC_1ea53.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-60u2sq/Debug/cmTC_1ea53.lib" /MACHINE:X64  /machine:x64 cmTC_1ea53.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\cmTC_1ea53.vcxproj]
+        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\cmTC_1ea53.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\cmTC_b36e9.vcxproj" (default target) (1) ->
+        "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\cmTC_1ea53.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-f571gb\\cmTC_b36e9.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-60u2sq\\cmTC_1ea53.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.40
+        Time Elapsed 00:00:00.38
         
       exitCode: 1
   -
@@ -269,52 +269,52 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-6a0wuu"
-      binary: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-6a0wuu"
+      source: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-b5x7hk"
+      binary: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-b5x7hk"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/modules"
+      CMAKE_MODULE_PATH: "C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-6a0wuu'
+        Change Dir: 'C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-b5x7hk'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3cc61.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_fd9b2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.11.9+a69bbaaf5 for .NET Framework
-        Build started 02/04/2025 10:44:05 AM.
+        Build started 02/04/2025 10:58:37 AM.
         
-        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\cmTC_3cc61.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\cmTC_fd9b2.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_3cc61.dir\\Debug\\".
-          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\Debug\\".
-          Creating directory "cmTC_3cc61.dir\\Debug\\cmTC_3cc61.tlog\\".
+          Creating directory "cmTC_fd9b2.dir\\Debug\\".
+          Creating directory "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\Debug\\".
+          Creating directory "cmTC_fd9b2.dir\\Debug\\cmTC_fd9b2.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_3cc61.dir\\Debug\\cmTC_3cc61.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_3cc61.dir\\Debug\\cmTC_3cc61.tlog\\unsuccessfulbuild".
+          Creating "cmTC_fd9b2.dir\\Debug\\cmTC_fd9b2.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_fd9b2.dir\\Debug\\cmTC_fd9b2.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3cc61.dir\\Debug\\\\" /Fd"cmTC_3cc61.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_fd9b2.dir\\Debug\\\\" /Fd"cmTC_fd9b2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32546 for x64
           CheckFunctionExists.c
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3cc61.dir\\Debug\\\\" /Fd"cmTC_3cc61.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\CheckFunctionExists.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_fd9b2.dir\\Debug\\\\" /Fd"cmTC_fd9b2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\CheckFunctionExists.c"
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\Debug\\cmTC_3cc61.exe" /INCREMENTAL /ILK:"cmTC_3cc61.dir\\Debug\\cmTC_3cc61.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-6a0wuu/Debug/cmTC_3cc61.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-6a0wuu/Debug/cmTC_3cc61.lib" /MACHINE:X64  /machine:x64 cmTC_3cc61.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\cmTC_3cc61.vcxproj]
-        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\cmTC_3cc61.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\Debug\\cmTC_fd9b2.exe" /INCREMENTAL /ILK:"cmTC_fd9b2.dir\\Debug\\cmTC_fd9b2.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-b5x7hk/Debug/cmTC_fd9b2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/CMakeScratch/TryCompile-b5x7hk/Debug/cmTC_fd9b2.lib" /MACHINE:X64  /machine:x64 cmTC_fd9b2.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\cmTC_fd9b2.vcxproj]
+        Done Building Project "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\cmTC_fd9b2.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\cmTC_3cc61.vcxproj" (default target) (1) ->
+        "C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\cmTC_fd9b2.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Things needed for it\\glfw-3.4\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6a0wuu\\cmTC_3cc61.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\Corey\\Work\\Uni\\Finale\\Game-Development-Project\\glfw-3.4\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b5x7hk\\cmTC_fd9b2.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.40
+        Time Elapsed 00:00:00.38
         
       exitCode: 1
 ...

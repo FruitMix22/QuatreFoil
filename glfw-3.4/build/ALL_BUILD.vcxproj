@@ -25,7 +25,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C3B67938-2E17-31E5-9AE6-28325D288CFC}</ProjectGuid>
+    <ProjectGuid>{8C6A8528-D2F0-324E-BC67-E16FFC237A5E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -108,11 +108,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -120,12 +120,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -133,12 +133,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -146,12 +146,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -159,8 +159,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\cmake_uninstall.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3Config.cmake.in;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeRCCompiler.cmake;C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\4.0.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
@@ -168,138 +168,138 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\ZERO_CHECK.vcxproj">
-      <Project>{938D0BD7-FB01-3E85-9FFB-C67E2CB204D5}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\ZERO_CHECK.vcxproj">
+      <Project>{2FDB7DC8-31AD-3C41-8928-5EBBA1EF2619}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\allocator.vcxproj">
-      <Project>{E54A6D35-F200-3B2F-A1C1-8834591F9277}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\allocator.vcxproj">
+      <Project>{53A579E5-8BD1-3B13-8961-5A06889A3D3E}</Project>
       <Name>allocator</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\boing.vcxproj">
-      <Project>{7547D9AF-D524-311E-83C5-A093647F6009}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\boing.vcxproj">
+      <Project>{83DA4DD6-D267-36E2-AEA1-3CAE38FE2FE8}</Project>
       <Name>boing</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\clipboard.vcxproj">
-      <Project>{E2D0A14B-DD30-32D4-AE30-14CADBCD16F8}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\clipboard.vcxproj">
+      <Project>{F82E4006-D5EE-3482-91BB-FD35258D7D2B}</Project>
       <Name>clipboard</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\cursor.vcxproj">
-      <Project>{21E51C82-FCF7-32B1-A869-58ABC702915D}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\cursor.vcxproj">
+      <Project>{B932C4D8-3D5F-370C-9547-0CD8277D38AF}</Project>
       <Name>cursor</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\empty.vcxproj">
-      <Project>{F98E2D90-6EBC-3DA0-9B36-F2A7D2749F79}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\empty.vcxproj">
+      <Project>{02202354-3FC5-368B-B0ED-F1A0804690D9}</Project>
       <Name>empty</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\events.vcxproj">
-      <Project>{080CCCEB-9252-3FB6-BB6D-C225824F7F42}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\events.vcxproj">
+      <Project>{17649D8E-1F9B-3F96-81B7-D7A471FF56CB}</Project>
       <Name>events</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\gamma.vcxproj">
-      <Project>{5B6DDE68-FB97-32F0-922F-C6D48DE5909C}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\gamma.vcxproj">
+      <Project>{DF5D2728-BB0A-354C-A2CD-84FEF0514894}</Project>
       <Name>gamma</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\gears.vcxproj">
-      <Project>{480BC735-27AE-3180-ACCE-A2F72335DC66}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\gears.vcxproj">
+      <Project>{6E78D46E-53AE-3E29-AEED-DA94881EE3A8}</Project>
       <Name>gears</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\glfw.vcxproj">
-      <Project>{AEE34B12-F5BA-3E7B-A3D8-3E47C35C86F9}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\glfw.vcxproj">
+      <Project>{91C9ADB3-3BCB-303C-B6AF-9F5C5B05639C}</Project>
       <Name>glfw</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\glfwinfo.vcxproj">
-      <Project>{DC3AAEFE-44CA-3818-BCBD-4B0D4B515213}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\glfwinfo.vcxproj">
+      <Project>{0220815A-B9A7-3F36-A1B5-9A0B3A7DD540}</Project>
       <Name>glfwinfo</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\heightmap.vcxproj">
-      <Project>{E0938DB8-56E7-3FDA-A627-A0206AC18F19}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\heightmap.vcxproj">
+      <Project>{95B8CAEC-9D70-359C-B191-57DC6DBBC7DF}</Project>
       <Name>heightmap</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\icon.vcxproj">
-      <Project>{95F45548-C5C2-3EDA-BA04-3C7C47FDF34C}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\icon.vcxproj">
+      <Project>{5C9E43A9-CD64-3A7A-8ACA-631B9410A73C}</Project>
       <Name>icon</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\iconify.vcxproj">
-      <Project>{26EBEC43-EC5B-3ACE-808F-292A1C9C5071}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\iconify.vcxproj">
+      <Project>{86BE74C9-0A1D-3960-B197-CF56C4D2E071}</Project>
       <Name>iconify</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\inputlag.vcxproj">
-      <Project>{36C4A7E6-57A1-3740-A17A-B40935F8012C}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\inputlag.vcxproj">
+      <Project>{DF2C524B-3E19-315C-A1F1-4CF851F2E91C}</Project>
       <Name>inputlag</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\joysticks.vcxproj">
-      <Project>{26237846-D513-3711-BF9D-35474B2CD9C7}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\joysticks.vcxproj">
+      <Project>{5A9DC212-78C7-3651-9818-B3C2E510447D}</Project>
       <Name>joysticks</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\monitors.vcxproj">
-      <Project>{79D6354B-30CF-3A96-8971-1E30D4C5E42B}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\monitors.vcxproj">
+      <Project>{25FFBFF3-4BB4-34AA-8FEB-175C2D94685E}</Project>
       <Name>monitors</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\msaa.vcxproj">
-      <Project>{0142A05B-4141-38B8-84E5-3CF840BF8B1E}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\msaa.vcxproj">
+      <Project>{B18F198C-02EA-3736-A09F-2897F6024BB2}</Project>
       <Name>msaa</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\offscreen.vcxproj">
-      <Project>{27E4B558-06FC-34A9-A03A-59347E93A507}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\offscreen.vcxproj">
+      <Project>{0C7FA66A-737F-37DB-9C59-E6B487ED6223}</Project>
       <Name>offscreen</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\particles.vcxproj">
-      <Project>{E8EFE34D-DD03-3795-9DB3-11D79AE343CF}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\particles.vcxproj">
+      <Project>{C72642B1-6896-393A-B465-326DFBF7E83A}</Project>
       <Name>particles</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\reopen.vcxproj">
-      <Project>{2EBF1F68-2909-3127-842F-9DA52108356A}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\reopen.vcxproj">
+      <Project>{5FA44594-A00A-3D9A-90E6-26125EE170F3}</Project>
       <Name>reopen</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\sharing.vcxproj">
-      <Project>{74399BC8-5361-3FFF-B528-1C39BE9775A0}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\sharing.vcxproj">
+      <Project>{28F94B5E-A209-3A7F-B67F-AD26DB4D1418}</Project>
       <Name>sharing</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\splitview.vcxproj">
-      <Project>{9A89BDD6-D668-3FFA-A879-1709FB08D858}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\splitview.vcxproj">
+      <Project>{ABE57990-AF57-33AB-ACB8-8A7C36B9E229}</Project>
       <Name>splitview</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\tearing.vcxproj">
-      <Project>{3917E219-3D1D-3D91-A593-FFA47460D966}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\tearing.vcxproj">
+      <Project>{F9901F8C-A932-381C-9AF9-7B40AC114D28}</Project>
       <Name>tearing</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\threads.vcxproj">
-      <Project>{9975972C-2FA1-3BE0-80A2-4BB770EFCE31}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\threads.vcxproj">
+      <Project>{228D74AD-780B-3AF0-9530-95820CEC7E0F}</Project>
       <Name>threads</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\timeout.vcxproj">
-      <Project>{E173E474-D390-37E9-BE6A-17867C52E00E}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\timeout.vcxproj">
+      <Project>{47236325-05D6-329D-839C-72D70DBBF9CB}</Project>
       <Name>timeout</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\title.vcxproj">
-      <Project>{B4DD9137-2DB8-384A-AA52-A6CB25259DC7}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\title.vcxproj">
+      <Project>{9CBAFBA3-76D4-3D22-8777-2B3509878744}</Project>
       <Name>title</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\triangle-opengl.vcxproj">
-      <Project>{D580E411-9B1F-3339-BF5E-F919AC19FCCF}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\triangle-opengl.vcxproj">
+      <Project>{E3C41911-77DA-3E74-8EC5-C5BA93B51D93}</Project>
       <Name>triangle-opengl</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\triangle-opengles.vcxproj">
-      <Project>{A73DFEEF-01C1-3354-B842-FEE8F64A2965}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\triangle-opengles.vcxproj">
+      <Project>{BF03AF93-B55E-3340-AFFC-897354AA5706}</Project>
       <Name>triangle-opengles</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\triangle-vulkan.vcxproj">
-      <Project>{8A74C33E-41F8-3319-A3B3-6B4D07E5DC30}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\triangle-vulkan.vcxproj">
+      <Project>{2DCD5D43-B305-36C7-8D66-D06CC6B9AC73}</Project>
       <Name>triangle-vulkan</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\wave.vcxproj">
-      <Project>{726226BE-B46D-3E2B-88D7-558A4FA53F14}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\wave.vcxproj">
+      <Project>{8A6F3A5E-2E3B-3E74-9CEC-35504E567B60}</Project>
       <Name>wave</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\tests\window.vcxproj">
-      <Project>{47384073-1001-3CEE-9F0D-7B4013DB4727}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\tests\window.vcxproj">
+      <Project>{FE260488-83FF-3281-9412-551E9047CC24}</Project>
       <Name>window</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\examples\windows.vcxproj">
-      <Project>{1042D730-F299-3487-94FC-B0D3559EE0B8}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\examples\windows.vcxproj">
+      <Project>{93D1EC9D-9A3B-37B8-970D-B2FADD682BB0}</Project>
       <Name>windows</Name>
     </ProjectReference>
   </ItemGroup>

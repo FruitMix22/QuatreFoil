@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E96C7DE8-64D4-38EC-A1A4-E7FAF19E0798}</ProjectGuid>
+    <ProjectGuid>{59ACF2C0-412E-3E81-A269-D5FBD52A6515}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -105,15 +105,15 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\CMakeFiles\1f65a449be73b960187f3a2f853edb56\update_mappings.rule">
+    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\CMakeFiles\c157459ddac645d312caf771dfca0987\update_mappings.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Updating gamepad mappings from upstream repository</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd "C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\src"
+cd C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -P "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/GenerateMappings.cmake" mappings.h.in mappings.h
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -122,17 +122,17 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Updating gamepad mappings from upstream repository</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-cd "C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\src"
+cd C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -P "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/GenerateMappings.cmake" mappings.h.in mappings.h
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -141,17 +141,17 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Updating gamepad mappings from upstream repository</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-cd "C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\src"
+cd C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -P "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/GenerateMappings.cmake" mappings.h.in mappings.h
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -160,17 +160,17 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Updating gamepad mappings from upstream repository</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-cd "C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\src"
+cd C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -P "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/CMake/GenerateMappings.cmake" mappings.h.in mappings.h
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -179,17 +179,17 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\update_mappings</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\src\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\src\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/src/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -197,12 +197,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/src/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -210,12 +210,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/src/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -223,12 +223,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/src/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/src/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4" "-BC:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build" --check-stamp-file "C:/Users/Corey/Work/Uni/Finale/Things needed for it/glfw-3.4/glfw-3.4/build/src/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4 -BC:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build --check-stamp-file C:/Users/Corey/Work/Uni/Finale/Game-Development-Project/glfw-3.4/build/src/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -236,23 +236,23 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\glfw3.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\src\mappings.h.in">
+    <None Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\src\mappings.h.in">
     </None>
-    <None Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\CMake\GenerateMappings.cmake">
+    <None Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\CMake\GenerateMappings.cmake">
     </None>
-    <None Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\src\CMakeFiles\update_mappings">
+    <None Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\src\CMakeFiles\update_mappings">
     </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\build\ZERO_CHECK.vcxproj">
-      <Project>{938D0BD7-FB01-3E85-9FFB-C67E2CB204D5}</Project>
+    <ProjectReference Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\build\ZERO_CHECK.vcxproj">
+      <Project>{2FDB7DC8-31AD-3C41-8928-5EBBA1EF2619}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

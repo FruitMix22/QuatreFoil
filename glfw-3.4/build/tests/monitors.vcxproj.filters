@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\tests\monitors.c">
+    <ClCompile Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\tests\monitors.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\deps\getopt.c">
+    <ClCompile Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\deps\getopt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\deps\getopt.h">
+    <ClInclude Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\deps\getopt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\deps\glad\gl.h">
+    <ClInclude Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\deps\glad\gl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Things needed for it\glfw-3.4\glfw-3.4\tests\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Corey\Work\Uni\Finale\Game-Development-Project\glfw-3.4\tests\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{3B1CA211-CF36-3AE3-9576-8825E4F5A55A}</UniqueIdentifier>
+      <UniqueIdentifier>{1C4B0E17-6A75-3454-A3F2-A05847187063}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{E6EA5C71-D836-33B9-9D0A-2E3B29B8B862}</UniqueIdentifier>
+      <UniqueIdentifier>{188C1959-8C0F-38AA-B9E8-6FA70059A53A}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
