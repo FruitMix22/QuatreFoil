@@ -20,7 +20,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Create GLFW window
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Basic", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -48,6 +48,12 @@ int main()
 
         // Check for updates
         glfwPollEvents();
+
+        // Colour that clears the screen
+        glClearColor(0.8f, 0.3f, 0.3f, 1.0f);
+
+        // Clear the colour bits, leave depth alone for now
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 
     // Delete any held proceses and resources
