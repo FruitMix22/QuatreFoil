@@ -23,7 +23,6 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create window
 	m_window = glfwCreateWindow(800, 600, windowTitle.c_str(), NULL, NULL);
@@ -54,9 +53,10 @@ void EngineCore::unloadEngine()
 	{
 		// Terminate all GLFW processes
 		glfwDestroyWindow(m_window);
-		glfwTerminate();
 		m_window = nullptr;
 	}
+	// TODO: bro i moved this out because even if m_window is null, you gotta glfwTerminate();
+	glfwTerminate();
 }
 
 int EngineCore::runEngine()

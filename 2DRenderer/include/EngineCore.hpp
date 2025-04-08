@@ -11,7 +11,7 @@ public:
 
     /// @brief Runs unloadEngine automatically
     ~EngineCore() { unloadEngine(); }
-
+      
     /// @brief Loads the Engine.
     /// 
     /// Sets up GLFW, necessary before anything is done
@@ -32,6 +32,8 @@ public:
     /// @warning MUST RUN loadEngine() before!
     /// @return 0 when game is no longer in loop
     int runEngine();
+
+
 
 private:
     /// @brief GLFW window pointer
