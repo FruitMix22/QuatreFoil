@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
-project(GDP) 
+project(GDP)
 
 # Dependencies
 add_subdirectory(externals/glfw)
@@ -11,14 +11,10 @@ target_include_directories(glad PUBLIC
 find_package(OpenGL REQUIRED)
 
 # 2DRenderer 
-#include
 file(GLOB 2DRENDERER_HEADERS "2DRenderer/include/*.hpp")
-
-
-#src
 file(GLOB 2DRENDERER_SOURCES "2DRenderer/src/*.cpp")
 
-add_library(EngineCore STATIC  # Changed to library
+add_library(EngineCore STATIC
     ${2DRENDERER_SOURCES}
     ${2DRENDERER_HEADERS}
 )
@@ -31,13 +27,14 @@ target_link_libraries(EngineCore
     glad
 )
 
-# QuatreFouil
-
-#include
+# QuatreFoil
 file(GLOB QUATREFOIL_SOURCES "QuatreFoil/src/*.cpp")
-
-#src
 file(GLOB QUATREFOIL_HEADERS "QuatreFoil/include/*.hpp")
+
+# Find all shader files
+file(GLOB_RECURSE QUATREFOIL_SHADERS 
+    "QuatreFoil/Assets/Shaders/*.glsl"
+)
 
 add_executable(QuatreFoil
     ${QUATREFOIL_SOURCES}
@@ -48,15 +45,27 @@ target_include_directories(QuatreFoil PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/2DRenderer/include
 )
 
-# Show files
+# Solution Explorer Organization
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/2DRenderer PREFIX "Engine" FILES
     ${2DRENDERER_SOURCES}
     ${2DRENDERER_HEADERS}
 )
+
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/QuatreFoil PREFIX "Game" FILES
     ${QUATREFOIL_SOURCES}
     ${QUATREFOIL_HEADERS}
 )
 
+# Add shaders to Solution Explorer under Assets group
+    source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/QuatreFoil/Assets PREFIX "Assets" FILES
+        ${QUATREFOIL_SHADERS}
+    )
+
+# Copy shaders to build directory
+foreach(shader ${QUATREFOIL_SHADERS})
+    get_filename_component(shader_name ${shader} NAME)
+    configure_file(${shader} ${CMAKE_CURRENT_BINARY_DIR}/Assets/shaders/${shader_name} COPYONLY)
+endforeach()
+
 # Make game the startup
-set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT QuatreFoil) 
+set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT QuatreFoil)

@@ -2,6 +2,10 @@
 #include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <filesystem>
+
 
 class EngineCore
 {
@@ -11,7 +15,7 @@ public:
 
     /// @brief Runs unloadEngine automatically
     ~EngineCore() { unloadEngine(); }
-      
+     
     /// @brief Loads the Engine.
     /// 
     /// Sets up GLFW, necessary before anything is done
@@ -33,7 +37,23 @@ public:
     /// @return 0 when game is no longer in loop
     int runEngine();
 
+    void setVertPath(std::filesystem::path path) { m_vertPath = path; }
+    void setFragPath(std::filesystem::path path) { m_fragPath = path; }
 
+    // quick simple read shader file
+    //TODO: actually understand this and sort in future
+    std::string ReadShaderFile(const std::filesystem::path& filepath)
+    {
+        std::ifstream file(filepath);
+        if (!file.is_open()) {
+            throw std::runtime_error("Failed to open shader file: " + filepath.string());
+        }
+
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+
+        return buffer.str();
+    }
 
 private:
     /// @brief GLFW window pointer
@@ -43,4 +63,22 @@ private:
     /// 
     /// If user presses ESC, close game
     void processInput();
+
+    /// @brief Vertices for triangle
+    float m_triangleVerts[9] =
+    {
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f, 0.5f, 0.0f
+    };
+
+    /// @brief Vert Shader path
+    std::filesystem::path m_vertPath;
+
+    /// @brief Frag Shader path
+    std::filesystem::path m_fragPath;
+
+    unsigned int m_VAO;
+    unsigned int m_VBO;
+    unsigned int shaderProgram;
 };

@@ -45,6 +45,89 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 		unloadEngine();
 		return -1;
 	}
+
+	// VBO
+
+	// Generate the VBO with buffer id 1
+	glGenBuffers(1, &m_VBO);
+	// Buffer object is an array buffer
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
+	// Attach triangle vert data to the buffer
+	
+    //           Type of Buffer	    Size that array takes   Vert data     Data is set only once
+	glBufferData(GL_ARRAY_BUFFER, sizeof(m_triangleVerts), m_triangleVerts, GL_STATIC_DRAW);
+
+	// TODO: When handling a moving object, change GL_STATIC_DRAW to something else so its placed in faster memory
+	
+
+	// Create a shader
+	unsigned int vertexShader;
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+
+	// same thing
+	unsigned int fragmentShader;
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+
+	std::string vertShaderStr = ReadShaderFile(m_vertPath);
+	std::string fragShaderStr = ReadShaderFile(m_fragPath);
+
+	const char* vertShaderSrc = vertShaderStr.c_str();
+	const char* fragShaderSrc = fragShaderStr.c_str();
+
+	glShaderSource(vertexShader, 1, &vertShaderSrc, NULL);
+	glShaderSource(fragmentShader, 1, &fragShaderSrc, NULL);
+
+	// Compile Shader
+	glCompileShader(vertexShader);
+	glCompileShader(fragmentShader);
+
+	int success;
+	char infoLog[512];
+
+	// For Vertex Shader
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+		std::cout << "Vertex Shader Compilation Failed:\n" << infoLog << std::endl;
+	}
+
+	// For Fragment Shader
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+		std::cout << "Fragment Shader Compilation Failed:\n" << infoLog << std::endl;
+	}
+	
+
+	shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glLinkProgram(shaderProgram);
+
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+	if (!success) {
+		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+	}
+
+
+
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
+
+	glGenVertexArrays(1, &m_VAO);
+
+	glBindVertexArray(m_VAO);
+	// 2. copy our vertices array in a buffer for OpenGL to use
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(m_triangleVerts), m_triangleVerts, GL_STATIC_DRAW);
+	// 3. then set our vertex attributes pointers
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glUseProgram(shaderProgram);
+	glBindVertexArray(m_VAO);
+
 }
 
 void EngineCore::unloadEngine()
@@ -55,7 +138,6 @@ void EngineCore::unloadEngine()
 		glfwDestroyWindow(m_window);
 		m_window = nullptr;
 	}
-	// TODO: bro i moved this out because even if m_window is null, you gotta glfwTerminate();
 	glfwTerminate();
 }
 
@@ -68,17 +150,22 @@ int EngineCore::runEngine()
 		// input
 		processInput();
 
-		// Swap Buffers
-		glfwSwapBuffers(m_window);
-
-		// Check for updates
-		glfwPollEvents();
-		
 		// Clear with colour
 		glClearColor(0.1f, 0.9f, 0.3f, 1.0f);
 
 		// Clear the colour bits, leave depth alone for now
 		glClear(GL_COLOR_BUFFER_BIT);
+
+
+		glUseProgram(shaderProgram);
+		glBindVertexArray(m_VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		// Swap Buffers
+		glfwSwapBuffers(m_window);
+
+		// Check for updates
+		glfwPollEvents();
 	}
 	// End the window
 	unloadEngine();
