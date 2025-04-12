@@ -1,4 +1,4 @@
-#include "EngineCore.hpp"
+#include "Core/include/EngineCore.hpp"
 #include <filesystem>
 
 int main()
@@ -11,9 +11,4 @@ int main()
 	engine.setFragPath(frag);
 	engine.loadEngine("Test Window");
 	engine.runEngine();
-
-
-
-
-
 }

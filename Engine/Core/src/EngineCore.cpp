@@ -1,4 +1,4 @@
-#include "EngineCore.hpp"
+#include "Core/include/EngineCore.hpp"
 
 EngineCore::EngineCore()
 {
@@ -127,6 +127,8 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 
 	glUseProgram(shaderProgram);
 	glBindVertexArray(m_VAO);
+
+	// TODO : BUFFER CLASSES!!!!!!!
 
 }
 
