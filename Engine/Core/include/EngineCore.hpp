@@ -6,6 +6,12 @@
 #include <sstream>
 #include <filesystem>
 
+/// <summary>
+/// 
+/// Handles the basics of the engine.
+/// Runs functions and creates ' game loop '
+/// 
+/// </summary>
 
 class EngineCore
 {
@@ -57,7 +63,7 @@ public:
 
 private:
     /// @brief GLFW window pointer
-    GLFWwindow* m_window;
+    GLFWwindow* m_window = nullptr;
 
     /// @brief Handles inputs.
     /// 
@@ -78,7 +84,7 @@ private:
     /// @brief Frag Shader path
     std::filesystem::path m_fragPath;
 
-    unsigned int m_VAO;
-    unsigned int m_VBO;
-    unsigned int shaderProgram;
+    GLuint m_VAO;
+    GLuint m_VBO;
+    GLuint shaderProgram;
 };

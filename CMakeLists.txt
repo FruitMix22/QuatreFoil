@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 project(GDP)
 
-
 # OOOKAAAAAAAAAAY :
 # KEEP THIS NEAT.
 # ADD FILES AS NECCESSARY.
@@ -9,7 +8,9 @@ project(GDP)
 # EXPECT IT TO BREAK EVERY OTHER DAY.   
 
 
+#------------------------*
 # Dependencies
+#------------------------*
 add_subdirectory(externals/glfw)
 
 # Neccessary for filesystem???
@@ -25,7 +26,6 @@ target_include_directories(glad PUBLIC ${GLAD_INCLUDE_DIR})
 find_package(OpenGL REQUIRED)
 
 # ENTT
-#TODO -> Do this with glad and GLFW
 include(FetchContent)
 FetchContent_Declare(entt 
     GIT_REPOSITORY https://github.com/skypjack/entt.git
@@ -33,9 +33,37 @@ FetchContent_Declare(entt
 )
 FetchContent_MakeAvailable(entt)
 
-#-----------------------*
-# SINGLE ENGINE LIBRARY
-#-----------------------*
+#------------------------*
+# ImGui (docking branch)
+#------------------------*
+FetchContent_Declare(
+    imgui
+    GIT_REPOSITORY https://github.com/ocornut/imgui.git
+    GIT_TAG docking
+)
+FetchContent_MakeAvailable(imgui)
+
+set(IMGUI_SOURCES
+    ${imgui_SOURCE_DIR}/imgui.cpp
+    ${imgui_SOURCE_DIR}/imgui_draw.cpp
+    ${imgui_SOURCE_DIR}/imgui_tables.cpp
+    ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+)
+
+add_library(imgui STATIC ${IMGUI_SOURCES})
+target_include_directories(imgui PUBLIC
+    ${imgui_SOURCE_DIR}
+    ${imgui_SOURCE_DIR}/backends
+    ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
+)
+
+
+
+#------------------------*
+# Engine Library
+#------------------------*
 add_library(Engine STATIC
     # Core
     Engine/Core/include/EngineCore.hpp
@@ -50,6 +78,10 @@ add_library(Engine STATIC
     # Renderer
     Engine/Renderer/include/Renderer.hpp
     Engine/Renderer/src/Renderer.cpp
+
+    # ImGui Layer
+    Engine/Renderer/include/ImGuiLayer.hpp
+    Engine/Renderer/src/ImGuiLayer.cpp
     
     # Components
     Engine/Components/include/Renderable.hpp
@@ -62,6 +94,7 @@ target_include_directories(Engine PUBLIC
     ${GLAD_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
     $<TARGET_PROPERTY:EnTT::EnTT,INTERFACE_INCLUDE_DIRECTORIES>
+    ${imgui_SOURCE_DIR}
 )
 
 target_link_libraries(Engine PRIVATE
@@ -69,11 +102,13 @@ target_link_libraries(Engine PRIVATE
     glfw
     glad
     EnTT::EnTT
+    imgui
 )
 
 #--------------------------------*
 # Solution Explorer Organization 
 #--------------------------------*
+
 # Core 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/include PREFIX "Engine/Core/include" FILES
     Engine/Core/include/EngineCore.hpp
@@ -95,12 +130,14 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/src PREFIX "Engine/
 # Renderer 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/include PREFIX "Engine/Renderer/include" FILES
     Engine/Renderer/include/Renderer.hpp
+    Engine/Renderer/include/ImGuiLayer.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine/Renderer/src" FILES
     Engine/Renderer/src/Renderer.cpp
+    Engine/Renderer/src/ImGuiLayer.cpp
 )
 
-# Components - 
+# Components 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components/include PREFIX "Engine/Components/include" FILES
     Engine/Components/include/Renderable.hpp
 )
@@ -108,16 +145,18 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components/src PREFIX "Engi
     Engine/Components/src/Renderable.cpp
 )
 
-#--------------*
+#------------------------*
 # Game Project
-#--------------*
+#------------------------*
 add_executable(QuatreFoil
     QuatreFoil/src/main.cpp
 )
 
 target_link_libraries(QuatreFoil PRIVATE Engine)
 
-# force solution ezplorer to see shader folder
+#------------------------*
+# Shader Management
+#------------------------*
 file(GLOB QUATREFOIL_SHADERS "QuatreFoil/Assets/Shaders/*.glsl")
 source_group("Assets\\Shaders" FILES ${QUATREFOIL_SHADERS})
 
@@ -126,4 +165,7 @@ foreach(shader ${QUATREFOIL_SHADERS})
     configure_file(${shader} ${CMAKE_CURRENT_BINARY_DIR}/Assets/shaders/${shader_name} COPYONLY)
 endforeach()
 
+#------------------------*
+# Startup Project
+#------------------------*
 set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT QuatreFoil)
