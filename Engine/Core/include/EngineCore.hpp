@@ -5,6 +5,8 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
+#include "Renderer/include/ImGuiLayer.hpp"
+#include <imgui.h>
 
 /// <summary>
 /// 
@@ -70,14 +72,14 @@ private:
     /// If user presses ESC, close game
     void processInput();
 
+    float m_RandomVert = -0.5f;
     /// @brief Vertices for triangle
     float m_triangleVerts[9] =
     {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
+        m_RandomVert, m_RandomVert, 0.0f,
+        0.5f, m_RandomVert, 0.0f,
         0.0f, 0.5f, 0.0f
     };
-
     /// @brief Vert Shader path
     std::filesystem::path m_vertPath;
 
@@ -87,4 +89,6 @@ private:
     GLuint m_VAO;
     GLuint m_VBO;
     GLuint shaderProgram;
+
+    ImGuiLayer m_imGui;
 };

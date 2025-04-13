@@ -1,5 +1,7 @@
 #pragma once
 
+struct GLFWwindow;
+
 class ImGuiLayer
 {
 public:
@@ -8,5 +10,6 @@ public:
     void End();
     void Shutdown();
 private:
+
     GLFWwindow* m_window = nullptr;
 };

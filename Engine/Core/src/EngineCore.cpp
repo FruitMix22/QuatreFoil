@@ -7,7 +7,6 @@ EngineCore::EngineCore()
 	void processInput(GLFWwindow * window);
 }
 
-
 bool EngineCore::loadEngine(const std::string& windowTitle)
 {
 	// Initialise all GLFW functions
@@ -46,20 +45,9 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 		return -1;
 	}
 
-	// VBO
+	m_imGui.Init(m_window);
 
-	// Generate the VBO with buffer id 1
-	glGenBuffers(1, &m_VBO);
-	// Buffer object is an array buffer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 
-	// Attach triangle vert data to the buffer
-	
-    //           Type of Buffer	    Size that array takes   Vert data     Data is set only once
-	glBufferData(GL_ARRAY_BUFFER, sizeof(m_triangleVerts), m_triangleVerts, GL_STATIC_DRAW);
-
-	// TODO: When handling a moving object, change GL_STATIC_DRAW to something else so its placed in faster memory
-	
 
 	// Create a shader
 	unsigned int vertexShader;
@@ -115,6 +103,13 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+	// VBO
+
+	// Generate the VBO with buffer id 1
+	glGenBuffers(1, &m_VBO);
+	// Buffer object is an array buffer
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
 	glGenVertexArrays(1, &m_VAO);
 
 	glBindVertexArray(m_VAO);
@@ -136,11 +131,14 @@ void EngineCore::unloadEngine()
 {
 	if (m_window)
 	{
+		// Can only shutdown while window exists
+		m_imGui.Shutdown();
 		// Terminate all GLFW processes
 		glfwDestroyWindow(m_window);
 		m_window = nullptr;
 	}
 	glfwTerminate();
+	
 }
 
 int EngineCore::runEngine()
@@ -149,32 +147,63 @@ int EngineCore::runEngine()
 	// render loop
 	while (!glfwWindowShouldClose(m_window))
 	{
+		// Check for updates
+		glfwPollEvents();
 		// input
 		processInput();
-
+		// Clear the colour bits, leave depth alone for now
+		glClear(GL_COLOR_BUFFER_BIT);
 		// Clear with colour
 		glClearColor(0.1f, 0.9f, 0.3f, 1.0f);
 
-		// Clear the colour bits, leave depth alone for now
-		glClear(GL_COLOR_BUFFER_BIT);
+		// Begin ImGui
+		m_imGui.Begin();
 
+		// UI panels go here
+		ImGui::Begin("Debug Panel");
+		ImGui::SliderFloat("Value", &m_RandomVert, -1.0f, 1.0f);
+		ImGui::End();
 
+		float m_triangleVerts[9] =
+		{
+			m_RandomVert, m_RandomVert, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f, 0.5f, 0.0f
+		};
+
+		glGenVertexArrays(1, &m_VAO);
+
+		glBindVertexArray(m_VAO);
+		// 2. copy our vertices array in a buffer for OpenGL to use
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(m_triangleVerts), m_triangleVerts, GL_STATIC_DRAW);
+		// 3. then set our vertex attributes pointers
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+
+		glUseProgram(shaderProgram);
+		glBindVertexArray(m_VAO);
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(m_triangleVerts), m_triangleVerts, GL_DYNAMIC_DRAW);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(m_VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
+		std::cout << m_RandomVert;
+
+		// End ImGui
+		m_imGui.End();
+
 		// Swap Buffers
 		glfwSwapBuffers(m_window);
 
-		// Check for updates
-		glfwPollEvents();
+
 	}
 	// End the window
 	unloadEngine();
 	return 0;
 }
 
-// Process input
 void EngineCore::processInput()
 {
 	// If user presses escape, set window close to true
