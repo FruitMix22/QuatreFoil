@@ -11,6 +11,6 @@ int main()
     engine->SetLayer(gameLayer);
     engine->runEngine(); 
     engine = nullptr;
-    delete gameLayer;
+   // delete gameLayer;
     return 0;
 }

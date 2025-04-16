@@ -13,6 +13,6 @@ void QuatreFoil::OnUpdate()
 
 void QuatreFoil::OnRender()
 {
-
+	std::cout << "SUCK IT BITCH\n";
 }
 

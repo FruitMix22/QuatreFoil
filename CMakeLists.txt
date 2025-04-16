@@ -145,8 +145,20 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/C
 #------------------------*
 # Game Project
 #------------------------*
+
+# Explicitly add headers to source group for better VS integration
+file(GLOB QUATREFOIL_HEADERS "QuatreFoil/include/*.hpp")
+
+# Include the headers in the 'include' folder for QuatreFoil project
+include_directories(QuatreFoil/include)
+
+# Manually group the headers under the "QuatreFoil/include" folder
+source_group("QuatreFoil/include" FILES ${QUATREFOIL_HEADERS})
+
+# Add the executable and link the engine
 add_executable(QuatreFoil
     QuatreFoil/src/QuatreFoil.cpp
+    QuatreFoil/src/EntryPoint.cpp
 )
 
 target_link_libraries(QuatreFoil PRIVATE Engine)
