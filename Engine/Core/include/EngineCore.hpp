@@ -5,8 +5,10 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
-#include "Renderer/include/ImGuiLayer.hpp"
 #include <imgui.h>
+#include "Renderer/include/ImGuiLayer.hpp"
+#include "Renderer/include/Renderer.hpp"
+#include "Core/include//Layer.hpp"
 
 /// <summary>
 /// 
@@ -17,9 +19,12 @@
 
 class EngineCore
 {
+    Layer* m_layer = nullptr;
+
 public:
     /// @brief Initialises class values
-    EngineCore();
+    /// @param windowTitle: Title of the window
+    EngineCore(const std::string& windowTitle);
 
     /// @brief Runs unloadEngine automatically
     ~EngineCore() { unloadEngine(); }
@@ -27,7 +32,7 @@ public:
     /// @brief Loads the Engine.
     /// 
     /// Sets up GLFW, necessary before anything is done
-    /// @param title Title of the window
+    /// @param windowTitle: Title of the window
     /// @return TRUE if passes, or FALSE if it fails
     bool loadEngine(const std::string& title);
 
@@ -40,55 +45,19 @@ public:
     /// 
     /// Processes input and swaps GLFW buffers and
     /// clears screen with colour (FOR NOW)
-    /// 
-    /// @warning MUST RUN loadEngine() before!
     /// @return 0 when game is no longer in loop
     int runEngine();
 
-    void setVertPath(std::filesystem::path path) { m_vertPath = path; }
-    void setFragPath(std::filesystem::path path) { m_fragPath = path; }
+    void SetLayer(Layer* layer);
 
-    // quick simple read shader file
-    //TODO: actually understand this and sort in future
-    std::string ReadShaderFile(const std::filesystem::path& filepath)
-    {
-        std::ifstream file(filepath);
-        if (!file.is_open()) {
-            throw std::runtime_error("Failed to open shader file: " + filepath.string());
-        }
-
-        std::stringstream buffer;
-        buffer << file.rdbuf();
-
-        return buffer.str();
-    }
-
+    /// Is ImGui going to be used?
+    /// Default: TRUE
+    bool m_isDebugMenu = true;
 private:
-    /// @brief GLFW window pointer
+    /// GLFW window pointer
     GLFWwindow* m_window = nullptr;
-
-    /// @brief Handles inputs.
-    /// 
-    /// If user presses ESC, close game
-    void processInput();
-
-    float m_RandomVert = -0.5f;
-    /// @brief Vertices for triangle
-    float m_triangleVerts[9] =
-    {
-        m_RandomVert, m_RandomVert, 0.0f,
-        0.5f, m_RandomVert, 0.0f,
-        0.0f, 0.5f, 0.0f
-    };
-    /// @brief Vert Shader path
-    std::filesystem::path m_vertPath;
-
-    /// @brief Frag Shader path
-    std::filesystem::path m_fragPath;
-
-    GLuint m_VAO;
-    GLuint m_VBO;
-    GLuint shaderProgram;
-
+    /// ImGui
     ImGuiLayer m_imGui;
+    /// Renderer
+    Renderer m_renderer;
 };

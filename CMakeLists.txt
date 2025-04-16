@@ -59,33 +59,32 @@ target_include_directories(imgui PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
 )
 
-
-
 #------------------------*
 # Engine Library
 #------------------------*
 add_library(Engine STATIC
     # Core
     Engine/Core/include/EngineCore.hpp
+    Engine/Core/include/Layer.hpp
+
     Engine/Core/src/EngineCore.cpp
     
     # Buffers
     Engine/Buffers/include/VBO.hpp
     Engine/Buffers/include/VAO.hpp
+
     Engine/Buffers/src/VBO.cpp
     Engine/Buffers/src/VAO.cpp
     
     # Renderer
     Engine/Renderer/include/Renderer.hpp
-    Engine/Renderer/src/Renderer.cpp
-
-    # ImGui Layer
     Engine/Renderer/include/ImGuiLayer.hpp
+
+    Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
     
     # Components
-    Engine/Components/include/Renderable.hpp
-    Engine/Components/src/Renderable.cpp
+    Engine/Components/Renderable.cpp
 )
 
 # Public includes
@@ -112,6 +111,7 @@ target_link_libraries(Engine PRIVATE
 # Core 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/include PREFIX "Engine/Core/include" FILES
     Engine/Core/include/EngineCore.hpp
+    Engine/Core/include/Layer.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/src PREFIX "Engine/Core/src" FILES
     Engine/Core/src/EngineCore.cpp
@@ -138,18 +138,15 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine
 )
 
 # Components 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components/include PREFIX "Engine/Components/include" FILES
-    Engine/Components/include/Renderable.hpp
-)
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components/src PREFIX "Engine/Components/src" FILES
-    Engine/Components/src/Renderable.cpp
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
+    Engine/Components/Renderable.cpp
 )
 
 #------------------------*
 # Game Project
 #------------------------*
 add_executable(QuatreFoil
-    QuatreFoil/src/main.cpp
+    QuatreFoil/src/QuatreFoil.cpp
 )
 
 target_link_libraries(QuatreFoil PRIVATE Engine)
