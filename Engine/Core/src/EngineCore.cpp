@@ -50,85 +50,9 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	{
 		m_imGui.Init(m_window);
 	}
-	/*
-	// Create a shader
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-	// same thing
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-	std::string vertShaderStr = ReadShaderFile(m_vertPath);
-	std::string fragShaderStr = ReadShaderFile(m_fragPath);
-
-	const char* vertShaderSrc = vertShaderStr.c_str();
-	const char* fragShaderSrc = fragShaderStr.c_str();
-
-	glShaderSource(vertexShader, 1, &vertShaderSrc, NULL);
-	glShaderSource(fragmentShader, 1, &fragShaderSrc, NULL);
-
-	// Compile Shader
-	glCompileShader(vertexShader);
-	glCompileShader(fragmentShader);
-
-	int success;
-	char infoLog[512];
-
-	// For Vertex Shader
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success) {
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "Vertex Shader Compilation Failed:\n" << infoLog << std::endl;
-	}
-
-	// For Fragment Shader
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	if (!success) {
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "Fragment Shader Compilation Failed:\n" << infoLog << std::endl;
-	}
-	
-
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success) {
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-	}
-
-
-
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-	// VBO
-
-	// Generate the VBO with buffer id 1
-	glGenBuffers(1, &m_VBO);
-	// Buffer object is an array buffer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-
-	glGenVertexArrays(1, &m_VAO);
-
-	glBindVertexArray(m_VAO);
-	// 2. copy our vertices array in a buffer for OpenGL to use
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(m_triangleVerts), m_triangleVerts, GL_STATIC_DRAW);
-	// 3. then set our vertex attributes pointers
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glUseProgram(shaderProgram);
-	glBindVertexArray(m_VAO);
-	*/
-	// TODO : BUFFER CLASSES!!!!!!!
-
 }
 
+// FIGURE OUT WHY ITS RUNNING THE OUTSIDE IF TWICE
 void EngineCore::unloadEngine()
 {
 	if (m_window)
@@ -140,11 +64,11 @@ void EngineCore::unloadEngine()
 		}
 
 		// Terminate all GLFW processes
-		glfwDestroyWindow(m_window);
+		std::cout << "\nTerminating window...\n";
 		m_window = nullptr;
 	}
 	glfwTerminate();
-	
+	std::cout << "Shutdown.\n";
 }
 
 int EngineCore::runEngine()
@@ -156,20 +80,24 @@ int EngineCore::runEngine()
 		// Check for updates
 		glfwPollEvents();
 
-		if (m_layer) {
-			m_layer->OnUpdate();
-		}
+		if (m_layer) { m_layer->OnUpdate(); }
 
-		// Render loop
+		// Begin ImGui
+		m_imGui.Begin();
+		if(m_layer) { m_layer->OnImGuiRender(); }
+		
+
 		// Clear the colour bits, leave depth alone for now
 		glClear(GL_COLOR_BUFFER_BIT);
 		// Clear with colour
-		glClearColor(0.1f, 0.9f, 0.3f, 1.0f);
+		glClearColor(m_clearColour[0], m_clearColour[1], m_clearColour[2], m_clearColour[3]);
 
-		if (m_layer) {
-			m_layer->OnRender();
-		}
-		
+		// Render loop
+		if (m_layer) { m_layer->OnRender(); }
+
+
+		m_imGui.End();
+
 		// Swap Buffers
 		glfwSwapBuffers(m_window);
 	}
@@ -178,11 +106,12 @@ int EngineCore::runEngine()
 	return 0;
 }
 
-void EngineCore::SetLayer(Layer* layer)
+void EngineCore::SetLayer(std::shared_ptr<Layer> layer)
 {
 	m_layer = layer;
 	if (m_layer)
 	{
 		m_layer->OnAttach();
+		std::cout << "Succesful!\n";
 	}
 }

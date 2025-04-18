@@ -1,3 +1,4 @@
+#pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <string>
@@ -8,7 +9,7 @@
 #include <imgui.h>
 #include "Renderer/include/ImGuiLayer.hpp"
 #include "Renderer/include/Renderer.hpp"
-#include "Core/include//Layer.hpp"
+#include "Core/include/Layer.hpp"
 
 /// <summary>
 /// 
@@ -19,7 +20,6 @@
 
 class EngineCore
 {
-    Layer* m_layer = nullptr;
 
 public:
     /// @brief Initialises class values
@@ -48,16 +48,19 @@ public:
     /// @return 0 when game is no longer in loop
     int runEngine();
 
-    void SetLayer(Layer* layer);
+    /// Sets layer from the users game
+    void SetLayer(std::shared_ptr<Layer> layer);
 
     /// Is ImGui going to be used?
-    /// Default: TRUE
     bool m_isDebugMenu = true;
+
+    /// Clear colour
+    float m_clearColour[4] = { 1.0f,1.0f,0.0f, 1.0f };
 private:
     /// GLFW window pointer
     GLFWwindow* m_window = nullptr;
     /// ImGui
     ImGuiLayer m_imGui;
-    /// Renderer
-    Renderer m_renderer;
+    /// Empty layer
+    std::shared_ptr<Layer> m_layer = nullptr;
 };

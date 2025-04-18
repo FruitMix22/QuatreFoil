@@ -25,7 +25,11 @@ target_include_directories(glad PUBLIC ${GLAD_INCLUDE_DIR})
 
 find_package(OpenGL REQUIRED)
 
-# ENTT
+# 
+
+
+
+
 include(FetchContent)
 FetchContent_Declare(entt 
     GIT_REPOSITORY https://github.com/skypjack/entt.git
@@ -79,12 +83,14 @@ add_library(Engine STATIC
     # Renderer
     Engine/Renderer/include/Renderer.hpp
     Engine/Renderer/include/ImGuiLayer.hpp
+    Engine/Renderer/include/Shader.hpp
 
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
+    Engine/Renderer/src/Shader.cpp
     
     # Components
-    Engine/Components/Renderable.cpp
+    Engine/Components/Renderable.hpp
 )
 
 # Public includes
@@ -131,15 +137,17 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/src PREFIX "Engine/
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/include PREFIX "Engine/Renderer/include" FILES
     Engine/Renderer/include/Renderer.hpp
     Engine/Renderer/include/ImGuiLayer.hpp
+    Engine/Renderer/include/Shader.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine/Renderer/src" FILES
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
+    Engine/Renderer/src/Shader.cpp
 )
 
 # Components 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
-    Engine/Components/Renderable.cpp
+    Engine/Components/Renderable.hpp
 )
 
 #------------------------*
@@ -161,7 +169,13 @@ add_executable(QuatreFoil
     QuatreFoil/src/EntryPoint.cpp
 )
 
-target_link_libraries(QuatreFoil PRIVATE Engine)
+target_link_libraries(QuatreFoil PRIVATE 
+Engine
+OpenGL::GL
+glfw
+glad
+EnTT::EnTT
+imgui)
 
 #------------------------*
 # Shader Management

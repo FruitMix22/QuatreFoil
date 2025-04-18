@@ -1,8 +1,5 @@
 #include "Renderer/include/Renderer.hpp"
-#include "Core/include/EngineCore.hpp"
-#include "Buffers/include/VAO.hpp"
-#include "Buffers/include/VBO.hpp"
-#include "Components/Renderable.cpp"
+
 
 void Renderer::Render(entt::registry& registry)
 {
@@ -12,8 +9,12 @@ void Renderer::Render(entt::registry& registry)
 	{
 		auto& renderable = view.get<Renderable>(entity);
 
-		renderable.m_vao.Bind();
+		renderable.m_vao->Bind();
+		renderable.m_shader->Use();
 
-		glDrawArrays(GL_TRIANGLES, 0, renderable.m_vertexCount);
+		glViewport(0, 0, 800, 600);
+
+
+		glDrawArrays(GL_TRIANGLES, 0, renderable.m_vao->GetVertexCount());
 	}
 }
