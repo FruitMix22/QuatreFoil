@@ -55,7 +55,7 @@ public:
     bool m_isDebugMenu = true;
 
     /// Clear colour
-    float m_clearColour[4] = { 1.0f,1.0f,0.0f, 1.0f };
+    float m_clearColour[4] = { 1.0f,1.0f,1.0f, 1.0f };
 private:
     /// GLFW window pointer
     GLFWwindow* m_window = nullptr;

@@ -9,11 +9,6 @@ void QuatreFoil::OnAttach()
 
 void QuatreFoil::OnUpdate()
 {
-
-}
-
-void QuatreFoil::OnRender()
-{
 	auto view = m_registry.view<Renderable>();
 
 	for (auto entity : view)
@@ -22,9 +17,11 @@ void QuatreFoil::OnRender()
 
 		renderable.m_shader->SetUniform("colour", triangleColour[0], triangleColour[1], triangleColour[2], triangleColour[3]);
 	}
+}
 
+void QuatreFoil::OnRender()
+{
 	m_renderer.Render(m_registry);
-
 }
 
 void QuatreFoil::generateEntities()

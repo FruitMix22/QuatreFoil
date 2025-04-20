@@ -85,7 +85,6 @@ int EngineCore::runEngine()
 		// Begin ImGui
 		m_imGui.Begin();
 		if(m_layer) { m_layer->OnImGuiRender(); }
-		
 
 		// Clear the colour bits, leave depth alone for now
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -95,14 +94,14 @@ int EngineCore::runEngine()
 		// Render loop
 		if (m_layer) { m_layer->OnRender(); }
 
-
 		m_imGui.End();
 
 		// Swap Buffers
 		glfwSwapBuffers(m_window);
 	}
-	// End the window
-	unloadEngine();
+	
+	// Destructor will call unload window
+
 	return 0;
 }
 

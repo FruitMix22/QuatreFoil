@@ -25,11 +25,6 @@ target_include_directories(glad PUBLIC ${GLAD_INCLUDE_DIR})
 
 find_package(OpenGL REQUIRED)
 
-# 
-
-
-
-
 include(FetchContent)
 FetchContent_Declare(entt 
     GIT_REPOSITORY https://github.com/skypjack/entt.git
@@ -76,9 +71,11 @@ add_library(Engine STATIC
     # Buffers
     Engine/Buffers/include/VBO.hpp
     Engine/Buffers/include/VAO.hpp
+    Engine/Buffers/include/EBO.hpp
 
     Engine/Buffers/src/VBO.cpp
     Engine/Buffers/src/VAO.cpp
+    Engine/Buffers/src/EBO.cpp
     
     # Renderer
     Engine/Renderer/include/Renderer.hpp
@@ -91,6 +88,7 @@ add_library(Engine STATIC
     
     # Components
     Engine/Components/Renderable.hpp
+    Engine/Components/Transform.hpp
 )
 
 # Public includes
@@ -100,6 +98,7 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
     $<TARGET_PROPERTY:EnTT::EnTT,INTERFACE_INCLUDE_DIRECTORIES>
     ${imgui_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/externals/glm
 )
 
 target_link_libraries(Engine PRIVATE
@@ -127,10 +126,12 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/src PREFIX "Engine/Cor
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/include PREFIX "Engine/Buffers/include" FILES
     Engine/Buffers/include/VBO.hpp
     Engine/Buffers/include/VAO.hpp
+    Engine/Buffers/include/EBO.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/src PREFIX "Engine/Buffers/src" FILES
     Engine/Buffers/src/VBO.cpp
     Engine/Buffers/src/VAO.cpp
+    Engine/Buffers/src/EBO.cpp
 )
 
 # Renderer 
@@ -148,6 +149,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine
 # Components 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
     Engine/Components/Renderable.hpp
+    Engine/Components/Transform.hpp
 )
 
 #------------------------*
