@@ -5,7 +5,7 @@
 class EBO
 {
 public:
-	EBO(const void* indeces);
+	EBO(const void* indices, size_t indicesSize);
 	~EBO();
 
 	void Bind() const;
