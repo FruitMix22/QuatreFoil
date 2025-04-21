@@ -8,7 +8,7 @@ class VAO
 {
 public:
 
-	VAO(const void* data, GLuint size);
+	VAO(const void* data);
 	~VAO();
 
 	void Bind() const;

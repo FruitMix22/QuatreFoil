@@ -35,7 +35,8 @@ void QuatreFoil::generateEntities()
 	};
 
 	entt::entity triangle = m_registry.create();
-	std::shared_ptr<VAO> triangleVAO = std::make_shared<VAO>(triangleVerts, sizeof(triangleVerts));
+	std::shared_ptr<VAO> triangleVAO = std::make_shared<VAO>(triangleVerts);
+	std::cout << "size of data ORIGINAL :" << sizeof(triangleVerts) << std::endl;
 	triangleVAO->AddVertexBuffer(0, 2, GL_FLOAT, false, sizeof(float) * 2, (void*)0);
 	
 	const char* vertexPath = "../QuatreFoil/Assets/Shaders/TriangleVert.glsl";

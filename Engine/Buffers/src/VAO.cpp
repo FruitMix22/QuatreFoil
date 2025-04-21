@@ -1,8 +1,13 @@
 #include "Buffers/include/VAO.hpp"
+#include <iostream>
 
-VAO::VAO(const void* data, GLuint size) 
+VAO::VAO(const void* data) 
 {
     glGenVertexArrays(1, &m_id);
+
+    // Work out size automatically
+    GLuint size = sizeof(data);
+    std::cout << "size of data: " << size << std::endl;
     m_vbo = std::make_unique<VBO>(data, size);
     m_vertexCount = size / sizeof(float) / 2;
 }
