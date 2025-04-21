@@ -1,15 +1,13 @@
 #include "Buffers/include/VAO.hpp"
 #include <iostream>
 
-void VAO::CreateVBO(const void* data, size_t size, const void*  indices) 
+void VAO::CreateVAO(const void* data, const void*  indices) 
 {
     glGenVertexArrays(1, &m_id);
     glBindVertexArray(m_id);
 
-    m_vbo = std::make_unique<VBO>(data, size);
+    m_vbo = std::make_unique<VBO>(data, m_vertexCount);
     m_ebo = std::make_unique<EBO>(indices, m_indicesCount);
-
-    m_vertexCount = size / sizeof(float) / 2;
 }
 
 
@@ -22,7 +20,12 @@ void VAO::Bind() const
     m_ebo->Bind();
 }
 
-void VAO::Unbind() const { glBindVertexArray(0); }
+void VAO::Unbind() const 
+{
+    glBindVertexArray(0);
+    m_vbo->Unbind();
+    m_ebo->Unbind();
+}
 
 void VAO::AddVertexBuffer(GLuint index, int size, GLenum type, bool normalised, GLsizei stride, const void* pointer)
 {

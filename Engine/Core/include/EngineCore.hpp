@@ -11,56 +11,45 @@
 #include "Renderer/include/Renderer.hpp"
 #include "Core/include/Layer.hpp"
 
-/// <summary>
-/// 
-/// Handles the basics of the engine.
-/// Runs functions and creates ' game loop '
-/// 
-/// </summary>
-
+// Handles the basics of the engine.
+// Runs functions and creates game loop.
 class EngineCore
 {
 
 public:
-    /// @brief Initialises class values
-    /// @param windowTitle: Title of the window
+    // Initialises class values.
+    // @param windowTitle: Title of the window.
     EngineCore(const std::string& windowTitle);
 
-    /// @brief Runs unloadEngine automatically
+    // Deallocates memory
     ~EngineCore() { unloadEngine(); }
      
-    /// @brief Loads the Engine.
-    /// 
-    /// Sets up GLFW, necessary before anything is done
-    /// @param windowTitle: Title of the window
-    /// @return TRUE if passes, or FALSE if it fails
+    // Loads the Engine and sets up GLFW window.
+    // @param title: Title of the window.
+    // @return TRUE if passes, or FALSE if it fails.
     bool loadEngine(const std::string& title);
 
-    /// @brief Unloads the engine.
-    /// 
-    /// Terminates window and forces nullptr
+    // Unloads the engine.
+    // Terminates window and forces nullptr.
+    // Is automatically ran in destruct.
     void unloadEngine();
 
-    /// @brief Main core game loop
-    /// 
-    /// Processes input and swaps GLFW buffers and
-    /// clears screen with colour (FOR NOW)
-    /// @return 0 when game is no longer in loop
+    // Runs the core game loop.
+    // @return 0 when game is no longer in loop.
     int runEngine();
 
-    /// Sets layer from the users game
+    // Sets layer from the users game.
+    // @param layer: Your game layer.
     void SetLayer(std::shared_ptr<Layer> layer);
 
-    /// Is ImGui going to be used?
-    bool m_isDebugMenu = true;
-
-    /// Clear colour
-    float m_clearColour[4] = { 1.0f,1.0f,1.0f, 1.0f };
+    // Sets debug mode.
+    // @param status: True/False for wether debug mode is on.
+    void SetImGUI(bool status) { m_isDebugMenu = status; }
+  
 private:
-    /// GLFW window pointer
-    GLFWwindow* m_window = nullptr;
-    /// ImGui
-    ImGuiLayer m_imGui;
-    /// Empty layer
-    std::shared_ptr<Layer> m_layer = nullptr;
+    GLFWwindow* m_window = nullptr; // GLFW window pointer
+    ImGuiLayer m_imGui; // Manages ImGui UI
+    std::shared_ptr<Layer> m_layer = nullptr; // Active game layer
+    bool m_isDebugMenu = true;  // should ImGui be active? 
+    float m_clearColour[4] = { 1.0f,1.0f,1.0f, 1.0f };  // glClear colour
 };

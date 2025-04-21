@@ -5,15 +5,14 @@
 
 void ImGuiLayer::Init(GLFWwindow* window)
 {
-    
     m_window = window;
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-
-    ImGui::StyleColorsDark();
-
+    //ImGui::StyleColorsDark();
+    //ImGui::StyleColorsClassic();
+    ImGui::StyleColorsLight();
     ImGui_ImplGlfw_InitForOpenGL(m_window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 }

@@ -1,5 +1,6 @@
 #include "glm.hpp"
 
+// Allows an entity to be moved, rotated, and scaled.
 struct Transform
 {
 	glm::vec2 position = { 0.f, 0.f };

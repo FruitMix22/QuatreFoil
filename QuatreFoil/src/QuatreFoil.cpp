@@ -26,7 +26,8 @@ void QuatreFoil::OnRender()
 
 void QuatreFoil::generateEntities()
 {
-	float triangleVerts[] = {
+	float triangleVerts[] =
+	{
 		0.5f,  0.5f,    // top right
 		0.5f, -0.5f,    // bottom right
 	   -0.5f, -0.5f,    // bottom left

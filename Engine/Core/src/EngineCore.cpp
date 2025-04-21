@@ -3,9 +3,11 @@
 EngineCore::EngineCore(const std::string& windowTitle)
 {
 	m_window = nullptr;
-	void framebuffer_size_callback(GLFWwindow * window, int width, int height);
-	void processInput(GLFWwindow * window);
-	loadEngine(windowTitle);
+	if (!loadEngine(windowTitle))
+	{
+		unloadEngine();
+	}
+
 }
 
 bool EngineCore::loadEngine(const std::string& windowTitle)
@@ -13,7 +15,6 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	// Initialise all GLFW functions
 	if (glfwInit() == GLFW_FALSE)
 	{
-		// Return false if fails
 		std::cout << " GLFW failed to initialise!\n";
 		unloadEngine();
 		return false;
@@ -28,7 +29,6 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	m_window = glfwCreateWindow(800, 600, windowTitle.c_str(), NULL, NULL);
 	if (m_window == NULL)
 	{
-		// Return false if fails
 		std::cout << "Failed to create GLFW window!\n";
 		unloadEngine();
 		return false; 
@@ -40,33 +40,37 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	// Load all OpenGL stuff
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		// If fails, close all
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		unloadEngine();
-		return -1;
+		return false;
 	}
 
+	// Set clear colour
+	glClearColor(m_clearColour[0], m_clearColour[1], m_clearColour[2], m_clearColour[3]);
+
+	// Load ImGui if debugging is active.
 	if (m_isDebugMenu)
 	{
 		m_imGui.Init(m_window);
 	}
+
+	return true;
 }
 
-// FIGURE OUT WHY ITS RUNNING THE OUTSIDE IF TWICE
 void EngineCore::unloadEngine()
 {
 	if (m_window)
 	{
 		if (m_isDebugMenu)
 		{
-			// Can only shutdown while window exists
+			// Can only shutdown while window exists and if debugging is active
 			m_imGui.Shutdown();
 		}
 
-		// Terminate all GLFW processes
 		std::cout << "\nTerminating window...\n";
 		m_window = nullptr;
 	}
+	// Terminate all GLFW processes
 	glfwTerminate();
 	std::cout << "Shutdown.\n";
 }
@@ -74,34 +78,27 @@ void EngineCore::unloadEngine()
 int EngineCore::runEngine()
 
 {
-	// render loop
+	// Start render loop.
 	while (!glfwWindowShouldClose(m_window))
 	{
 		// Check for updates
 		glfwPollEvents();
-
-		if (m_layer) { m_layer->OnUpdate(); }
-
-		// Begin ImGui
+		// Start ImGui frame
 		m_imGui.Begin();
-		if(m_layer) { m_layer->OnImGuiRender(); }
-
-		// Clear the colour bits, leave depth alone for now
+		
 		glClear(GL_COLOR_BUFFER_BIT);
-		// Clear with colour
-		glClearColor(m_clearColour[0], m_clearColour[1], m_clearColour[2], m_clearColour[3]);
 
-		// Render loop
+		// Run code from the Game Layer.
+		if (m_layer) { m_layer->OnUpdate(); }
+		if(m_layer) { m_layer->OnImGuiRender(); }
 		if (m_layer) { m_layer->OnRender(); }
 
+		// End ImGui frame
 		m_imGui.End();
 
 		// Swap Buffers
 		glfwSwapBuffers(m_window);
 	}
-	
-	// Destructor will call unload window
-
 	return 0;
 }
 
