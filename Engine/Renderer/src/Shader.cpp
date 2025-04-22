@@ -85,20 +85,25 @@ void Shader::Use()
     glUseProgram(ID);
 }
 
-void Shader::SetUniform(const std::string& name, float value) const
+void Shader::SetUniform(const std::string& name, float value) 
 {
+    // Must bind before, so setting the uniform actually binds to current shader state set
+    Use();
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
-void Shader::SetUniform(const std::string& name, int value) const
+void Shader::SetUniform(const std::string& name, int value) 
 {
+    Use();
     glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
 }
-void Shader::SetUniform(const std::string& name, bool value) const
+void Shader::SetUniform(const std::string& name, bool value) 
 {
+    Use();
     glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
 }
 
-void Shader::SetUniform(const std::string& name, float a, float b, float c, float d) const
+void Shader::SetUniform(const std::string& name,glm::vec4 value) 
 {
-    glUniform4f(glGetUniformLocation(ID, name.c_str()), a, b, c ,d);
+    Use();
+    glUniform4f(glGetUniformLocation(ID, name.c_str()), value.x, value.y, value.z ,value.w);
 }

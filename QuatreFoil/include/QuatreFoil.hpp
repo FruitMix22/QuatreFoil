@@ -6,15 +6,14 @@
 #include "Renderer/include/Renderer.hpp"
 #include "Renderer/include/Shader.hpp"
 #include "Components/Renderable.hpp"
-
+#include <glm.hpp>
 
 class QuatreFoil : public Layer
 {
 private:
 	entt::registry m_registry;
 	Renderer m_renderer;
-	float triangleColour[4] = { 1, 0, 1, 0 };
-	
+	glm::vec4 triangleColour = { 1.f,1.f,1.f,1.f };
 public:
 	QuatreFoil() {}; // Default constructor
 	void OnAttach() override;
