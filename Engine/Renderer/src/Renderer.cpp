@@ -17,6 +17,11 @@ void Renderer::Render(entt::registry& registry)
 		renderable.m_vao->Bind();
 		renderable.m_shader->Use();
 
+		if (renderable.m_texture != nullptr)
+		{
+			renderable.m_texture->Bind();
+		}
+
 		glDrawElements(GL_TRIANGLES, renderable.m_vao->GetIndicesCount(), GL_UNSIGNED_INT, 0);
 
 		// Not strictly neccesary but okay for now

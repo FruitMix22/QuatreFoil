@@ -81,14 +81,17 @@ add_library(Engine STATIC
     Engine/Renderer/include/Renderer.hpp
     Engine/Renderer/include/ImGuiLayer.hpp
     Engine/Renderer/include/Shader.hpp
+    Engine/Renderer/include/Texture.hpp
 
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
     Engine/Renderer/src/Shader.cpp
+    Engine/Renderer/src/Texture.cpp
     
     # Components
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
+    Engine/Components/Camera.hpp
 )
 
 # Public includes
@@ -99,6 +102,8 @@ target_include_directories(Engine PUBLIC
     $<TARGET_PROPERTY:EnTT::EnTT,INTERFACE_INCLUDE_DIRECTORIES>
     ${imgui_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glm
+    ${CMAKE_CURRENT_SOURCE_DIR}/externals/stb
+
 )
 
 target_link_libraries(Engine PRIVATE
@@ -139,17 +144,20 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/include PREFIX "En
     Engine/Renderer/include/Renderer.hpp
     Engine/Renderer/include/ImGuiLayer.hpp
     Engine/Renderer/include/Shader.hpp
+    Engine/Renderer/include/Texture.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine/Renderer/src" FILES
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
     Engine/Renderer/src/Shader.cpp
+    Engine/Renderer/src/Texture.cpp
 )
 
 # Components 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
+    Engine/Components/Camera.hpp
 )
 
 #------------------------*
@@ -177,7 +185,8 @@ OpenGL::GL
 glfw
 glad
 EnTT::EnTT
-imgui)
+imgui
+)
 
 #------------------------*
 # Shader Management

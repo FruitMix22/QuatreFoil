@@ -3,6 +3,7 @@
 #include "Core/include/EngineCore.hpp"
 #include "Buffers/include/VAO.hpp"
 #include "Buffers/include/VBO.hpp"
+#include "Renderer/include/Texture.hpp"
 #include "Components/Renderable.hpp"
 #include "Renderer/include/Shader.hpp"
 #include <memory>
