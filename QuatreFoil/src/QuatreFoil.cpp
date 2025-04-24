@@ -21,6 +21,7 @@ void QuatreFoil::OnUpdate()
 
 		cameraView = camera.GetViewMatrix();
 		projection = camera.GetProjectionMatrix();
+		camera.position = cameraPos;
 	}
 
 	auto view = m_registry.view<Renderable, Transform>();
@@ -30,7 +31,7 @@ void QuatreFoil::OnUpdate()
 		auto& renderable = view.get<Renderable>(entity);
 		auto& transformable = view.get<Transform>(entity);
 
-		transformable.position = glm::vec2(m_xPosTriangle, -200.f);
+		transformable.position = glm::vec2(m_xPosTriangle.x, m_xPosTriangle.y);
 
 
 		renderable.m_shader->SetUniform("projection", projection);
@@ -98,7 +99,10 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::Text("Entity Colour");
 	// Edit a color stored as 4 floats
 	ImGui::ColorEdit3("Color", &triangleColour.x);
-	ImGui::SliderFloat("X Pos", &m_xPosTriangle, 0.f, 800.f);
+	ImGui::Text("Quad X Pos");
+	ImGui::SliderFloat2("X Pos", glm::value_ptr(m_xPosTriangle), -600.f, 800.f);
+	ImGui::Text("Camera Pos");
+	ImGui::SliderFloat2("Camera", glm::value_ptr(cameraPos), -500.f, 500.f);
 	ImGui::End();
 }
 

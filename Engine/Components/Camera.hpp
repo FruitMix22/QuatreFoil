@@ -3,12 +3,13 @@
 
 struct Camera
 {
-	glm::vec3 position = glm::vec3(0.0f);
+	glm::vec2 position = glm::vec2(0.0f);
 	glm::vec2 perspective = glm::vec2(800.f, 600.f); // ortho for now
 	
     glm::mat4 GetViewMatrix() const
     {
-        return glm::mat4(1.0f); // We aint schmmoooooovin yet
+        glm::mat4 view(1.0f); 
+        return view = glm::translate(view, glm::vec3(-position.x, position.y, 0.f));
     }
 
     glm::mat4 GetProjectionMatrix() const

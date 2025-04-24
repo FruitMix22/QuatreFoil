@@ -18,7 +18,8 @@ private:
 	Renderer m_renderer;
 	glm::vec4 triangleColour = { 1.f,1.f,1.f,1.f };
 
-	float m_xPosTriangle = 200.f;
+	glm::vec2 m_xPosTriangle = glm::vec2(200.f, 0.f);
+	glm::vec2 cameraPos = glm::vec2(0.f, 0.f);
 public:
 	QuatreFoil() {}; // Default constructor
 	void OnAttach() override;
