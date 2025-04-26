@@ -7,8 +7,9 @@
 #include "Renderer/include/Shader.hpp"
 #include "Renderer/include/Texture.hpp"
 #include "Components/Renderable.hpp"
-#include "Components/Camera.hpp"
-#include "Components/Transform.hpp"
+#include "Renderer/include/Camera.hpp"
+#include "Renderer/include/Quad.hpp"
+#include <vector>
 #include <glm.hpp>
 
 class QuatreFoil : public Layer
@@ -20,8 +21,14 @@ private:
 
 	glm::vec2 m_xPosTriangle = glm::vec2(200.f, 0.f);
 	glm::vec2 cameraPos = glm::vec2(0.f, 0.f);
+
+	// Only ever want one camera
+	// No support for multiple camera's right now
+	std::unique_ptr<Camera> m_camera;
+
+	std::vector<Quad> m_quads;
 public:
-	QuatreFoil() {}; // Default constructor
+	QuatreFoil(); // Default constructor
 	void OnAttach() override;
 	void OnUpdate() override;
 	void OnImGuiRender() override;

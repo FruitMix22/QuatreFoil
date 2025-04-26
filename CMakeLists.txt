@@ -82,16 +82,18 @@ add_library(Engine STATIC
     Engine/Renderer/include/ImGuiLayer.hpp
     Engine/Renderer/include/Shader.hpp
     Engine/Renderer/include/Texture.hpp
+    Engine/Renderer/include/Camera.hpp
 
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
     Engine/Renderer/src/Shader.cpp
     Engine/Renderer/src/Texture.cpp
+    Engine/Renderer/src/Camera.cpp
     
     # Components
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
-    Engine/Components/Camera.hpp
+    #Engine/Components/Camera.hpp
 )
 
 # Public includes
@@ -145,19 +147,21 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/include PREFIX "En
     Engine/Renderer/include/ImGuiLayer.hpp
     Engine/Renderer/include/Shader.hpp
     Engine/Renderer/include/Texture.hpp
+    Engine/Renderer/include/Camera.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine/Renderer/src" FILES
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
     Engine/Renderer/src/Shader.cpp
     Engine/Renderer/src/Texture.cpp
+    Engine/Renderer/src/Camera.cpp
 )
 
 # Components 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
-    Engine/Components/Camera.hpp
+    #Engine/Components/Camera.hpp
 )
 
 #------------------------*
