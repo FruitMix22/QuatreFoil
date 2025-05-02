@@ -78,6 +78,7 @@ void EngineCore::unloadEngine()
 int EngineCore::runEngine()
 
 {
+	if (m_layer) { m_layer->OnStart(); }
 	// Start render loop.
 	while (!glfwWindowShouldClose(m_window))
 	{

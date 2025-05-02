@@ -23,14 +23,14 @@ public:
 	const char* GetFragPath() { return m_fragPath; }
 	entt::entity& GetEntity() { return m_quad; }
 
-	void CreateQuad();
+	void CreateQuad(glm::vec2 position, glm::vec2 scale);
 private:
 	entt::registry& m_registry;
 	entt::entity m_quad;
 
 	const char* m_vertexPath = "../QuatreFoil/Assets/Shaders/TriangleVert.glsl";
 	const char* m_fragPath = "../QuatreFoil/Assets/Shaders/TriangleFrag.glsl";
-	const char* m_imagePath = "../QuatreFoil/Assets/Textures/container.jpg";
+	const char* m_imagePath = "../QuatreFoil/Assets/Textures/grassdog.jpg";
 
 	float m_quadVerts[16] =
 	{	// x   //y   //u   //v

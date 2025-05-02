@@ -30,9 +30,13 @@ private:
 public:
 	QuatreFoil(); // Default constructor
 	void OnAttach() override;
+	void OnStart() override;
 	void OnUpdate() override;
 	void OnImGuiRender() override;
 	void OnRender() override;
 
+	// Generate entities -> Test for now
 	void generateEntities();
+
+	void generateFloor();
 };

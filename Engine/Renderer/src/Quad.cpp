@@ -4,7 +4,7 @@ Quad::Quad(entt::registry& registry) : m_registry(registry){}
 
 
 
-void Quad::CreateQuad()
+void Quad::CreateQuad(glm::vec2 position, glm::vec2 scale)
 {
 	m_quad = m_registry.create();
 
@@ -22,8 +22,8 @@ void Quad::CreateQuad()
 	renderComp.m_texture = m_texture;
 
 	auto& transformComp = m_registry.emplace<Transform>(m_quad);
-	transformComp.position = glm::vec2(100, 100);
-	transformComp.scale = glm::vec2(200, 200);
+	transformComp.position = position;
+	transformComp.scale = scale;
 }
 
 

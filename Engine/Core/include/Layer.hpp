@@ -7,6 +7,8 @@ class Layer
 public:
 	// Runs when is attatched to the engine.
 	virtual void OnAttach(){}
+	// Runs when the engine core is started.
+	virtual void OnStart() {};
 	// Runs every frame before anything is rendered.
 	virtual void OnUpdate(){}
 	// Runs ImGui every frame.

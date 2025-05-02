@@ -9,7 +9,13 @@ QuatreFoil::QuatreFoil()
 void QuatreFoil::OnAttach()
 {
 	std::cout << "Attaching Game to Engine...\n";
+}
+
+void QuatreFoil::OnStart()
+{
+	// Generate entities
 	generateEntities();
+	generateFloor();
 }
 
 void QuatreFoil::OnUpdate()
@@ -39,8 +45,24 @@ void QuatreFoil::OnRender()
 
 void QuatreFoil::generateEntities()
 {
-	m_quads.emplace_back(m_registry);
-	m_quads.back().CreateQuad();
+	//m_quads.emplace_back(m_registry);
+	//m_quads.back().CreateQuad(glm::vec2(100,100), glm::vec2(200,200));
+}
+
+void QuatreFoil::generateFloor()
+{
+	// temp number of floors
+	size_t totalTiles = 5;
+	float xPositionTile	 = -110.f;
+	//std::shared_ptr<Texture> grass = std::make_shared<Texture>("../QuatreFoil/Assets/Textures/grass.png");
+
+	for (int i = 0; i < totalTiles; i++)
+	{
+		m_quads.emplace_back(m_registry);
+		//m_quads.back().SetTexture(grass);
+		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -600),glm::vec2(110,100));
+		xPositionTile += 200.f;
+	}
 }
 
 void QuatreFoil::OnImGuiRender()
