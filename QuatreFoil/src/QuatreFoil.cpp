@@ -4,6 +4,7 @@
 QuatreFoil::QuatreFoil()
 {
 	m_camera = std::make_unique<Camera>(m_registry);
+	m_fbo = std::make_unique<Framebuffer>(800,600);
 }
 
 void QuatreFoil::OnAttach()
@@ -40,7 +41,11 @@ void QuatreFoil::OnUpdate()
 
 void QuatreFoil::OnRender()
 {
+	m_fbo->Bind();
+	glClearColor(1.f, 1.f, 1.f, 1.f);
+	glClear(GL_COLOR_BUFFER_BIT);
 	m_renderer.Render(m_registry);
+	m_fbo->Unbind();
 }
 
 void QuatreFoil::generateEntities()
@@ -66,8 +71,9 @@ void QuatreFoil::generateFloor()
 }
 
 void QuatreFoil::OnImGuiRender()
-{
+{ 
 	ImGui::Begin("Debug");
+	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), ImVec2(800, 600), ImVec2(0, 1), ImVec2(1, 0));
 	ImGui::Text("Entity Colour");
 	// Edit a color stored as 4 floats
 	ImGui::ColorEdit3("Color", &triangleColour.x);

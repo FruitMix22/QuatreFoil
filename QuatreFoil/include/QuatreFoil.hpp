@@ -1,14 +1,15 @@
 #pragma once
 #include "Core/include/Layer.hpp"
-#include <entt/entt.hpp>
 #include "Buffers/include/VAO.hpp"
 #include "Buffers/include/VBO.hpp"
+#include "Buffers/include/FBO.hpp"
 #include "Renderer/include/Renderer.hpp"
 #include "Renderer/include/Shader.hpp"
 #include "Renderer/include/Texture.hpp"
-#include "Components/Renderable.hpp"
 #include "Renderer/include/Camera.hpp"
 #include "Renderer/include/Quad.hpp"
+#include "Components/Renderable.hpp"
+#include <entt/entt.hpp>
 #include <vector>
 #include <glm.hpp>
 
@@ -27,6 +28,9 @@ private:
 	std::unique_ptr<Camera> m_camera;
 
 	std::vector<Quad> m_quads;
+
+	std::unique_ptr<Framebuffer>m_fbo;
+
 public:
 	QuatreFoil(); // Default constructor
 	void OnAttach() override;
