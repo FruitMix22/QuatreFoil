@@ -31,6 +31,8 @@ private:
 
 	std::unique_ptr<Framebuffer>m_fbo;
 
+	bool firstDock = true;
+
 public:
 	QuatreFoil(); // Default constructor
 	void OnAttach() override;

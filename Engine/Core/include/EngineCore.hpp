@@ -11,6 +11,7 @@
 #include "Renderer/include/Renderer.hpp"
 #include "Core/include/Layer.hpp"
 
+
 // Handles the basics of the engine.
 // Runs functions and creates game loop.
 class EngineCore

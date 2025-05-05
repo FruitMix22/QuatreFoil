@@ -1,6 +1,9 @@
 #include "../QuatreFoil/include/QuatreFoil.hpp"
 #include <iostream>
 
+
+
+
 QuatreFoil::QuatreFoil()
 {
 	m_camera = std::make_unique<Camera>(m_registry);
@@ -72,12 +75,24 @@ void QuatreFoil::generateFloor()
 
 void QuatreFoil::OnImGuiRender()
 { 
-	ImGui::Begin("Debug");
+	ImGuiViewport* viewport = ImGui::GetMainViewport();
+
+	// Create a DockSpace in the main viewport
+	ImGui::SetNextWindowPos(viewport->Pos); 
+	ImGui::SetNextWindowSize(viewport->Size);
+	ImGui::SetNextWindowViewport(viewport->ID);
+
+	ImGui::Begin("ViewPort" , nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus |
+		ImGuiWindowFlags_MenuBar);
+
+	ImGuiID dockspaceID = ImGui::GetID("MyDockSpace");
+	// Create the actual DockSpace inside the window
+	ImGui::DockSpace(ImGui::GetID("DockSpace"));
+	ImGui::End();
+	ImGui::Begin("Viewport");
 	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), ImVec2(800, 600), ImVec2(0, 1), ImVec2(1, 0));
-	ImGui::Text("Entity Colour");
-	// Edit a color stored as 4 floats
-	ImGui::ColorEdit3("Color", &triangleColour.x);
-	ImGui::SliderFloat2("X/Y Pos", glm::value_ptr(m_xPosTriangle), -600.f, 800.f);
 	ImGui::End();
 }
 

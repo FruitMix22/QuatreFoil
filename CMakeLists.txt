@@ -40,6 +40,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/ocornut/imgui.git
     GIT_TAG docking
 )
+
 FetchContent_MakeAvailable(imgui)
 
 set(IMGUI_SOURCES
@@ -58,6 +59,9 @@ target_include_directories(imgui PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
 )
 
+# Enable docking support
+target_compile_definitions(imgui PUBLIC IMGUI_ENABLE_DOCKING)
+
 #------------------------*
 # Engine Library
 #------------------------*
@@ -72,10 +76,12 @@ add_library(Engine STATIC
     Engine/Buffers/include/VBO.hpp
     Engine/Buffers/include/VAO.hpp
     Engine/Buffers/include/EBO.hpp
+    Engine/Buffers/include/FBO.hpp
 
     Engine/Buffers/src/VBO.cpp
     Engine/Buffers/src/VAO.cpp
     Engine/Buffers/src/EBO.cpp
+    Engine/Buffers/src/FBO.cpp
     
     # Renderer
     Engine/Renderer/include/Renderer.hpp
@@ -83,12 +89,14 @@ add_library(Engine STATIC
     Engine/Renderer/include/Shader.hpp
     Engine/Renderer/include/Texture.hpp
     Engine/Renderer/include/Camera.hpp
+    Engine/Renderer/include/Quad.hpp
 
     Engine/Renderer/src/Renderer.cpp
     Engine/Renderer/src/ImGuiLayer.cpp
     Engine/Renderer/src/Shader.cpp
     Engine/Renderer/src/Texture.cpp
     Engine/Renderer/src/Camera.cpp
+    Engine/Renderer/src/Quad.cpp
     
     # Components
     Engine/Components/Renderable.hpp
@@ -105,8 +113,9 @@ target_include_directories(Engine PUBLIC
     ${imgui_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/stb
-
 )
+
+target_compile_definitions(Engine PUBLIC IMGUI_ENABLE_DOCKING)
 
 target_link_libraries(Engine PRIVATE
     OpenGL::GL
@@ -134,11 +143,13 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/include PREFIX "Eng
     Engine/Buffers/include/VBO.hpp
     Engine/Buffers/include/VAO.hpp
     Engine/Buffers/include/EBO.hpp
+    Engine/Buffers/include/FBO.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/src PREFIX "Engine/Buffers/src" FILES
     Engine/Buffers/src/VBO.cpp
     Engine/Buffers/src/VAO.cpp
     Engine/Buffers/src/EBO.cpp
+    Engine/Buffers/src/FBO.cpp
 )
 
 # Renderer 
@@ -148,6 +159,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/include PREFIX "En
     Engine/Renderer/include/Shader.hpp
     Engine/Renderer/include/Texture.hpp
     Engine/Renderer/include/Camera.hpp
+    Engine/Renderer/include/Quad.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine/Renderer/src" FILES
     Engine/Renderer/src/Renderer.cpp
@@ -155,6 +167,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine
     Engine/Renderer/src/Shader.cpp
     Engine/Renderer/src/Texture.cpp
     Engine/Renderer/src/Camera.cpp
+    Engine/Renderer/src/Quad.cpp
 )
 
 # Components 
