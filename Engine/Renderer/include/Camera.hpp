@@ -18,6 +18,8 @@ public:
 	glm::mat4 GetViewMatrix();
 	// Returns projecion matrix.
 	glm::mat4 GetProjectionMatrix();
+	// Returns perspective
+	glm::vec2 GetPerspective();
 
 	// Sets camera position.
 	// @param newPos: New position for camera.
@@ -27,6 +29,6 @@ public:
 	void SetPerspective(glm::vec2 newPerspective) { m_perspective = newPerspective; }
 private:
 	glm::vec2 m_position = glm::vec2(0.f); // Camera pos
-	glm::vec2 m_perspective = glm::vec2(800.f, 600.f); // Camera perspective
+	glm::vec2 m_perspective = glm::vec2(1000.f, 800.f); // Camera perspective
 	entt::entity m_camera; // Camera entity
 };

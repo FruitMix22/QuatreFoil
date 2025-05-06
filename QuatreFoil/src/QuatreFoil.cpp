@@ -1,13 +1,10 @@
 #include "../QuatreFoil/include/QuatreFoil.hpp"
 #include <iostream>
 
-
-
-
 QuatreFoil::QuatreFoil()
 {
 	m_camera = std::make_unique<Camera>(m_registry);
-	m_fbo = std::make_unique<Framebuffer>(800,600);
+	m_fbo = std::make_unique<Framebuffer>(1000,800);
 }
 
 void QuatreFoil::OnAttach()
@@ -17,8 +14,6 @@ void QuatreFoil::OnAttach()
 
 void QuatreFoil::OnStart()
 {
-	// Generate entities
-	generateEntities();
 	generateFloor();
 }
 
@@ -36,10 +31,6 @@ void QuatreFoil::OnUpdate()
 		renderable.m_shader->SetUniform("colour", triangleColour);
 		renderable.m_shader->SetUniform("model",transformable.GetModelMatrix());
 	}
-
-	auto& transform = m_registry.get<Transform>(m_quads[0].GetEntity());
-	transform.position = glm::vec2(m_xPosTriangle.x, m_xPosTriangle.y);
-
 }
 
 void QuatreFoil::OnRender()
@@ -51,48 +42,112 @@ void QuatreFoil::OnRender()
 	m_fbo->Unbind();
 }
 
-void QuatreFoil::generateEntities()
+void QuatreFoil::OnImGuiRender()
 {
-	//m_quads.emplace_back(m_registry);
-	//m_quads.back().CreateQuad(glm::vec2(100,100), glm::vec2(200,200));
+	// Build dock space for the window 
+	if (!dockspace_built) { generateDockSpace(); }
+
+	// Set the size for the game viewport window
+	ImVec2 gameViewportSize = ImVec2(m_camera->GetPerspective().x, m_camera->GetPerspective().y);
+
+	// Set window size constraints before beginning the window
+	ImGui::SetNextWindowSize(gameViewportSize, ImGuiCond_Always);
+	ImGui::SetNextWindowSizeConstraints(gameViewportSize, gameViewportSize);
+
+	// Create a viewport window
+	ImGui::Begin("Viewport");
+	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
+	ImGui::End();
+
+	static int selectedItem = 0; // the currently selected entity
+
+	m_entityNames.clear(); // clear the list to make sure it doesnt buffer from previous frames
+	m_items.clear(); // Same for the items...
+
+	// for every entiy in the quad, add to a list of the number of the entity
+	for (int i = 0; i < m_quads.size(); i++)
+	{
+		// Raw pointers go boom so this needs to be here
+		m_entityNames.push_back(std::to_string(i));
+		m_items.push_back(m_entityNames.back().c_str());
+	}
+	
+	ImGui::Begin("Bottom Bar");
+	ImGui::Text("Current number of entities: %d", m_quads.size()); // Number of entities being rendered
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); 
+	if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
+	ImGui::PopStyleColor(1);
+	ImGui::End();
+
+	ImGui::Begin("Right Panel");
+	ImGui::Combo("Selected entity", &selectedItem, m_items.data(), static_cast<int>(m_items.size())); // Currently selected entity
+	auto& transform = m_registry.get<Transform>(m_quads[selectedItem].GetEntity()); // Start editing the transform of the current selected entity
+	ImGui::SliderFloat("X pos", &transform.position.x, -100.0f, 1000.f);
+	ImGui::SliderFloat("Y pos", &transform.position.y, -800.0f, 1000.f);
+
+	if (ImGui::Button("Spawn new entity", ImVec2(200.f, 30.f))) { spawnNewEntity(); } // Spawn a new entity
+	selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)
+	ImGui::End();
+	// TODO: Make delete entity button
 }
 
 void QuatreFoil::generateFloor()
 {
 	// temp number of floors
 	size_t totalTiles = 5;
-	float xPositionTile	 = -110.f;
-	//std::shared_ptr<Texture> grass = std::make_shared<Texture>("../QuatreFoil/Assets/Textures/grass.png");
+	float xPositionTile	 = 60.f;
 
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
-		//m_quads.back().SetTexture(grass);
-		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -600),glm::vec2(110,100));
-		xPositionTile += 200.f;
+		//m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/mcgrass.jpg");
+		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800),glm::vec2(60,80));
+		xPositionTile += 120.f;
 	}
 }
 
-void QuatreFoil::OnImGuiRender()
-{ 
-	ImGuiViewport* viewport = ImGui::GetMainViewport();
+void QuatreFoil::generateDockSpace()
+{
+	// Ill be honest i have no idea how dock builder it works, the documentation
+	// on it is complete doodoo
 
-	// Create a DockSpace in the main viewport
-	ImGui::SetNextWindowPos(viewport->Pos); 
-	ImGui::SetNextWindowSize(viewport->Size);
-	ImGui::SetNextWindowViewport(viewport->ID);
+	// Dont run it again
+	dockspace_built = true;
 
-	ImGui::Begin("ViewPort" , nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus |
-		ImGuiWindowFlags_MenuBar);
+	// Make the whole window a dock space
+	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
 
-	ImGuiID dockspaceID = ImGui::GetID("MyDockSpace");
-	// Create the actual DockSpace inside the window
-	ImGui::DockSpace(ImGui::GetID("DockSpace"));
-	ImGui::End();
-	ImGui::Begin("Viewport");
-	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), ImVec2(800, 600), ImVec2(0, 1), ImVec2(1, 0));
-	ImGui::End();
+	// Set nodes for dock spaces
+	ImGuiID dockspace_id = ImGui::GetMainViewport()->ID;
+	ImGui::DockBuilderRemoveNode(dockspace_id); // clear any existing layout
+	ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace);
+	ImGui::DockBuilderSetNodeSize(dockspace_id, ImGui::GetMainViewport()->Size);
+
+	// Split the workspace into areas
+	ImGuiID dock_main_id = dockspace_id;
+	ImGuiID right;
+	ImGuiID bottom;
+
+	// Split off the bottom bar
+	bottom = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.25f, nullptr, &dock_main_id);
+	// Split off the right sidebar
+	right = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Right, 0.3f, nullptr, &dock_main_id);
+
+	// Dock windows into regions by name
+	ImGui::DockBuilderDockWindow("Viewport", dock_main_id);
+	ImGui::DockBuilderDockWindow("Bottom Bar", bottom);
+	ImGui::DockBuilderDockWindow("Right Panel", right);
+
+	// Done
+	ImGui::DockBuilderFinish(dockspace_id);
 }
+
+void QuatreFoil::spawnNewEntity()
+{
+	m_quads.emplace_back(m_registry);
+	m_quads.back().CreateQuad(glm::vec2(250, -400), glm::vec2(60, 80));
+}
+
+
+
 

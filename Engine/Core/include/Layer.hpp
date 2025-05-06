@@ -15,4 +15,6 @@ public:
 	virtual void OnImGuiRender(){}
 	// Runs every frame.
 	virtual void OnRender(){}
+
+	bool m_terminate = false;
 };

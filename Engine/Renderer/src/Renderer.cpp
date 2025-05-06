@@ -5,14 +5,19 @@ void Renderer::Render(entt::registry& registry)
 {
 	// Set viewport
 	// TODO: Change this to be done by camera when added.
-	glViewport(0, 0, 800, 600);
-
-	// Get all entities with a renderable component
-	auto view = registry.view<Renderable>();
-
+	auto view = registry.view<Camera>();
 	for (auto entity : view)
 	{
-		auto& renderable = view.get<Renderable>(entity);
+		auto& camera = view.get<Camera>(entity);
+		glViewport(0, 0, camera.GetPerspective().x, camera.GetPerspective().y);
+	}
+
+	// Get all entities with a renderable component
+	auto view2 = registry.view<Renderable>();
+
+	for (auto entity : view2)
+	{
+		auto& renderable = view2.get<Renderable>(entity);
 
 		renderable.m_vao->Bind();
 		renderable.m_shader->Use();

@@ -6,6 +6,7 @@
 #include "Renderer/include/Texture.hpp"
 #include "Components/Renderable.hpp"
 #include "Renderer/include/Shader.hpp"
+#include "Renderer/include/Camera.hpp"
 #include "Buffers/include/FBO.hpp"
 #include <memory>
 

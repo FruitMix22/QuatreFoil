@@ -7,7 +7,6 @@ EngineCore::EngineCore(const std::string& windowTitle)
 	{
 		unloadEngine();
 	}
-
 }
 
 bool EngineCore::loadEngine(const std::string& windowTitle)
@@ -82,6 +81,7 @@ int EngineCore::runEngine()
 	// Start render loop.
 	while (!glfwWindowShouldClose(m_window))
 	{
+		if (m_layer->m_terminate) { glfwSetWindowShouldClose(m_window, true); }
 		// Check for updates
 		glfwPollEvents();
 		// Start ImGui frame

@@ -1,4 +1,6 @@
 #pragma once
+#include "imgui_internal.h"
+#include "imgui.h"
 #include "Core/include/Layer.hpp"
 #include "Buffers/include/VAO.hpp"
 #include "Buffers/include/VBO.hpp"
@@ -20,7 +22,6 @@ private:
 	Renderer m_renderer;
 	glm::vec4 triangleColour = { 1.f,1.f,1.f,1.f };
 
-	glm::vec2 m_xPosTriangle = glm::vec2(200.f, 0.f);
 	glm::vec2 cameraPos = glm::vec2(0.f, 0.f);
 
 	// Only ever want one camera
@@ -33,6 +34,11 @@ private:
 
 	bool firstDock = true;
 
+	int quadChoice = 0;
+	bool dockspace_built = false;
+	std::vector<std::string> m_entityNames;
+	std::vector<const char*> m_items;
+
 public:
 	QuatreFoil(); // Default constructor
 	void OnAttach() override;
@@ -42,7 +48,11 @@ public:
 	void OnRender() override;
 
 	// Generate entities -> Test for now
-	void generateEntities();
+	//void generateEntities();
 
 	void generateFloor();
+
+	void generateDockSpace();
+
+	void spawnNewEntity();
 };

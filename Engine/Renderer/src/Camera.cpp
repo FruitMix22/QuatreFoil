@@ -21,3 +21,8 @@ glm::mat4 Camera::GetProjectionMatrix()
 {
 	return glm::ortho(0.0f, m_perspective.x, m_perspective.y, 0.0f, -1.0f, 1.0f);
 }
+
+glm::vec2 Camera::GetPerspective()
+{
+	return m_perspective;
+}

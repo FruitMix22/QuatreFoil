@@ -17,6 +17,7 @@ public:
 	void SetShader(std::shared_ptr<Shader> shader) { m_shader = shader; }
 	void SetVertexPath(const char* vertPath) { m_vertexPath = vertPath; }
 	void SetFragPath(const char* fragPath) { m_fragPath = fragPath; }
+	void SetTextureImagePath(const char* imagePath) { m_imagePath = imagePath; }
 	
 	std::shared_ptr<VAO> GetVAO() { return m_VAO; }
 	const char* GetVertexPath() { return m_vertexPath; }
@@ -30,7 +31,7 @@ private:
 
 	const char* m_vertexPath = "../QuatreFoil/Assets/Shaders/TriangleVert.glsl";
 	const char* m_fragPath = "../QuatreFoil/Assets/Shaders/TriangleFrag.glsl";
-	const char* m_imagePath = "../QuatreFoil/Assets/Textures/grassdog.jpg";
+	const char* m_imagePath = "../QuatreFoil/Assets/Textures/mcgrass.jpg";
 
 	float m_quadVerts[16] =
 	{	// x   //y   //u   //v
