@@ -187,14 +187,20 @@ file(GLOB QUATREFOIL_HEADERS "QuatreFoil/include/*.hpp")
 # Include the headers in the 'include' folder for QuatreFoil project
 include_directories(QuatreFoil/include)
 
-# Manually group the headers under the "QuatreFoil/include" folder
-source_group("QuatreFoil/include" FILES ${QUATREFOIL_HEADERS})
+source_group("include" FILES ${QUATREFOIL_HEADERS})
+source_group("src" FILES ${QUATREFOIL_SOURCES})
 
-# Add the executable and link the engine
-add_executable(QuatreFoil
+set(QUATREFOIL_SOURCES
     QuatreFoil/src/QuatreFoil.cpp
     QuatreFoil/src/EntryPoint.cpp
 )
+
+add_executable(QuatreFoil ${QUATREFOIL_SOURCES} ${QUATREFOIL_HEADERS})
+
+source_group("src" FILES ${QUATREFOIL_SOURCES})
+source_group("include" FILES ${QUATREFOIL_HEADERS})
+
+
 
 target_link_libraries(QuatreFoil PRIVATE 
 Engine
