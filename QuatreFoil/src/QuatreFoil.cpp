@@ -5,7 +5,6 @@ QuatreFoil::QuatreFoil()
 {
 	m_camera = std::make_unique<Camera>(m_registry);
 	m_fbo = std::make_unique<Framebuffer>(1000,800);
-
 }
 
 void QuatreFoil::OnAttach()
@@ -43,7 +42,6 @@ void QuatreFoil::OnRender()
 	m_fbo->Unbind();
 }
 
-
 void QuatreFoil::OnImGuiRender()
 {
 	// Make the whole window a dock space
@@ -59,10 +57,19 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::SetNextWindowSize(gameViewportSize, ImGuiCond_Always);
 	ImGui::SetNextWindowSizeConstraints(gameViewportSize, gameViewportSize);
 
+	/***************************
+	*		Game view          *
+	***************************/
+
 	// Create a viewport window
 	ImGui::Begin("Viewport");
 	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
 	ImGui::End();
+
+	
+	/***************************
+	*		Bottom Bar         *
+	***************************/
 
 	static int selectedItem = 0; // the currently selected entity
 
@@ -76,13 +83,30 @@ void QuatreFoil::OnImGuiRender()
 		m_entityNames.push_back(std::to_string(i));
 		m_items.push_back(m_entityNames.back().c_str());
 	}
-	
+
 	ImGui::Begin("Bottom Bar");
 	ImGui::Text("Current number of entities: %d", m_quads.size()); // Number of entities being rendered
+
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); 
 	if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
 	ImGui::PopStyleColor(1);
+
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.0f, 1.0f, 0.0f, 1.0f)); 
+	if (ImGui::Button("Play ", ImVec2(200.f, 30.f))) { m_currentMode = EngineMode::Gameplay; } // Start gameplay
+	ImGui::PopStyleColor(1);
+
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); 
+	if (ImGui::Button("Stop ", ImVec2(200.f, 30.f))) { m_currentMode = EngineMode::Editor; } // End gameplay
+	ImGui::PopStyleColor(1);
+
+	if (m_currentMode == EngineMode::Editor) { ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "Editing Mode."); }
+	else { ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), "GamePlay Mode."); }
+
 	ImGui::End();
+
+	/***************************
+	*		Right Bar          *
+	***************************/
 
 	ImGui::Begin("Right Panel");
 	ImGui::Combo("Selected entity", &selectedItem, m_items.data(), static_cast<int>(m_items.size())); // Currently selected entity
@@ -90,8 +114,12 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::SliderFloat("X pos", &transform.position.x, -100.0f, 1000.f);
 	ImGui::SliderFloat("Y pos", &transform.position.y, -800.0f, 1000.f);
 
-	if (ImGui::Button("Spawn new entity", ImVec2(200.f, 30.f))) { spawnNewEntity(); } // Spawn a new entity
-	selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)
+	if (ImGui::Button("Spawn new entity", ImVec2(200.f, 30.f)))
+	{
+		spawnNewEntity(); // Spawn a new entity
+		selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)}
+	}
+
 	ImGui::End();
 	// TODO: Make delete entity button
 }
