@@ -81,6 +81,12 @@ int EngineCore::runEngine()
 	// Start render loop.
 	while (!glfwWindowShouldClose(m_window))
 	{
+
+		//if (m_layer->isEditorActive())
+		//{
+			//m_layer->ProcessInputs();
+		//}
+
 		if (m_layer->m_terminate) { glfwSetWindowShouldClose(m_window, true); }
 		// Check for updates
 		glfwPollEvents();
@@ -100,6 +106,10 @@ int EngineCore::runEngine()
 
 		// Swap Buffers
 		glfwSwapBuffers(m_window);
+
+
+		// Check for updates
+		glfwPollEvents();
 	}
 	return 0;
 }

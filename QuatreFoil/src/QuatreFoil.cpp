@@ -5,6 +5,7 @@ QuatreFoil::QuatreFoil()
 {
 	m_camera = std::make_unique<Camera>(m_registry);
 	m_fbo = std::make_unique<Framebuffer>(1000,800);
+
 }
 
 void QuatreFoil::OnAttach()
@@ -42,8 +43,12 @@ void QuatreFoil::OnRender()
 	m_fbo->Unbind();
 }
 
+
 void QuatreFoil::OnImGuiRender()
 {
+	// Make the whole window a dock space
+	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
+
 	// Build dock space for the window 
 	if (!dockspace_built) { generateDockSpace(); }
 
@@ -113,9 +118,6 @@ void QuatreFoil::generateDockSpace()
 
 	// Dont run it again
 	dockspace_built = true;
-
-	// Make the whole window a dock space
-	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
 
 	// Set nodes for dock spaces
 	ImGuiID dockspace_id = ImGui::GetMainViewport()->ID;
