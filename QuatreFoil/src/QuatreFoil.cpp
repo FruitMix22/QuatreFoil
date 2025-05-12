@@ -4,7 +4,7 @@
 QuatreFoil::QuatreFoil()
 {
 	m_camera = std::make_unique<Camera>(m_registry);
-	m_fbo = std::make_unique<Framebuffer>(1000,800);
+	m_fbo = std::make_unique<Framebuffer>(1000, 800);
 }
 
 void QuatreFoil::OnAttach()
@@ -20,7 +20,7 @@ void QuatreFoil::OnStart()
 void QuatreFoil::OnUpdate()
 {
 	auto view = m_registry.view<Renderable, Transform>();
-	
+
 	for (auto entity : view)
 	{
 		auto& renderable = view.get<Renderable>(entity);
@@ -29,7 +29,7 @@ void QuatreFoil::OnUpdate()
 		renderable.m_shader->SetUniform("projection", m_camera->GetProjectionMatrix());
 		renderable.m_shader->SetUniform("view", m_camera->GetViewMatrix());
 		renderable.m_shader->SetUniform("colour", triangleColour);
-		renderable.m_shader->SetUniform("model",transformable.GetModelMatrix());
+		renderable.m_shader->SetUniform("model", transformable.GetModelMatrix());
 	}
 }
 
@@ -66,7 +66,7 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
 	ImGui::End();
 
-	
+
 	/***************************
 	*		Bottom Bar         *
 	***************************/
@@ -87,15 +87,15 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::Begin("Bottom Bar");
 	ImGui::Text("Current number of entities: %d", m_quads.size()); // Number of entities being rendered
 
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); 
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
 	if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
 	ImGui::PopStyleColor(1);
 
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.0f, 1.0f, 0.0f, 1.0f)); 
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
 	if (ImGui::Button("Play ", ImVec2(200.f, 30.f))) { m_currentMode = EngineMode::Gameplay; } // Start gameplay
 	ImGui::PopStyleColor(1);
 
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); 
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
 	if (ImGui::Button("Stop ", ImVec2(200.f, 30.f))) { m_currentMode = EngineMode::Editor; } // End gameplay
 	ImGui::PopStyleColor(1);
 
@@ -128,15 +128,17 @@ void QuatreFoil::generateFloor()
 {
 	// temp number of floors
 	size_t totalTiles = 5;
-	float xPositionTile	 = 60.f;
+	float xPositionTile = 60.f;
 
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
 		//m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/mcgrass.jpg");
-		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800),glm::vec2(60,80));
+		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
 		xPositionTile += 120.f;
 	}
+
+	Input::RegisterCallBack(GLFW_KEY_D, [this] {moveRight();});
 }
 
 void QuatreFoil::generateDockSpace()
@@ -170,6 +172,18 @@ void QuatreFoil::generateDockSpace()
 
 	// Done
 	ImGui::DockBuilderFinish(dockspace_id);
+}
+
+void QuatreFoil::moveRight()
+{
+	auto view = m_registry.view<Renderable, Transform>();
+
+	for (auto entity : view)
+	{
+		auto& transformable = view.get<Transform>(entity);
+
+		transformable.position += glm::vec2(5.f, 0.f);
+	}
 }
 
 void QuatreFoil::spawnNewEntity()

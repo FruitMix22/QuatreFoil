@@ -69,8 +69,10 @@ add_library(Engine STATIC
     # Core
     Engine/Core/include/EngineCore.hpp
     Engine/Core/include/Layer.hpp
+    Engine/Core/include/Input.hpp
 
     Engine/Core/src/EngineCore.cpp
+    Engine/Core/src/Input.cpp
     
     # Buffers
     Engine/Buffers/include/VBO.hpp
@@ -133,9 +135,11 @@ target_link_libraries(Engine PRIVATE
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/include PREFIX "Engine/Core/include" FILES
     Engine/Core/include/EngineCore.hpp
     Engine/Core/include/Layer.hpp
+    Engine/Core/include/Input.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/src PREFIX "Engine/Core/src" FILES
     Engine/Core/src/EngineCore.cpp
+    Engine/Core/src/Input.cpp
 )
 
 # Buffers 

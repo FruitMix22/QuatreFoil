@@ -11,6 +11,7 @@
 #include "Renderer/include/Camera.hpp"
 #include "Renderer/include/Quad.hpp"
 #include "Components/Renderable.hpp"
+#include "Core/include/Input.hpp"
 #include <entt/entt.hpp>
 #include <vector>
 #include <glm.hpp>
@@ -47,12 +48,11 @@ public:
 	void OnImGuiRender() override;
 	void OnRender() override;
 
-	// Generate entities -> Test for now
-	//void generateEntities();
-
 	void generateFloor();
 
 	void generateDockSpace();
+
+	void moveRight();
 
 	void spawnNewEntity();
 

@@ -30,7 +30,7 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	{
 		std::cout << "Failed to create GLFW window!\n";
 		unloadEngine();
-		return false; 
+		return false;
 	}
 
 	/// Set the window as the current context
@@ -51,6 +51,13 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	if (m_isDebugMenu)
 	{
 		m_imGui.Init(m_window);
+	}
+
+	if (!Input::Init(m_window))
+	{
+		std::cerr << "Failed to initialise Inputs in Engine Core." << std::endl;
+		std::cerr << "WARNING: Inputs will not work." << std::endl;
+		return false;
 	}
 
 	return true;
@@ -81,24 +88,18 @@ int EngineCore::runEngine()
 	// Start render loop.
 	while (!glfwWindowShouldClose(m_window))
 	{
-
-		//if (m_layer->isEditorActive())
-		//{
-			//m_layer->ProcessInputs();
-		//}
-
 		if (m_layer->m_terminate) { glfwSetWindowShouldClose(m_window, true); }
 		// Check for updates
 		glfwPollEvents();
 		// Start ImGui frame
 		m_imGui.Begin();
-		
+
 		glClearColor(1.f, 1.f, 1.f, 1.f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// Run code from the Game Layer.
 		if (m_layer) { m_layer->OnUpdate(); }
-		if(m_layer) { m_layer->OnImGuiRender(); }
+		if (m_layer) { m_layer->OnImGuiRender(); }
 		if (m_layer) { m_layer->OnRender(); }
 
 		// End ImGui frame
@@ -106,7 +107,6 @@ int EngineCore::runEngine()
 
 		// Swap Buffers
 		glfwSwapBuffers(m_window);
-
 
 		// Check for updates
 		glfwPollEvents();

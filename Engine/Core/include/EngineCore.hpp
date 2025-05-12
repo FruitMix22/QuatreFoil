@@ -10,6 +10,7 @@
 #include "Renderer/include/ImGuiLayer.hpp"
 #include "Renderer/include/Renderer.hpp"
 #include "Core/include/Layer.hpp"
+#include "Core/include/Input.hpp"
 
 
 // Handles the basics of the engine.
@@ -24,7 +25,7 @@ public:
 
     // Deallocates memory
     ~EngineCore() { unloadEngine(); }
-     
+
     // Loads the Engine and sets up GLFW window.
     // @param title: Title of the window.
     // @return TRUE if passes, or FALSE if it fails.
@@ -46,7 +47,7 @@ public:
     // Sets debug mode.
     // @param status: True/False for wether debug mode is on.
     void SetImGUI(bool status) { m_isDebugMenu = status; }
-  
+
 private:
     GLFWwindow* m_window = nullptr; // GLFW window pointer
     ImGuiLayer m_imGui; // Manages ImGui UI
