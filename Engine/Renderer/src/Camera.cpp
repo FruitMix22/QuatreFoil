@@ -14,7 +14,7 @@ Camera::~Camera()
 glm::mat4 Camera::GetViewMatrix()
 {
 	glm::mat4 view(1.f);
-	return view = glm::translate(view, glm::vec3(-m_position.x, m_position.y, 0.f));
+	return view = glm::translate(view, glm::vec3(-m_position.x, -m_position.y, 0.f));
 }
 
 glm::mat4 Camera::GetProjectionMatrix()
@@ -25,4 +25,9 @@ glm::mat4 Camera::GetProjectionMatrix()
 glm::vec2 Camera::GetPerspective()
 {
 	return m_perspective;
+}
+
+glm::vec2 Camera::GetPosition()
+{
+	return m_position;
 }

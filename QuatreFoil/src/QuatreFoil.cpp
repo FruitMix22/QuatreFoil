@@ -15,10 +15,20 @@ void QuatreFoil::OnAttach()
 void QuatreFoil::OnStart()
 {
 	generateFloor();
+	Input::RegisterCallBack(GLFW_KEY_D, [this] {moveRight();});
+	spawnPlayer();
 }
 
 void QuatreFoil::OnUpdate()
 {
+
+	auto playerView = m_registry.view<Player, Transform>();
+	for (auto entity : playerView)
+	{
+		auto& transformComp = playerView.get<Transform>(entity);
+		m_camera->Setposition(glm::vec2(transformComp.position.x -250.f, 0.f));
+	}
+
 	auto view = m_registry.view<Renderable, Transform>();
 
 	for (auto entity : view)
@@ -31,6 +41,7 @@ void QuatreFoil::OnUpdate()
 		renderable.m_shader->SetUniform("colour", triangleColour);
 		renderable.m_shader->SetUniform("model", transformable.GetModelMatrix());
 	}
+
 }
 
 void QuatreFoil::OnRender()
@@ -120,6 +131,12 @@ void QuatreFoil::OnImGuiRender()
 		selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)}
 	}
 
+
+	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x);
+
+
+	auto& transformPlayerComp = m_registry.get<Transform>(m_player->GetEntity());
+	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f));
 	ImGui::End();
 	// TODO: Make delete entity button
 }
@@ -137,8 +154,6 @@ void QuatreFoil::generateFloor()
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
 		xPositionTile += 120.f;
 	}
-
-	Input::RegisterCallBack(GLFW_KEY_D, [this] {moveRight();});
 }
 
 void QuatreFoil::generateDockSpace()
@@ -190,6 +205,13 @@ void QuatreFoil::spawnNewEntity()
 {
 	m_quads.emplace_back(m_registry);
 	m_quads.back().CreateQuad(glm::vec2(250, -400), glm::vec2(60, 80));
+}
+
+void QuatreFoil::spawnPlayer()
+{
+	m_player->CreateQuad(glm::vec2(250, -400), glm::vec2(30, 40));
+	//m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
+	auto& playerComp = m_registry.emplace<Player>(m_player->GetEntity());
 }
 
 

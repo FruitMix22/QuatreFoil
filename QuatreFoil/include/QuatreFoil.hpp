@@ -11,6 +11,7 @@
 #include "Renderer/include/Camera.hpp"
 #include "Renderer/include/Quad.hpp"
 #include "Components/Renderable.hpp"
+#include "Components/Player.hpp"
 #include "Core/include/Input.hpp"
 #include <entt/entt.hpp>
 #include <vector>
@@ -30,6 +31,8 @@ private:
 	std::unique_ptr<Camera> m_camera;
 
 	std::vector<Quad> m_quads;
+
+	std::shared_ptr<Quad> m_player = std::make_shared<Quad>(m_registry);
 
 	std::unique_ptr<Framebuffer>m_fbo;
 
@@ -55,5 +58,7 @@ public:
 	void moveRight();
 
 	void spawnNewEntity();
+
+	void spawnPlayer();
 
 };

@@ -103,6 +103,7 @@ add_library(Engine STATIC
     # Components
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
+    Engine/Components/Player.hpp
     #Engine/Components/Camera.hpp
 )
 
@@ -178,6 +179,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
+    Engine/Components/Player.hpp
     #Engine/Components/Camera.hpp
 )
 
