@@ -42,7 +42,7 @@ void QuatreFoil::OnUpdate()
 		renderable.m_shader->SetUniform("model", transformable.GetModelMatrix());
 	}
 
-}
+} 
 
 void QuatreFoil::OnRender()
 {
@@ -197,7 +197,7 @@ void QuatreFoil::moveRight()
 	{
 		auto& transformable = view.get<Transform>(entity);
 
-		transformable.position += glm::vec2(5.f, 0.f);
+		transformable.position += glm::vec2(30.f * m_dt, 0.f);
 	}
 }
 

@@ -16,16 +16,8 @@ public:
 	// Runs every frame.
 	virtual void OnRender(){}
 
-	//virtual void ProcessInputs(GLFWwindow* window)
-	//{
-		
-	//}
-
-	//virtual void IsKeyPressed()
-
-	//virtual bool isEditorActive() { return m_currentMode == EngineMode::Editor; }
-
 	bool m_terminate = false;
+	float m_dt = 0.0f;
 
 	enum class EngineMode
 	{

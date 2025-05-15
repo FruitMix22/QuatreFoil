@@ -54,4 +54,7 @@ private:
     std::shared_ptr<Layer> m_layer = nullptr; // Active game layer
     bool m_isDebugMenu = true;  // should ImGui be active? 
     float m_clearColour[4] = { 1.0f,1.0f,1.0f, 1.0f };  // glClear colour
+
+    float dt = 0.0f; // Delta time ( time vetween frames )
+    float lastFrameTime = 0.0f;
 };

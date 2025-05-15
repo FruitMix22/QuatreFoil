@@ -88,6 +88,13 @@ int EngineCore::runEngine()
 	// Start render loop.
 	while (!glfwWindowShouldClose(m_window))
 	{
+		// Calculate frame time
+		float currentFrameTime = static_cast<float>(glfwGetTime());
+		dt = currentFrameTime - lastFrameTime;
+		lastFrameTime = currentFrameTime;
+
+		if (m_layer) { m_layer->m_dt = this->dt; }
+
 		if (m_layer->m_terminate) { glfwSetWindowShouldClose(m_window, true); }
 		// Check for updates
 		glfwPollEvents();
