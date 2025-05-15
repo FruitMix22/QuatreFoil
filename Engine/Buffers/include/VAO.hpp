@@ -66,9 +66,9 @@ public:
 
 
 	std::unique_ptr<EBO> m_ebo; // EBO that is made from the indices
-	std::unique_ptr<VBO> m_vbo; // VBO that is made from the vertex data.
+	std::unique_ptr<VBO> m_vbo; // VBO that is made from the vertex data
 private:
-	unsigned int m_id; // ID that is set by OpenGL.
-	size_t m_vertexCount; // How many vertices in array?
-	size_t m_indicesCount; // How many indices in array?
+	unsigned int m_id; // ID that is set by OpenGL
+	size_t m_vertexCount; // vertices in array
+	size_t m_indicesCount; // indices in array
 };

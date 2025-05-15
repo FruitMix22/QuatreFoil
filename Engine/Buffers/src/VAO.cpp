@@ -6,6 +6,7 @@ void VAO::CreateVAO(const void* data, const void*  indices)
     glGenVertexArrays(1, &m_id);
     glBindVertexArray(m_id);
 
+    // Create the VBO and EBO automatically from args
     m_vbo = std::make_unique<VBO>(data, m_vertexCount);
     m_ebo = std::make_unique<EBO>(indices, m_indicesCount);
 }
@@ -29,9 +30,11 @@ void VAO::Unbind() const
 
 void VAO::AddVertexBuffer(GLuint index, int size, GLenum type, bool normalised, GLsizei stride, const void* pointer)
 {
+    // Make sure adding to the correct buffers
     Bind();
     m_vbo->Bind();
     m_ebo->Bind();
+
     glVertexAttribPointer(index, size, type, normalised, stride, pointer);
     glEnableVertexAttribArray(index);
 }

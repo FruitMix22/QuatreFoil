@@ -3,10 +3,7 @@
 EngineCore::EngineCore(const std::string& windowTitle)
 {
 	m_window = nullptr;
-	if (!loadEngine(windowTitle))
-	{
-		unloadEngine();
-	}
+	if (!loadEngine(windowTitle)){unloadEngine();}
 }
 
 bool EngineCore::loadEngine(const std::string& windowTitle)
@@ -47,12 +44,10 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	// Set clear colour
 	glClearColor(m_clearColour[0], m_clearColour[1], m_clearColour[2], m_clearColour[3]);
 
-	// Load ImGui if debugging is active.
-	if (m_isDebugMenu)
-	{
-		m_imGui.Init(m_window);
-	}
+	// Load ImGui
+	m_imGui.Init(m_window);
 
+	// Load input systems
 	if (!Input::Init(m_window))
 	{
 		std::cerr << "Failed to initialise Inputs in Engine Core." << std::endl;
@@ -67,12 +62,7 @@ void EngineCore::unloadEngine()
 {
 	if (m_window)
 	{
-		if (m_isDebugMenu)
-		{
-			// Can only shutdown while window exists and if debugging is active
-			m_imGui.Shutdown();
-		}
-
+		m_imGui.Shutdown();
 		std::cout << "\nTerminating window...\n";
 		m_window = nullptr;
 	}
@@ -92,7 +82,6 @@ int EngineCore::runEngine()
 		float currentFrameTime = static_cast<float>(glfwGetTime());
 		dt = currentFrameTime - lastFrameTime;
 		lastFrameTime = currentFrameTime;
-
 		if (m_layer) { m_layer->m_dt = this->dt; }
 
 		if (m_layer->m_terminate) { glfwSetWindowShouldClose(m_window, true); }
@@ -101,8 +90,7 @@ int EngineCore::runEngine()
 		// Start ImGui frame
 		m_imGui.Begin();
 
-		glClearColor(1.f, 1.f, 1.f, 1.f);
-		glClear(GL_COLOR_BUFFER_BIT);
+
 
 		// Run code from the Game Layer.
 		if (m_layer) { m_layer->OnUpdate(); }

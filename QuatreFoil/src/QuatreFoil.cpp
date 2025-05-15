@@ -51,10 +51,15 @@ void QuatreFoil::OnUpdate()
 
 void QuatreFoil::OnRender()
 {
-	m_fbo->Bind();
+	m_fbo->Bind(); // (Not strictly neccesary right now as there are no other FBO's, but will be neccesary in the future with my FBO's.
+
+	// Clear all
 	glClearColor(1.f, 1.f, 1.f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Run the renderer
 	m_renderer.Render(m_registry);
+
 	m_fbo->Unbind();
 }
 
@@ -87,19 +92,6 @@ void QuatreFoil::OnImGuiRender()
 	*		Bottom Bar         *
 	***************************/
 
-	static int selectedItem = 0; // the currently selected entity
-
-	m_entityNames.clear(); // clear the list to make sure it doesnt buffer from previous frames
-	m_items.clear(); // Same for the items...
-
-	// for every entiy in the quad, add to a list of the number of the entity
-	for (int i = 0; i < m_quads.size(); i++)
-	{
-		// Raw pointers go boom so this needs to be here
-		m_entityNames.push_back(std::to_string(i));
-		m_items.push_back(m_entityNames.back().c_str());
-	}
-
 	ImGui::Begin("Bottom Bar");
 	ImGui::Text("Current number of entities: %d", m_quads.size()); // Number of entities being rendered
 
@@ -116,16 +108,30 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::PopStyleColor(1);
 
 	if (m_currentMode == EngineMode::Editor) { ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "Editing Mode."); }
-	else { ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), "GamePlay Mode."); }
+	else { ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), "GamePlay Mode."); } // Mode text
 
-	ImGui::Text("Time in between frames: %f", m_dt);
+	ImGui::Text("Time in between frames: %f", m_dt); // Delta time text
 	
-	ImGui::Text("FPS: %f", GetFPS());
+	ImGui::Text("FPS: %f", GetFPS()); // FPS text
+
 	ImGui::End();
 
 	/***************************
 	*		Right Bar          *
 	***************************/
+
+	static int selectedItem = 0; // the currently selected entity
+
+	m_entityNames.clear(); // clear the list to make sure it doesnt buffer from previous frames
+	m_items.clear(); // Same for the items...
+
+	// for every entiy in the quad, add to a list of the number of the entity
+	for (int i = 0; i < m_quads.size(); i++)
+	{
+		// Raw pointers go boom so this needs to be here
+		m_entityNames.push_back(std::to_string(i));
+		m_items.push_back(m_entityNames.back().c_str());
+	}
 
 	ImGui::Begin("Right Panel");
 	ImGui::Combo("Selected entity", &selectedItem, m_items.data(), static_cast<int>(m_items.size())); // Currently selected entity
@@ -139,15 +145,12 @@ void QuatreFoil::OnImGuiRender()
 		selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)}
 	}
 
-
-
-
 	auto& transformPlayerComp = m_registry.get<Transform>(m_player->GetEntity());
-	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f));
+	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f)); // Player x Pos slider
 
-	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x);
+	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x); // camera x Pos slider
+
 	ImGui::End();
-	// TODO: Make delete entity button
 }
 
 void QuatreFoil::generateFloor()
@@ -159,7 +162,6 @@ void QuatreFoil::generateFloor()
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
-		//m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/mcgrass.jpg");
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
 		xPositionTile += 120.f;
 	}
@@ -167,8 +169,8 @@ void QuatreFoil::generateFloor()
 
 void QuatreFoil::generateDockSpace()
 {
-	// Ill be honest i have no idea how dock builder it works, the documentation
-	// on it is complete doodoo
+	// Ill be honest i have no idea how dock builder works, the documentation
+	// on it is hard to find.
 
 	// Dont run it again
 	dockspace_built = true;
@@ -200,14 +202,9 @@ void QuatreFoil::generateDockSpace()
 
 void QuatreFoil::moveX(float speed)
 {
-	auto view = m_registry.view<Player, Transform>();
-
-	for (auto entity : view)
-	{
-		auto& transformable = view.get<Transform>(entity);
-
-		transformable.position += glm::vec2(speed * m_dt, 0.f);
-	}
+	// Move player on X axis
+	auto& transformPlayerComp = m_registry.get<Transform>(m_player->GetEntity());
+	transformPlayerComp.position += glm::vec2(speed * m_dt, 0.f);
 }
 
 void QuatreFoil::spawnNewEntity()
@@ -225,14 +222,14 @@ void QuatreFoil::spawnPlayer()
 
 float QuatreFoil::GetFPS()
 {
-
+	
 	fpsTimeAccumulate += m_dt;
 	if (fpsTimeAccumulate >= 1.0f)
 	{
+		// Change FPS and reset timer
 		m_fps = 1.0f / m_dt;
 		fpsTimeAccumulate = 0.0f;
 	}
-
 	return m_fps;
 }
 

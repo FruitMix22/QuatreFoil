@@ -16,15 +16,16 @@ public:
 	// Runs every frame.
 	virtual void OnRender(){}
 
-	bool m_terminate = false;
-	float m_dt = 0.0f;
-	float fpsTimeAccumulate = 0.0f;
+	bool m_terminate = false; // Should the window close?
+	float m_dt = 0.0f; // Time since last frame
 
-	enum class EngineMode
+
+	enum class EngineMode // Engine state.
 	{
 		Editor,
 		Gameplay
 	};
 
 	EngineMode m_currentMode = EngineMode::Editor;
+
 };

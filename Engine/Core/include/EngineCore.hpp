@@ -43,18 +43,12 @@ public:
     // Sets layer from the users game.
     // @param layer: Your game layer.
     void SetLayer(std::shared_ptr<Layer> layer);
-
-    // Sets debug mode.
-    // @param status: True/False for wether debug mode is on.
-    void SetImGUI(bool status) { m_isDebugMenu = status; }
-
 private:
     GLFWwindow* m_window = nullptr; // GLFW window pointer
     ImGuiLayer m_imGui; // Manages ImGui UI
     std::shared_ptr<Layer> m_layer = nullptr; // Active game layer
-    bool m_isDebugMenu = true;  // should ImGui be active? 
     float m_clearColour[4] = { 1.0f,1.0f,1.0f, 1.0f };  // glClear colour
 
     float dt = 0.0f; // Delta time ( time vetween frames )
-    float lastFrameTime = 0.0f;
+    float lastFrameTime = 0.0f; // Time since last frame
 };

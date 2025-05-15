@@ -17,50 +17,51 @@
 #include <vector>
 #include <glm.hpp>
 
+// Game layer.
 class QuatreFoil : public Layer
 {
-private:
-	entt::registry m_registry;
-	Renderer m_renderer;
-
-	glm::vec2 cameraPos = glm::vec2(0.f, 0.f);
-
-	// Only ever want one camera
-	// No support for multiple camera's right now
-	std::unique_ptr<Camera> m_camera;
-
-	std::vector<Quad> m_quads;
-
-	std::shared_ptr<Quad> m_player = std::make_shared<Quad>(m_registry);
-
-	std::unique_ptr<Framebuffer>m_fbo;
-
-	bool firstDock = true;
-
-	int quadChoice = 0;
-	bool dockspace_built = false;
-	std::vector<std::string> m_entityNames;
-	std::vector<const char*> m_items;
-	float m_fps = 0.0f;
-
 public:
-	QuatreFoil(); // Default constructor
+	// Parent functions.
+	QuatreFoil();
 	void OnAttach() override;
 	void OnStart() override;
 	void OnUpdate() override;
 	void OnImGuiRender() override;
 	void OnRender() override;
 
+	// Generate floor for the game.
 	void generateFloor();
-
+	// Generate dock space for the ImGui panels.
 	void generateDockSpace();
-
-	void moveX(float speed);
-
+	// TEST Spawn new entity in centre of screen.
 	void spawnNewEntity();
-
+	// Create player entity.
 	void spawnPlayer();
 
+	// Move player by a distance.
+	// @param speed: Speed that the player moves by.
+	void moveX(float speed);
+
+	// Updates m_FPS every second.
+	// @returns Current FPS.
 	float GetFPS();
+private:
+
+	entt::registry m_registry; // Entity registry.
+	Renderer m_renderer; // Renderer object.
+	std::unique_ptr<Framebuffer>m_fbo; // Frame buffer. 
+
+	std::unique_ptr<Camera> m_camera; // Camera object.
+	glm::vec2 cameraPos = glm::vec2(0.f, 0.f); // Position of camera (world space). 
+
+	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
+	std::shared_ptr<Quad> m_player = std::make_shared<Quad>(m_registry); // Player (kept seperate from other quads).
+	
+	int quadChoice = 0; // Current entity selected
+	bool dockspace_built = false; // Has the dock space been built yet?
+	std::vector<std::string> m_entityNames; // Entity names
+	std::vector<const char*> m_items; // Entity item
+	float fpsTimeAccumulate = 0.0f; // Seconds since last frame update
+	float m_fps = 0.0f; // FPS
 
 };

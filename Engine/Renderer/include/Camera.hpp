@@ -14,13 +14,13 @@ public:
 	// Default destructor.
 	~Camera();
 
-	// Returns view matrix.
+	// @returns glm::mat4 view matrix.
 	glm::mat4 GetViewMatrix();
-	// Returns projecion matrix.
+	// @returns glm::mat4 projecion matrix.
 	glm::mat4 GetProjectionMatrix();
-	// Returns perspective
+	// @returns glm::vec2 perspective
 	glm::vec2 GetPerspective();
-	// Returns position,.
+	// @returns glm::vec2 position.
 	glm::vec2 GetPosition();
 
 	// Sets camera position.

@@ -3,12 +3,11 @@
 
 void Renderer::Render(entt::registry& registry)
 {
-	// Set viewport
-	// TODO: Change this to be done by camera when added.
 	auto view = registry.view<Camera>();
 	for (auto entity : view)
 	{
 		auto& camera = view.get<Camera>(entity);
+		// Update viewport by camera's current perspective
 		glViewport(0, 0, camera.GetPerspective().x, camera.GetPerspective().y);
 	}
 

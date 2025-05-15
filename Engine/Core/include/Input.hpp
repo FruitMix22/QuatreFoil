@@ -34,9 +34,7 @@ private:
 
 	
 	static inline GLFWwindow* m_window = nullptr; // GLFW window pointer
-	// Current key state
-	static inline std::unordered_map<int, bool> m_keyStates;
-	// Stores keys and functions to be ran.
-	static inline std::unordered_map<int, std::vector<std::function<void()>>>m_keyMap;
+	static inline std::unordered_map<int, bool> m_keyStates; 	// Current key state
+	static inline std::unordered_map<int, std::vector<std::function<void()>>>m_keyMap; 	// Stores keys and functions to be ran.
 
 };
