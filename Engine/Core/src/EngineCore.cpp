@@ -99,6 +99,7 @@ int EngineCore::runEngine()
 
 		// Run code from the Game Layer.
 		if (m_layer) { m_layer->OnUpdate(); }
+		Input::ProcessInput();
 		if (m_layer) { m_layer->OnImGuiRender(); }
 		if (m_layer) { m_layer->OnRender(); }
 

@@ -191,7 +191,7 @@ void QuatreFoil::generateDockSpace()
 
 void QuatreFoil::moveRight()
 {
-	auto view = m_registry.view<Renderable, Transform>();
+	auto view = m_registry.view<Player, Transform>();
 
 	for (auto entity : view)
 	{
@@ -209,9 +209,9 @@ void QuatreFoil::spawnNewEntity()
 
 void QuatreFoil::spawnPlayer()
 {
+	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
 	m_player->CreateQuad(glm::vec2(250, -400), glm::vec2(30, 40));
-	//m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
-	auto& playerComp = m_registry.emplace<Player>(m_player->GetEntity());
+	m_registry.emplace<Player>(m_player->GetEntity());
 }
 
 

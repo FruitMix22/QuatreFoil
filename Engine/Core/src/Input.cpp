@@ -28,13 +28,28 @@ void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, i
 {
 	if (action == GLFW_PRESS)
 	{
-		// Look at the key thats pressed 
-		auto pressedKey = m_keyMap.find(key);
-		// If it exists
-		if (pressedKey != m_keyMap.end())
+		m_keyStates[key] = true;
+	}
+	else if (action == GLFW_RELEASE)
+	{
+		m_keyStates[key] = false;
+	}
+}
+
+void Input::ProcessInput()
+{
+	for (const auto& [key, isPressed] : m_keyStates)
+	{
+		if (isPressed)
 		{
-			for (auto& function : pressedKey->second)
-				function();
+			// Look at the key thats pressed 
+			auto pressedKey = m_keyMap.find(key);
+			// If it exists
+			if (pressedKey != m_keyMap.end())
+			{
+				for (auto& function : pressedKey->second)
+					function();
+			}
 		}
 	}
 }
