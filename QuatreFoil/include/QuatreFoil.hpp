@@ -22,7 +22,6 @@ class QuatreFoil : public Layer
 private:
 	entt::registry m_registry;
 	Renderer m_renderer;
-	glm::vec4 triangleColour = { 1.f,1.f,1.f,1.f };
 
 	glm::vec2 cameraPos = glm::vec2(0.f, 0.f);
 
@@ -42,6 +41,7 @@ private:
 	bool dockspace_built = false;
 	std::vector<std::string> m_entityNames;
 	std::vector<const char*> m_items;
+	float m_fps = 0.0f;
 
 public:
 	QuatreFoil(); // Default constructor
@@ -55,10 +55,12 @@ public:
 
 	void generateDockSpace();
 
-	void moveRight();
+	void moveX(float speed);
 
 	void spawnNewEntity();
 
 	void spawnPlayer();
+
+	float GetFPS();
 
 };

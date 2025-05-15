@@ -3,6 +3,7 @@
 
 QuatreFoil::QuatreFoil()
 {
+	// Make a camera object & framebuffer
 	m_camera = std::make_unique<Camera>(m_registry);
 	m_fbo = std::make_unique<Framebuffer>(1000, 800);
 }
@@ -14,14 +15,19 @@ void QuatreFoil::OnAttach()
 
 void QuatreFoil::OnStart()
 {
+	// Spawn Temp floor & Player
 	generateFloor();
-	Input::RegisterCallBack(GLFW_KEY_D, [this] {moveRight();});
 	spawnPlayer();
+	// TODO: Change when adding more meshes
+
+	// Set inputs            //input    //function ran when pressed
+	Input::RegisterCallBack(GLFW_KEY_D, [this] {moveX(100.f);});
+	Input::RegisterCallBack(GLFW_KEY_A, [this] {moveX(-100.f);});
 }
 
 void QuatreFoil::OnUpdate()
 {
-
+	// Find player entity, and set camera to follow
 	auto playerView = m_registry.view<Player, Transform>();
 	for (auto entity : playerView)
 	{
@@ -29,8 +35,8 @@ void QuatreFoil::OnUpdate()
 		m_camera->Setposition(glm::vec2(transformComp.position.x -250.f, 0.f));
 	}
 
+	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
-
 	for (auto entity : view)
 	{
 		auto& renderable = view.get<Renderable>(entity);
@@ -38,7 +44,6 @@ void QuatreFoil::OnUpdate()
 
 		renderable.m_shader->SetUniform("projection", m_camera->GetProjectionMatrix());
 		renderable.m_shader->SetUniform("view", m_camera->GetViewMatrix());
-		renderable.m_shader->SetUniform("colour", triangleColour);
 		renderable.m_shader->SetUniform("model", transformable.GetModelMatrix());
 	}
 
@@ -113,6 +118,9 @@ void QuatreFoil::OnImGuiRender()
 	if (m_currentMode == EngineMode::Editor) { ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "Editing Mode."); }
 	else { ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), "GamePlay Mode."); }
 
+	ImGui::Text("Time in between frames: %f", m_dt);
+	
+	ImGui::Text("FPS: %f", GetFPS());
 	ImGui::End();
 
 	/***************************
@@ -132,11 +140,12 @@ void QuatreFoil::OnImGuiRender()
 	}
 
 
-	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x);
 
 
 	auto& transformPlayerComp = m_registry.get<Transform>(m_player->GetEntity());
 	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f));
+
+	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x);
 	ImGui::End();
 	// TODO: Make delete entity button
 }
@@ -189,7 +198,7 @@ void QuatreFoil::generateDockSpace()
 	ImGui::DockBuilderFinish(dockspace_id);
 }
 
-void QuatreFoil::moveRight()
+void QuatreFoil::moveX(float speed)
 {
 	auto view = m_registry.view<Player, Transform>();
 
@@ -197,7 +206,7 @@ void QuatreFoil::moveRight()
 	{
 		auto& transformable = view.get<Transform>(entity);
 
-		transformable.position += glm::vec2(30.f * m_dt, 0.f);
+		transformable.position += glm::vec2(speed * m_dt, 0.f);
 	}
 }
 
@@ -212,6 +221,19 @@ void QuatreFoil::spawnPlayer()
 	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
 	m_player->CreateQuad(glm::vec2(250, -400), glm::vec2(30, 40));
 	m_registry.emplace<Player>(m_player->GetEntity());
+}
+
+float QuatreFoil::GetFPS()
+{
+
+	fpsTimeAccumulate += m_dt;
+	if (fpsTimeAccumulate >= 1.0f)
+	{
+		m_fps = 1.0f / m_dt;
+		fpsTimeAccumulate = 0.0f;
+	}
+
+	return m_fps;
 }
 
 

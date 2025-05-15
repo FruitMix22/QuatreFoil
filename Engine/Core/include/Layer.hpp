@@ -18,6 +18,7 @@ public:
 
 	bool m_terminate = false;
 	float m_dt = 0.0f;
+	float fpsTimeAccumulate = 0.0f;
 
 	enum class EngineMode
 	{
