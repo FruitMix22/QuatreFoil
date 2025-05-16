@@ -15,9 +15,11 @@ void QuatreFoil::OnAttach()
 
 void QuatreFoil::OnStart()
 {
-	// Spawn Temp floor & Player
+	// Spawn Temp floor & Player & background
 	generateFloor();
 	spawnPlayer();
+	SpawnHitbox();
+	createBackground();
 	// TODO: Change when adding more meshes
 
 	// Set inputs            //input    //function ran when pressed
@@ -27,13 +29,11 @@ void QuatreFoil::OnStart()
 
 void QuatreFoil::OnUpdate()
 {
-	// Find player entity, and set camera to follow
-	auto playerView = m_registry.view<Player, Transform>();
-	for (auto entity : playerView)
-	{
-		auto& transformComp = playerView.get<Transform>(entity);
-		m_camera->Setposition(glm::vec2(transformComp.position.x -250.f, 0.f));
-	}
+	auto& playerTransform = m_registry.get<Transform>(m_player->GetEntity());
+	m_camera->Setposition(glm::vec2(playerTransform.position.x -250.f, 0.f));
+
+	if (playerTransform.position.x <= -1000) { playerTransform.position.x = -1000; }
+	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
 
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
@@ -46,7 +46,6 @@ void QuatreFoil::OnUpdate()
 		renderable.m_shader->SetUniform("view", m_camera->GetViewMatrix());
 		renderable.m_shader->SetUniform("model", transformable.GetModelMatrix());
 	}
-
 } 
 
 void QuatreFoil::OnRender()
@@ -156,12 +155,13 @@ void QuatreFoil::OnImGuiRender()
 void QuatreFoil::generateFloor()
 {
 	// temp number of floors
-	size_t totalTiles = 5;
-	float xPositionTile = 60.f;
+	size_t totalTiles = 30;
+	float xPositionTile = -1250.f;
 
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
+		m_quads.back().SetTextureImagePath("../QuatreFoil//Assets/Textures/mcGrass.jpg");
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
 		xPositionTile += 120.f;
 	}
@@ -216,13 +216,19 @@ void QuatreFoil::spawnNewEntity()
 void QuatreFoil::spawnPlayer()
 {
 	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
-	m_player->CreateQuad(glm::vec2(250, -400), glm::vec2(30, 40));
+	m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
 	m_registry.emplace<Player>(m_player->GetEntity());
+}
+
+void QuatreFoil::createBackground()
+{
+	Quad background(m_registry);
+	background.SetTextureImagePath("../QuatreFoil/Assets/Textures/tempBackground.jpg");
+	background.CreateQuad(glm::vec2(200.f, -350.0f), glm::vec2(2000, 600));
 }
 
 float QuatreFoil::GetFPS()
 {
-	
 	fpsTimeAccumulate += m_dt;
 	if (fpsTimeAccumulate >= 1.0f)
 	{
@@ -231,6 +237,13 @@ float QuatreFoil::GetFPS()
 		fpsTimeAccumulate = 0.0f;
 	}
 	return m_fps;
+}
+
+void QuatreFoil::SpawnHitbox()
+{
+	m_quads.emplace_back(m_registry);
+	m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
+	m_quads.back().CreateQuad(glm::vec2(250, -700), glm::vec2(60, 60)); 
 }
 
 

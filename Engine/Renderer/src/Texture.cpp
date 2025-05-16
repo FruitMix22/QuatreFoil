@@ -2,6 +2,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "Renderer/include/Texture.hpp"
 #include "stb_image.h"
+#include <iostream>
 
 Texture::Texture(const char* imagePath)
 {
@@ -20,7 +21,15 @@ Texture::Texture(const char* imagePath)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	stbi_image_free(data);
+	if (!data)
+	{
+		std::cerr << "Image for texture load failed: " << stbi_failure_reason() << "\n";
+	}
+	else 
+	{
+		std::cout << "Image loaded: " << width << "x" << height << "\n";
+		stbi_image_free(data);
+	}
 }
 
 Texture::~Texture() { glDeleteTextures(1, &m_id); }

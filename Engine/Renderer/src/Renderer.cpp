@@ -31,6 +31,7 @@ void Renderer::Render(entt::registry& registry)
 		// Not strictly neccesary but okay for now
 		// (will be overwritten by other bindings when drawing more)
 		renderable.m_vao->Unbind();
+		renderable.m_texture->Unbind();
 
 	}
 }

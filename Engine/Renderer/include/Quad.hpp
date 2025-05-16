@@ -51,7 +51,7 @@ private:
 
 	const char* m_vertexPath = "../QuatreFoil/Assets/Shaders/TriangleVert.glsl";
 	const char* m_fragPath = "../QuatreFoil/Assets/Shaders/TriangleFrag.glsl";
-	const char* m_imagePath = "../QuatreFoil/Assets/Textures/mcgrass.jpg";
+	const char* m_imagePath = "";
 
 	float m_quadVerts[16] =
 	{	// x   //y   //u   //v

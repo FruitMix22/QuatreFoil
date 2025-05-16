@@ -37,6 +37,8 @@ public:
 	void spawnNewEntity();
 	// Create player entity.
 	void spawnPlayer();
+	// Create background.
+	void createBackground();
 
 	// Move player by a distance.
 	// @param speed: Speed that the player moves by.
@@ -45,6 +47,9 @@ public:
 	// Updates m_FPS every second.
 	// @returns Current FPS.
 	float GetFPS();
+
+	void SpawnHitbox();
+
 private:
 
 	entt::registry m_registry; // Entity registry.
