@@ -1,3 +1,4 @@
+#pragma once
 #include "glm.hpp"
 
 // Allows an entity to be moved, rotated, and scaled.

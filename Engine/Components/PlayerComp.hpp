@@ -1,5 +1,5 @@
 // Very temp component
-struct Player
+struct PlayerComp
 {
 	float health = 100; // Player health
 };

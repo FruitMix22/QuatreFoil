@@ -17,19 +17,20 @@ void QuatreFoil::OnStart()
 {
 	// Spawn Temp floor & Player & background
 	generateFloor();
-	spawnPlayer();
+	//spawnPlayer();
+	m_playerNew->CreatePlayer();
 	SpawnHitbox();
 	createBackground();
 	// TODO: Change when adding more meshes
 
 	// Set inputs            //input    //function ran when pressed
-	Input::RegisterCallBack(GLFW_KEY_D, [this] {moveX(100.f);});
-	Input::RegisterCallBack(GLFW_KEY_A, [this] {moveX(-100.f);});
+	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(100.f, m_dt);});
+	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-100.f, m_dt);});
 }
 
 void QuatreFoil::OnUpdate()
 {
-	auto& playerTransform = m_registry.get<Transform>(m_player->GetEntity());
+	auto& playerTransform = m_registry.get<Transform>(m_playerNew->GetEntity());
 	m_camera->Setposition(glm::vec2(playerTransform.position.x -250.f, 0.f));
 
 	if (playerTransform.position.x <= -1000) { playerTransform.position.x = -1000; }
@@ -144,7 +145,7 @@ void QuatreFoil::OnImGuiRender()
 		selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)}
 	}
 
-	auto& transformPlayerComp = m_registry.get<Transform>(m_player->GetEntity());
+	auto& transformPlayerComp = m_registry.get<Transform>(m_playerNew->GetEntity());
 	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f)); // Player x Pos slider
 
 	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x); // camera x Pos slider
@@ -215,9 +216,10 @@ void QuatreFoil::spawnNewEntity()
 
 void QuatreFoil::spawnPlayer()
 {
-	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
-	m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
-	m_registry.emplace<Player>(m_player->GetEntity());
+	//m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
+	//m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
+	//m_registry.emplace<PlayerComp>(m_player->GetEntity());
+
 }
 
 void QuatreFoil::createBackground()

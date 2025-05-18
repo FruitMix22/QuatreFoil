@@ -11,8 +11,8 @@
 #include "Renderer/include/Camera.hpp"
 #include "Renderer/include/Quad.hpp"
 #include "Components/Renderable.hpp"
-#include "Components/Player.hpp"
 #include "Core/include/Input.hpp"
+#include "../QuatreFoil/include/Player.hpp"
 #include <entt/entt.hpp>
 #include <vector>
 #include <glm.hpp>
@@ -61,6 +61,7 @@ private:
 
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
 	std::shared_ptr<Quad> m_player = std::make_shared<Quad>(m_registry); // Player (kept seperate from other quads).
+	std::unique_ptr<Player> m_playerNew = std::make_unique<Player>(m_registry);
 	
 	int quadChoice = 0; // Current entity selected
 	bool dockspace_built = false; // Has the dock space been built yet?

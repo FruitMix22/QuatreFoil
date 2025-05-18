@@ -1,3 +1,4 @@
+#pragma once
 #include <entt/entt.hpp>
 #include "Buffers/include/VAO.hpp"
 #include "Renderer/include/Texture.hpp"

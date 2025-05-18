@@ -103,7 +103,7 @@ add_library(Engine STATIC
     # Components
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
-    Engine/Components/Player.hpp
+    Engine/Components/PlayerComp.hpp
     #Engine/Components/Camera.hpp
 )
 
@@ -179,7 +179,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
     Engine/Components/Renderable.hpp
     Engine/Components/Transform.hpp
-    Engine/Components/Player.hpp
+    Engine/Components/PlayerComp.hpp
     #Engine/Components/Camera.hpp
 )
 
@@ -199,6 +199,7 @@ source_group("src" FILES ${QUATREFOIL_SOURCES})
 set(QUATREFOIL_SOURCES
     QuatreFoil/src/QuatreFoil.cpp
     QuatreFoil/src/EntryPoint.cpp
+    QuatreFoil/src/Player.cpp
 )
 
 add_executable(QuatreFoil ${QUATREFOIL_SOURCES} ${QUATREFOIL_HEADERS})
