@@ -19,13 +19,13 @@ void QuatreFoil::OnStart()
 	generateFloor();
 	//spawnPlayer();
 	m_playerNew->CreatePlayer();
-	SpawnHitbox();
-	createBackground();
+	//createBackground();
 	// TODO: Change when adding more meshes
 
 	// Set inputs            //input    //function ran when pressed
 	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(100.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-100.f, m_dt);});
+	Input::RegisterCallBack(GLFW_KEY_RIGHT, [this] {m_playerNew->SpawnHitboxRight();});
 }
 
 void QuatreFoil::OnUpdate()
@@ -35,6 +35,8 @@ void QuatreFoil::OnUpdate()
 
 	if (playerTransform.position.x <= -1000) { playerTransform.position.x = -1000; }
 	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
+
+	m_playerNew->Update(m_dt);
 
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
@@ -201,25 +203,10 @@ void QuatreFoil::generateDockSpace()
 	ImGui::DockBuilderFinish(dockspace_id);
 }
 
-void QuatreFoil::moveX(float speed)
-{
-	// Move player on X axis
-	auto& transformPlayerComp = m_registry.get<Transform>(m_player->GetEntity());
-	transformPlayerComp.position += glm::vec2(speed * m_dt, 0.f);
-}
-
 void QuatreFoil::spawnNewEntity()
 {
 	m_quads.emplace_back(m_registry);
 	m_quads.back().CreateQuad(glm::vec2(250, -400), glm::vec2(60, 80));
-}
-
-void QuatreFoil::spawnPlayer()
-{
-	//m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
-	//m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
-	//m_registry.emplace<PlayerComp>(m_player->GetEntity());
-
 }
 
 void QuatreFoil::createBackground()
@@ -241,12 +228,6 @@ float QuatreFoil::GetFPS()
 	return m_fps;
 }
 
-void QuatreFoil::SpawnHitbox()
-{
-	m_quads.emplace_back(m_registry);
-	m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
-	m_quads.back().CreateQuad(glm::vec2(250, -700), glm::vec2(60, 60)); 
-}
 
 
 

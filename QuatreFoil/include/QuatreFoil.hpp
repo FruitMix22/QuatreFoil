@@ -35,14 +35,8 @@ public:
 	void generateDockSpace();
 	// TEST Spawn new entity in centre of screen.
 	void spawnNewEntity();
-	// Create player entity.
-	void spawnPlayer();
 	// Create background.
 	void createBackground();
-
-	// Move player by a distance.
-	// @param speed: Speed that the player moves by.
-	void moveX(float speed);
 
 	// Updates m_FPS every second.
 	// @returns Current FPS.
@@ -60,7 +54,6 @@ private:
 	glm::vec2 cameraPos = glm::vec2(0.f, 0.f); // Position of camera (world space). 
 
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
-	std::shared_ptr<Quad> m_player = std::make_shared<Quad>(m_registry); // Player (kept seperate from other quads).
 	std::unique_ptr<Player> m_playerNew = std::make_unique<Player>(m_registry);
 	
 	int quadChoice = 0; // Current entity selected
