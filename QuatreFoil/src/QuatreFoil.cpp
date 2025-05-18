@@ -26,6 +26,7 @@ void QuatreFoil::OnStart()
 	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(100.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-100.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_RIGHT, [this] {m_playerNew->SpawnHitboxRight();});
+	Input::RegisterCallBack(GLFW_KEY_LEFT, [this] {m_playerNew->SpawnHitboxLeft();});
 }
 
 void QuatreFoil::OnUpdate()

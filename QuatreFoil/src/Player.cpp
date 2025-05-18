@@ -17,8 +17,8 @@ void Player::CreatePlayer()
 	m_registry.emplace<PlayerComp>(m_player->GetEntity());
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
-	m_hitBoxDebug->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
-	m_hitBoxDebug->CreateQuad(glm::vec2(250, -700), glm::vec2(80, 80));
+//	m_hitBoxDebug->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
+	m_hitBoxDebug->CreateQuad(glm::vec2(250, -2000), glm::vec2(20, 50));
 }
 
 void Player::moveX(float const speed, float const dt)
@@ -26,7 +26,7 @@ void Player::moveX(float const speed, float const dt)
 	// Move player on X axis
 	transformPlayerComp->position += glm::vec2(speed * dt, 0.f);
 }
-
+ 
 auto& Player::GetTransformComp() const
 {
 	return m_registry.get<Transform>(m_player->GetEntity());
@@ -37,7 +37,20 @@ void Player::SpawnHitboxRight()
 	if (canAttack)
 	{
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		transformHitBoxComp.position = transformPlayerComp->position;
+		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(50.f,-10.0f);
+		canAttack = false;
+		hitboxTimeActive = 0.f;
+		std::cout << "Attack!\n";
+	}
+	else { std::cout << "Cant Attack!\n"; }
+}
+
+void Player::SpawnHitboxLeft()
+{
+	if (canAttack)
+	{
+		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-50.f, -10.0f);
 		canAttack = false;
 		hitboxTimeActive = 0.f;
 		std::cout << "Attack!\n";
@@ -54,7 +67,7 @@ void Player::Update(float dt)
 	else
 	{
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		transformHitBoxComp.position = glm::vec2(250, -800);
+		transformHitBoxComp.position = glm::vec2(250, -2000);
 		canAttack = true;
 
 	}

@@ -18,6 +18,7 @@ public:
 	void CreatePlayer();
 
 	void SpawnHitboxRight();
+	void SpawnHitboxLeft();
 
 	// Move player by a distance.
 	// @param speed: Speed that the player moves by.
@@ -31,7 +32,7 @@ private:
 	std::unique_ptr<Quad> m_hitBoxDebug;
 
 	float hitboxTimeActive = 0.0f;
-	float hitBoxTime = 2.f;
+	float hitBoxTime = 0.5f;
 	bool canAttack = true;
 	Transform* transformPlayerComp = nullptr;
 };
