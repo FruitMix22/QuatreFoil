@@ -15,10 +15,12 @@ void Player::CreatePlayer()
 	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
 	m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
 	m_registry.emplace<PlayerComp>(m_player->GetEntity());
+	m_registry.emplace<RenderLayer>(m_player->GetEntity(), RenderLayer::Characters);
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
 //	m_hitBoxDebug->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
 	m_hitBoxDebug->CreateQuad(glm::vec2(250, -2000), glm::vec2(20, 50));
+	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
 }
 
 void Player::moveX(float const speed, float const dt)

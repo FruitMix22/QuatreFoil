@@ -3,35 +3,48 @@
 
 void Renderer::Render(entt::registry& registry)
 {
-	auto view = registry.view<Camera>();
-	for (auto entity : view)
+	// Setup camera
+	auto cameraView = registry.view<Camera>();
+	for (auto entity : cameraView)
 	{
-		auto& camera = view.get<Camera>(entity);
-		// Update viewport by camera's current perspective
+		auto& camera = cameraView.get<Camera>(entity);
 		glViewport(0, 0, camera.GetPerspective().x, camera.GetPerspective().y);
 	}
 
-	// Get all entities with a renderable component
-	auto view2 = registry.view<Renderable>();
+	// Create render buckets by layer
+	std::array<std::vector<entt::entity>, NUM_RENDER_LAYERS> renderBuckets;
 
-	for (auto entity : view2)
+	// Bucket all renderables by their layer
+	auto renderView = registry.view<Renderable, RenderLayer>();
+	for (auto entity : renderView)
 	{
-		auto& renderable = view2.get<Renderable>(entity);
+		auto& layer = renderView.get<RenderLayer>(entity);
+		int layerIndex = static_cast<int>(layer);
 
-		renderable.m_vao->Bind();
-		renderable.m_shader->Use();
-
-		if (renderable.m_texture != nullptr)
+		if (layerIndex >= 0 && layerIndex < NUM_RENDER_LAYERS)
 		{
-			renderable.m_texture->Bind();
+			renderBuckets[layerIndex].push_back(entity);
 		}
+	}
 
-		glDrawElements(GL_TRIANGLES, renderable.m_vao->GetIndicesCount(), GL_UNSIGNED_INT, 0);
+	// Render each layer in order
+	for (int i = 0; i < NUM_RENDER_LAYERS; ++i)
+	{
+		for (auto entity : renderBuckets[i])
+		{
+			auto& renderable = registry.get<Renderable>(entity);
 
-		// Not strictly neccesary but okay for now
-		// (will be overwritten by other bindings when drawing more)
-		renderable.m_vao->Unbind();
-		renderable.m_texture->Unbind();
+			renderable.m_vao->Bind();
+			renderable.m_shader->Use();
 
+			if (renderable.m_texture)
+				renderable.m_texture->Bind();
+
+			glDrawElements(GL_TRIANGLES, renderable.m_vao->GetIndicesCount(), GL_UNSIGNED_INT, 0);
+
+			renderable.m_vao->Unbind();
+			if (renderable.m_texture)
+				renderable.m_texture->Unbind();
+		}
 	}
 }

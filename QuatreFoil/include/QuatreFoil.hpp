@@ -11,8 +11,10 @@
 #include "Renderer/include/Camera.hpp"
 #include "Renderer/include/Quad.hpp"
 #include "Components/Renderable.hpp"
+#include "Components/RenderLayer.hpp"
 #include "Core/include/Input.hpp"
 #include "../QuatreFoil/include/Player.hpp"
+#include "../QuatreFoil/include/Enemy.hpp"
 #include <entt/entt.hpp>
 #include <vector>
 #include <glm.hpp>
@@ -55,6 +57,7 @@ private:
 
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
 	std::unique_ptr<Player> m_playerNew = std::make_unique<Player>(m_registry);
+	std::unique_ptr<Enemy> m_enemy = std::make_unique<Enemy>(m_registry);
 	
 	int quadChoice = 0; // Current entity selected
 	bool dockspace_built = false; // Has the dock space been built yet?

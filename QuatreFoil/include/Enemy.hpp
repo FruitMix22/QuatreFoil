@@ -3,37 +3,39 @@
 #include "Renderer/include/Quad.hpp"
 #include "entt/entt.hpp"
 #include "Components/PlayerComp.hpp"
+#include "Components/EnemyComp.hpp"
 #include "Components/Transform.hpp"
 #include "Components/RenderLayer.hpp"
 #include <memory>
 
-
-class Player
+class Enemy
 {
 public:
-	Player(entt::registry& registry);
-	~Player();
+	Enemy(entt::registry& registry);
+	~Enemy();
 
 	entt::entity GetEntity() const;
 	void Update(float dt);
-	void CreatePlayer();
+	void CreateEnemy();
 
 	void SpawnHitboxRight();
 	void SpawnHitboxLeft();
 
-	// Move player by a distance.
+	// Move Enemy by a distance.
 	// @param speed: Speed that the player moves by.
 	void moveX(float const speed, float const dt);
 
-	auto& Player::GetTransformComp() const;
+
+	auto& GetTransformComp() const;
 private:
 
 	entt::registry& m_registry;
-	std::unique_ptr<Quad> m_player;
+	std::unique_ptr<Quad> m_enemy;
 	std::unique_ptr<Quad> m_hitBoxDebug;
 
 	float hitboxTimeActive = 0.0f;
 	float hitBoxTime = 0.5f;
 	bool canAttack = true;
-	Transform* transformPlayerComp = nullptr;
+	Transform* transformEnemyComp = nullptr;
+	glm::vec2& playerPos = glm::vec2(0.f, 0.f);
 };

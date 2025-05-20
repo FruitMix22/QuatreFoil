@@ -17,9 +17,9 @@ void QuatreFoil::OnStart()
 {
 	// Spawn Temp floor & Player & background
 	generateFloor();
-	//spawnPlayer();
 	m_playerNew->CreatePlayer();
-	//createBackground();
+	m_enemy->CreateEnemy();
+	createBackground();
 	// TODO: Change when adding more meshes
 
 	// Set inputs            //input    //function ran when pressed
@@ -38,6 +38,7 @@ void QuatreFoil::OnUpdate()
 	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
 
 	m_playerNew->Update(m_dt);
+	m_enemy->Update(m_dt);
 
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
@@ -167,6 +168,7 @@ void QuatreFoil::generateFloor()
 		m_quads.emplace_back(m_registry);
 		m_quads.back().SetTextureImagePath("../QuatreFoil//Assets/Textures/mcGrass.jpg");
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
+		m_registry.emplace<RenderLayer>(m_quads.back().GetEntity(), RenderLayer::MidGround);
 		xPositionTile += 120.f;
 	}
 }
@@ -215,6 +217,7 @@ void QuatreFoil::createBackground()
 	Quad background(m_registry);
 	background.SetTextureImagePath("../QuatreFoil/Assets/Textures/tempBackground.jpg");
 	background.CreateQuad(glm::vec2(200.f, -350.0f), glm::vec2(2000, 600));
+	m_registry.emplace<RenderLayer>(background.GetEntity(), RenderLayer::Background);
 }
 
 float QuatreFoil::GetFPS()

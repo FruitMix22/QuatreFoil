@@ -5,6 +5,7 @@
 #include "Buffers/include/VBO.hpp"
 #include "Renderer/include/Texture.hpp"
 #include "Components/Renderable.hpp"
+#include "Components/RenderLayer.hpp"
 #include "Renderer/include/Shader.hpp"
 #include "Renderer/include/Camera.hpp"
 #include "Buffers/include/FBO.hpp"
