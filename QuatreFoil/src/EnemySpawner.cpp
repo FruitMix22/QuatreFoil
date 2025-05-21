@@ -14,14 +14,15 @@ void EnemySpawner::Update(float dt)
 
 	if (m_waveCleared && m_timeSinceLastSpawn >= m_spawnCooldown)
 	{
-		Console::Log("Spawning wave " + m_waveNumber);
+		Console::Log("Spawning wave " +  std::to_string(m_waveNumber));
 		SpawnWave();
 		m_waveCleared = false;
 		m_timeSinceLastSpawn = 0.0f;
 	}
 
 	auto& view = m_registry.view<EnemyComp>();
-	if (view.begin() == view.end())
+	bool noEnemies = (view.begin() == view.end());
+	if (noEnemies && !m_waveCleared)
 	{
 		m_waveCleared = true;
 		Console::Log("Wave cleared.");
@@ -45,7 +46,7 @@ void EnemySpawner::SpawnWave()
 
 			auto enemy = std::make_unique<Enemy>(m_registry);
 			enemy->CreateEnemy(spawnPos.x);
-			Console::Log("Spawning enemy at: " + std::to_string(spawnPos.x));
+			//Console::Log("Spawning enemy at: " + std::to_string(spawnPos.x));
 
 			m_enemies.push_back(std::move(enemy));
 		}
@@ -83,4 +84,14 @@ glm::vec2 EnemySpawner::GetOffScreenPosition()
 
 		return glm::vec2(spawnX, spawnY);
 	}
+}
+
+void EnemySpawner::KillAllEnemies()
+{
+	for (auto& enemy : m_enemies)
+	{
+		m_registry.destroy(enemy->GetEntity());
+
+	}
+	m_enemies.clear();
 }

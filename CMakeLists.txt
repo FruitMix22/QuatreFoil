@@ -108,6 +108,7 @@ add_library(Engine STATIC
     Engine/Components/PlayerComp.hpp
     Engine/Components/EnemyComp.hpp
     Engine/Components/RenderLayer.hpp
+    Engine/Components/Collider.hpp
     #Engine/Components/Camera.hpp
 )
 
@@ -188,6 +189,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/C
     Engine/Components/PlayerComp.hpp
     Engine/Components/EnemyComp.hpp
     Engine/Components/RenderLayer.hpp
+    Engine/Components/Collider.hpp
     #Engine/Components/Camera.hpp
 )
 

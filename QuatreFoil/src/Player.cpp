@@ -69,7 +69,6 @@ void Player::Update(float dt)
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
 		transformHitBoxComp.position = glm::vec2(250, -2000);
 		canAttack = true;
-
 	}
 }
 

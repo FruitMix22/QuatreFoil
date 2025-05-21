@@ -14,9 +14,13 @@ public:
 
 	void Update(float dt);
 
+	// DEBUG TOOL
+	void KillAllEnemies();
+
 private:
 	void SpawnWave();
 	glm::vec2 GetOffScreenPosition();
+
 
 	entt::registry& m_registry;
 	std::vector<std::unique_ptr<Enemy>> m_enemies;

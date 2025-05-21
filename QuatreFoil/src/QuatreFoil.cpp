@@ -95,8 +95,15 @@ void QuatreFoil::OnImGuiRender()
 	*		Bottom Bar         *
 	***************************/
 
+	int entityCount = 0;
+	auto& view = m_registry.view<Transform>();
+
+	for (auto entity : view)
+	{
+		entityCount++;
+	}
 	ImGui::Begin("Bottom Bar");
-	ImGui::Text("Current number of entities: %d", m_quads.size()); // Number of entities being rendered
+	ImGui::Text("Current number of entities: %d", entityCount); // Number of entities being rendered
 
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
 	if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
@@ -152,6 +159,8 @@ void QuatreFoil::OnImGuiRender()
 	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f)); // Player x Pos slider
 
 	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x); // camera x Pos slider
+
+	if (ImGui::Button("Kill all Enemies.")) { m_waveSystem->KillAllEnemies(); }
 
 	ImGui::End();
 
