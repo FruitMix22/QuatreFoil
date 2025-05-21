@@ -95,3 +95,13 @@ void EnemySpawner::KillAllEnemies()
 	}
 	m_enemies.clear();
 }
+
+void EnemySpawner::RemoveDeadEnemies(std::vector<entt::entity>& deadEntities)
+{
+	m_enemies.erase(std::remove_if(m_enemies.begin(), m_enemies.end(),
+		[&](const std::unique_ptr<Enemy>& enemy)
+		{
+			return std::find(deadEntities.begin(), deadEntities.end(), enemy->GetEntity()) != deadEntities.end();
+		}),
+		m_enemies.end());
+}

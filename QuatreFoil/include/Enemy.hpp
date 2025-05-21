@@ -32,6 +32,5 @@ private:
 	float hitboxTimeActive = 0.0f;
 	float hitBoxTime = 0.5f;
 	bool canAttack = true;
-	Transform* transformEnemyComp = nullptr;
 	glm::vec2& playerPos = glm::vec2(0.f, 0.f);
 };

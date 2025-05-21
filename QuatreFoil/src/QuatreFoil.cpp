@@ -39,6 +39,37 @@ void QuatreFoil::OnUpdate()
 	m_playerNew->Update(m_dt);
 	m_waveSystem->Update(m_dt);
 
+
+	std::vector<entt::entity> killedEntities;
+
+	// Temp collision system
+	auto hitboxView = m_registry.view<HitBox, Transform, Collider>();
+	auto enemyView = m_registry.view<EnemyComp, Transform, Collider>();
+
+	for (auto hitBoxEntity : hitboxView)
+	{
+		auto& hitBoxTransform = hitboxView.get<Transform>(hitBoxEntity);
+		auto& hitBoxCollider = hitboxView.get<Collider>(hitBoxEntity);
+
+		for (auto enemyEntity : enemyView)
+		{
+			auto& enemyTransform = enemyView.get<Transform>(enemyEntity);
+			auto& enemyCollider = enemyView.get<Collider>(enemyEntity);
+
+			bool xOverlap = std::abs(hitBoxTransform.position.x - enemyTransform.position.x) <= (hitBoxCollider.halfWidth + enemyCollider.halfWidth);
+
+			if (xOverlap)
+			{
+				killedEntities.push_back(enemyEntity);
+				m_registry.destroy(enemyEntity);
+				Console::Log("Enemy dead.");
+			}
+		}
+	}
+	m_waveSystem->RemoveDeadEnemies(killedEntities);
+
+
+
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
 	for (auto entity : view)

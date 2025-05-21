@@ -27,7 +27,7 @@ Texture::Texture(const char* imagePath)
 	}
 	else 
 	{
-		Console::Log("Image loaded: " + std::to_string(width) + "x" + std::to_string(height));
+		//Console::Log("Image loaded: " + std::to_string(width) + "x" + std::to_string(height));
 		stbi_image_free(data);
 	}
 }

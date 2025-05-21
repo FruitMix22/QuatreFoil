@@ -17,6 +17,8 @@ public:
 	// DEBUG TOOL
 	void KillAllEnemies();
 
+	void RemoveDeadEnemies(std::vector<entt::entity>& deadEntities);
+
 private:
 	void SpawnWave();
 	glm::vec2 GetOffScreenPosition();

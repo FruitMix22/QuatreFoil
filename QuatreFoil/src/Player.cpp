@@ -24,10 +24,10 @@ void Player::CreatePlayer()
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
 	// Create hit box
-	m_hitBoxDebug->CreateQuad(glm::vec2(250, -2000), glm::vec2(20, 50));
+	m_hitBoxDebug->CreateQuad(glm::vec2(4000, -2000), glm::vec2(20, 50));
 	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
 	m_registry.emplace<HitBox>(m_hitBoxDebug->GetEntity());
-	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 10.f, 25.f);
+	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 10.f);
 }
 
 void Player::moveX(float const speed, float const dt)
@@ -74,7 +74,7 @@ void Player::Update(float dt)
 	else
 	{
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		transformHitBoxComp.position = glm::vec2(250, -2000);
+		transformHitBoxComp.position = glm::vec2(4000, -2000);
 		canAttack = true;
 	}
 }

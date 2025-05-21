@@ -21,8 +21,7 @@ void Enemy::CreateEnemy(float posX)
 		m_enemy->CreateQuad(glm::vec2(posX, -680), glm::vec2(30, 40));
 		m_registry.emplace<EnemyComp>(m_enemy->GetEntity());
 		m_registry.emplace<RenderLayer>(m_enemy->GetEntity(), RenderLayer::Characters);
-		m_registry.emplace<Collider>(m_enemy->GetEntity(), 15.f,20.f);
-		transformEnemyComp = &m_registry.get<Transform>(m_enemy->GetEntity());
+		m_registry.emplace<Collider>(m_enemy->GetEntity(), 20.f);
 	}
 }
 
@@ -52,11 +51,11 @@ void Enemy::Update(float dt)
 	for (auto entity : view)
 	{
 		auto& playerTransform = view.get<Transform>(entity);
-
+		auto& transformEnemyComp = m_registry.get<Transform>(m_enemy->GetEntity());
 		if (auto* enemyComp = m_registry.try_get<EnemyComp>(m_enemy->GetEntity()))
 		{
-			glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp->position);
-			transformEnemyComp->position.x += enemyComp->speed * direction.x * dt;
+			glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp.position);
+			transformEnemyComp.position.x += enemyComp->speed * direction.x * dt;
 		}
 	}
 
