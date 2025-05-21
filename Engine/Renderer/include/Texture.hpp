@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 
 
+
 // Handles OpenGL texture calls
 class Texture
 {

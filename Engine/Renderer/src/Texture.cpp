@@ -1,12 +1,12 @@
 #pragma once
 #define STB_IMAGE_IMPLEMENTATION
 #include "Renderer/include/Texture.hpp"
+#include "Core/include/Console.hpp"
 #include "stb_image.h"
-#include <iostream>
+
 
 Texture::Texture(const char* imagePath)
 {
-
 	unsigned char* data = stbi_load(imagePath, &width, &height, &nrChannels, 0);
 
 	glGenTextures(1, &m_id);
@@ -23,11 +23,11 @@ Texture::Texture(const char* imagePath)
 
 	if (!data)
 	{
-		std::cerr << "Image for texture load failed: " << stbi_failure_reason() << "\n";
+		Console::Log("Image for texture load failed: " + std::string(stbi_failure_reason()));
 	}
 	else 
 	{
-		std::cout << "Image loaded: " << width << "x" << height << "\n";
+		Console::Log("Image loaded: " + std::to_string(width) + "x" + std::to_string(height));
 		stbi_image_free(data);
 	}
 }

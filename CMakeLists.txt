@@ -70,9 +70,11 @@ add_library(Engine STATIC
     Engine/Core/include/EngineCore.hpp
     Engine/Core/include/Layer.hpp
     Engine/Core/include/Input.hpp
+    Engine/Core/include/Console.hpp
 
     Engine/Core/src/EngineCore.cpp
     Engine/Core/src/Input.cpp
+    Engine/Core/src/Console.cpp
     
     # Buffers
     Engine/Buffers/include/VBO.hpp
@@ -139,10 +141,12 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/include PREFIX "Engine
     Engine/Core/include/EngineCore.hpp
     Engine/Core/include/Layer.hpp
     Engine/Core/include/Input.hpp
+    Engine/Core/include/Console.hpp
 )
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/src PREFIX "Engine/Core/src" FILES
     Engine/Core/src/EngineCore.cpp
     Engine/Core/src/Input.cpp
+    Engine/Core/src/Console.cpp
 )
 
 # Buffers 
@@ -205,6 +209,7 @@ set(QUATREFOIL_SOURCES
     QuatreFoil/src/EntryPoint.cpp
     QuatreFoil/src/Player.cpp
     QuatreFoil/src/Enemy.cpp
+    QuatreFoil/src/EnemySpawner.cpp
 )
 
 add_executable(QuatreFoil ${QUATREFOIL_SOURCES} ${QUATREFOIL_HEADERS})

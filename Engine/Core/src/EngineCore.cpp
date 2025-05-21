@@ -22,7 +22,10 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create window
-	m_window = glfwCreateWindow(1920, 1080, windowTitle.c_str(), NULL, NULL);
+	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
+
+	m_window = glfwCreateWindow(mode->width, mode->height, windowTitle.c_str(), primaryMonitor, nullptr);
 	if (m_window == NULL)
 	{
 		std::cout << "Failed to create GLFW window!\n";

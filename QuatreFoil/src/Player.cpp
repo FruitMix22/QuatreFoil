@@ -42,9 +42,8 @@ void Player::SpawnHitboxRight()
 		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(50.f,-10.0f);
 		canAttack = false;
 		hitboxTimeActive = 0.f;
-		std::cout << "Attack!\n";
+		Console::Log("Player Attacked.");
 	}
-	else { std::cout << "Cant Attack!\n"; }
 }
 
 void Player::SpawnHitboxLeft()
@@ -55,9 +54,8 @@ void Player::SpawnHitboxLeft()
 		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-50.f, -10.0f);
 		canAttack = false;
 		hitboxTimeActive = 0.f;
-		std::cout << "Attack!\n";
+		Console::Log("Player Attacked.");
 	}
-	else { std::cout << "Cant Attack!\n"; }
 }
 
 void Player::Update(float dt)

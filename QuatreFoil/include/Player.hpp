@@ -5,6 +5,7 @@
 #include "Components/PlayerComp.hpp"
 #include "Components/Transform.hpp"
 #include "Components/RenderLayer.hpp"
+#include "Core/include/Console.hpp"
 #include <memory>
 
 

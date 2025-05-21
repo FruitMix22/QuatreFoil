@@ -16,15 +16,10 @@ public:
 
 	entt::entity GetEntity() const;
 	void Update(float dt);
-	void CreateEnemy();
+	void CreateEnemy(float posX);
 
 	void SpawnHitboxRight();
 	void SpawnHitboxLeft();
-
-	// Move Enemy by a distance.
-	// @param speed: Speed that the player moves by.
-	void moveX(float const speed, float const dt);
-
 
 	auto& GetTransformComp() const;
 private:

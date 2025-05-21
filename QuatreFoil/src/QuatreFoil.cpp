@@ -18,7 +18,6 @@ void QuatreFoil::OnStart()
 	// Spawn Temp floor & Player & background
 	generateFloor();
 	m_playerNew->CreatePlayer();
-	m_enemy->CreateEnemy();
 	createBackground();
 	// TODO: Change when adding more meshes
 
@@ -38,7 +37,7 @@ void QuatreFoil::OnUpdate()
 	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
 
 	m_playerNew->Update(m_dt);
-	m_enemy->Update(m_dt);
+	m_waveSystem->Update(m_dt);
 
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
@@ -155,6 +154,31 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x); // camera x Pos slider
 
 	ImGui::End();
+
+	/***************************
+	*     Bottom Right Bar     *
+	***************************/
+
+	ImGui::Begin("Console");
+
+	// Optionally clear
+	if (ImGui::Button("Clear")) Console::Clear();
+
+	// Get log lines
+	const auto& logs = Console::GetLogs();
+
+	// Check if the user is at the bottom before adding text
+	ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(200, 200, 200, 255)); // dark gray
+	ImGui::BeginChild("ConsoleScrollRegion", ImVec2(0, 0), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+	bool shouldScroll = ImGui::GetScrollY() >= ImGui::GetScrollMaxY();
+
+	for (const auto& line : logs) ImGui::TextWrapped("%s", line.c_str());
+
+	if (shouldScroll) ImGui::SetScrollHereY(1.0f);
+
+	ImGui::EndChild();
+	ImGui::PopStyleColor();
+	ImGui::End();
 }
 
 void QuatreFoil::generateFloor()
@@ -182,25 +206,29 @@ void QuatreFoil::generateDockSpace()
 	dockspace_built = true;
 
 	// Set nodes for dock spaces
+
 	ImGuiID dockspace_id = ImGui::GetMainViewport()->ID;
-	ImGui::DockBuilderRemoveNode(dockspace_id); // clear any existing layout
+	ImGui::DockBuilderRemoveNode(dockspace_id);
 	ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace);
 	ImGui::DockBuilderSetNodeSize(dockspace_id, ImGui::GetMainViewport()->Size);
 
-	// Split the workspace into areas
 	ImGuiID dock_main_id = dockspace_id;
 	ImGuiID right;
 	ImGuiID bottom;
+	ImGuiID bottom_right;
 
 	// Split off the bottom bar
 	bottom = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.25f, nullptr, &dock_main_id);
 	// Split off the right sidebar
 	right = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Right, 0.3f, nullptr, &dock_main_id);
+	// Split bottom again to get bottom-right
+	bottom_right = ImGui::DockBuilderSplitNode(bottom, ImGuiDir_Right, 0.5f, nullptr, &bottom);
 
-	// Dock windows into regions by name
+	// Dock windows
 	ImGui::DockBuilderDockWindow("Viewport", dock_main_id);
 	ImGui::DockBuilderDockWindow("Bottom Bar", bottom);
 	ImGui::DockBuilderDockWindow("Right Panel", right);
+	ImGui::DockBuilderDockWindow("Console", bottom_right);
 
 	// Done
 	ImGui::DockBuilderFinish(dockspace_id);

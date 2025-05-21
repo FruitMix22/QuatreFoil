@@ -13,28 +13,21 @@ Enemy::Enemy(entt::registry& registry) : m_registry(registry), m_enemy(std::make
 
 Enemy::~Enemy() { m_enemy.reset(); }
 
+
+void Enemy::CreateEnemy(float posX)
+{
+	{
+		m_enemy->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
+		m_enemy->CreateQuad(glm::vec2(posX, -680), glm::vec2(30, 40));
+		m_registry.emplace<EnemyComp>(m_enemy->GetEntity());
+		m_registry.emplace<RenderLayer>(m_enemy->GetEntity(), RenderLayer::Characters);
+		transformEnemyComp = &m_registry.get<Transform>(m_enemy->GetEntity());
+	}
+}
+
 entt::entity Enemy::GetEntity() const
 {
 	return m_enemy->GetEntity();
-}
-
-void Enemy::CreateEnemy()
-{
-	m_enemy->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
-	m_enemy->CreateQuad(glm::vec2(600, -680), glm::vec2(30, 40));
-	m_registry.emplace<EnemyComp>(m_enemy->GetEntity());
-	m_registry.emplace<RenderLayer>(m_enemy->GetEntity(), RenderLayer::Characters);
-	transformEnemyComp = &m_registry.get<Transform>(m_enemy->GetEntity());
-
-	//	m_hitBoxDebug->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
-	//m_hitBoxDebug->CreateQuad(glm::vec2(250, -2000), glm::vec2(20, 50));
-//	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
-}
-
-void Enemy::moveX(float const speed, float const dt)
-{
-	// Move enemy on X axis
-	//transformEnemyComp->position += glm::vec2(speed * dt, 0.f);
 }
 
 auto& Enemy::GetTransformComp() const
@@ -58,12 +51,14 @@ void Enemy::Update(float dt)
 	for (auto entity : view)
 	{
 		auto& playerTransform = view.get<Transform>(entity);
-		//playerPos = playerTransform.position;
 
-		auto& enemyComp = m_registry.get<EnemyComp>(m_enemy->GetEntity());
-		glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp->position);
-		transformEnemyComp->position.x += enemyComp.speed * direction.x * dt;
+		if (auto* enemyComp = m_registry.try_get<EnemyComp>(m_enemy->GetEntity()))
+		{
+			glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp->position);
+			transformEnemyComp->position.x += enemyComp->speed * direction.x * dt;
+		}
 	}
 
 }
+
 

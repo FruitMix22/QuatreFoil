@@ -15,6 +15,8 @@
 #include "Core/include/Input.hpp"
 #include "../QuatreFoil/include/Player.hpp"
 #include "../QuatreFoil/include/Enemy.hpp"
+#include "../QuatreFoil/include/EnemySpawner.hpp"
+#include "Core/include/Console.hpp"
 #include <entt/entt.hpp>
 #include <vector>
 #include <glm.hpp>
@@ -44,8 +46,6 @@ public:
 	// @returns Current FPS.
 	float GetFPS();
 
-	void SpawnHitbox();
-
 private:
 
 	entt::registry m_registry; // Entity registry.
@@ -57,7 +57,7 @@ private:
 
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
 	std::unique_ptr<Player> m_playerNew = std::make_unique<Player>(m_registry);
-	std::unique_ptr<Enemy> m_enemy = std::make_unique<Enemy>(m_registry);
+	std::unique_ptr<EnemySpawner> m_waveSystem = std::make_unique<EnemySpawner>(m_registry);
 	
 	int quadChoice = 0; // Current entity selected
 	bool dockspace_built = false; // Has the dock space been built yet?
