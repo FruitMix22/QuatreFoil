@@ -90,7 +90,6 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
 	ImGui::End();
 
-
 	/***************************
 	*		Bottom Bar         *
 	***************************/

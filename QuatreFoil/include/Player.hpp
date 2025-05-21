@@ -5,6 +5,8 @@
 #include "Components/PlayerComp.hpp"
 #include "Components/Transform.hpp"
 #include "Components/RenderLayer.hpp"
+#include "Components/Collider.hpp"
+#include "Components/HitBox.hpp"
 #include "Core/include/Console.hpp"
 #include <memory>
 
@@ -16,6 +18,7 @@ public:
 	~Player();
 
 	entt::entity GetEntity() const;
+	entt::entity GetHitBoxEntity() const;
 	void Update(float dt);
 	void CreatePlayer();
 

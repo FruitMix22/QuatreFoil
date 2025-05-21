@@ -10,6 +10,11 @@ entt::entity Player::GetEntity() const
 	return m_player->GetEntity();
 }
 
+entt::entity Player::GetHitBoxEntity() const
+{
+	return m_hitBoxDebug->GetEntity();
+}
+
 void Player::CreatePlayer()
 {
 	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/playerTemp.jpg");
@@ -18,9 +23,11 @@ void Player::CreatePlayer()
 	m_registry.emplace<RenderLayer>(m_player->GetEntity(), RenderLayer::Characters);
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
-//	m_hitBoxDebug->SetTextureImagePath("../QuatreFoil/Assets/Textures/container.jpg");
+	// Create hit box
 	m_hitBoxDebug->CreateQuad(glm::vec2(250, -2000), glm::vec2(20, 50));
 	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
+	m_registry.emplace<HitBox>(m_hitBoxDebug->GetEntity());
+	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 10.f, 25.f);
 }
 
 void Player::moveX(float const speed, float const dt)

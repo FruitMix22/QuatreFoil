@@ -21,6 +21,7 @@ void Enemy::CreateEnemy(float posX)
 		m_enemy->CreateQuad(glm::vec2(posX, -680), glm::vec2(30, 40));
 		m_registry.emplace<EnemyComp>(m_enemy->GetEntity());
 		m_registry.emplace<RenderLayer>(m_enemy->GetEntity(), RenderLayer::Characters);
+		m_registry.emplace<Collider>(m_enemy->GetEntity(), 15.f,20.f);
 		transformEnemyComp = &m_registry.get<Transform>(m_enemy->GetEntity());
 	}
 }
