@@ -17,7 +17,9 @@ entt::entity Player::GetHitBoxEntity() const
 
 void Player::CreatePlayer()
 {
-	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/warriorSpriteSheetTest.png");
+	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/warriorSpriteSheet.png");
+	m_player->SetVertexPath("../QuatreFoil/Assets/Shaders/playerVert.glsl");
+	m_player->SetFragPath("../QuatreFoil/Assets/Shaders/playerFrag.glsl");
 	m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
 	m_registry.emplace<PlayerComp>(m_player->GetEntity());
 	m_registry.emplace<RenderLayer>(m_player->GetEntity(), RenderLayer::Characters);

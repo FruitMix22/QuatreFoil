@@ -37,6 +37,9 @@ public:
     // @param value: vec4 to be inputed into uniform for shader
     void SetUniform(const std::string& name, const glm::vec4& value);
     // utility uniform function
+    // @param value: vec2 to be inputed into uniform for shader
+    void SetUniform(const std::string& name, const glm::vec2& value);
+    // utility uniform function
     // @param vlaue: matrix to be inputed into uniform for shader
     void SetUniform(const std::string& name, const glm::mat4& value);
 
