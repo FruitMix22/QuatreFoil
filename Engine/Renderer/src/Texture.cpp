@@ -5,30 +5,28 @@
 #include "stb_image.h"
 
 
-Texture::Texture(const char* imagePath)
+Texture::Texture(const char* imagePath, bool forceAlpha)
 {
-	unsigned char* data = stbi_load(imagePath, &width, &height, &nrChannels, 0);
-
-	glGenTextures(1, &m_id);
-
-	glBindTexture(GL_TEXTURE_2D, m_id);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
+	unsigned char* data = stbi_load(imagePath, &width, &height, &nrChannels, STBI_rgb_alpha);
 	if (!data)
 	{
 		Console::Log("Image for texture load failed: " + std::string(stbi_failure_reason()));
 	}
 	else 
 	{
-		//Console::Log("Image loaded: " + std::to_string(width) + "x" + std::to_string(height));
+		glGenTextures(1, &m_id);
+
+		glBindTexture(GL_TEXTURE_2D, m_id);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+
+		GLenum format = (forceAlpha || nrChannels == 4) ? GL_RGBA : GL_RGB;
+		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+
+		glGenerateMipmap(GL_TEXTURE_2D);
+
 		stbi_image_free(data);
+
 	}
 }
 

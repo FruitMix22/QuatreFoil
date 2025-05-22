@@ -16,7 +16,7 @@ void Quad::CreateQuad(glm::vec2 position, glm::vec2 scale)
 	// If pointer exists & first character isnt empty
 	if (m_imagePath && *m_imagePath)
 	{
-		m_texture = std::make_shared<Texture>(m_imagePath);
+		m_texture = std::make_shared<Texture>(m_imagePath, true);
 	}
 	// Create shader
 	m_shader = std::make_shared<Shader>(m_vertexPath, m_fragPath);

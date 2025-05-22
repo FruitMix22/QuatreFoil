@@ -46,6 +46,8 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 
 	// Set clear colour
 	glClearColor(m_clearColour[0], m_clearColour[1], m_clearColour[2], m_clearColour[3]);
+	glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Load ImGui
 	m_imGui.Init(m_window);
@@ -92,8 +94,6 @@ int EngineCore::runEngine()
 		glfwPollEvents();
 		// Start ImGui frame
 		m_imGui.Begin();
-
-
 
 		// Run code from the Game Layer.
 		if (m_layer) { m_layer->OnUpdate(); }

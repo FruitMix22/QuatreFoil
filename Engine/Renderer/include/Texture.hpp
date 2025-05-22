@@ -10,7 +10,7 @@ class Texture
 public:
 	// Generates texture.
 	// @param imagePath: File location of image.
-	Texture(const char* imagePath);
+	Texture(const char* imagePath, bool forceAlpha);
 	~Texture();
 
 	// Binds the texture.

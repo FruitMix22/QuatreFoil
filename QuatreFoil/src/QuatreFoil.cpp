@@ -277,6 +277,7 @@ void QuatreFoil::spawnNewEntity()
 {
 	m_quads.emplace_back(m_registry);
 	m_quads.back().CreateQuad(glm::vec2(250, -400), glm::vec2(60, 80));
+	m_registry.emplace<RenderLayer>(m_quads.back().GetEntity(), RenderLayer::Characters);
 }
 
 void QuatreFoil::createBackground()
