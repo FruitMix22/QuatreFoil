@@ -38,5 +38,6 @@ private:
 	float hitboxTimeActive = 0.0f;
 	float hitBoxTime = 0.5f;
 	bool canAttack = true;
+	bool isMoving = false;
 	Transform* transformPlayerComp = nullptr;
 };

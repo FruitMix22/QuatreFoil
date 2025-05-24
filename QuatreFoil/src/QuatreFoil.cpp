@@ -22,25 +22,20 @@ void QuatreFoil::OnStart()
 	// TODO: Change when adding more meshes
 
 	// Set inputs            //input    //function ran when pressed
-	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(100.f, m_dt);});
-	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-100.f, m_dt);});
+	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(200.f, m_dt);});
+	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-200.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_RIGHT, [this] {m_playerNew->SpawnHitboxRight();});
 	Input::RegisterCallBack(GLFW_KEY_LEFT, [this] {m_playerNew->SpawnHitboxLeft();});
 }
 
 void QuatreFoil::OnUpdate()
 {
+	m_playerNew->Update(m_dt);
 	auto& playerTransform = m_registry.get<Transform>(m_playerNew->GetEntity());
 	m_camera->Setposition(glm::vec2(playerTransform.position.x -250.f, 0.f));
 
 	if (playerTransform.position.x <= -1000) { playerTransform.position.x = -1000; }
 	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
-
-	// Work out anim sprite sheet offset and scale
-	//glm::vec2 uvScale = glm::vec2(69.0f / 414.0f, 44.0f / 748.0f);
-	//int spriteX = 69 * 0; 
-	//int spriteY = 44 * 0;
-	//glm::vec2 uvOffset = glm::vec2(spriteX / 414.0f, spriteY / 748.0f);
 
 	auto& playerAnimator = m_registry.get<Animator>(m_playerNew->GetEntity());
 	auto& playerRenderable = m_registry.get<Renderable>(m_playerNew->GetEntity());
@@ -48,7 +43,6 @@ void QuatreFoil::OnUpdate()
 	playerRenderable.m_shader->SetUniform("uvOffset", playerAnimator.uvOffset);
 	playerRenderable.m_shader->SetUniform("uvScale", playerAnimator.uvScale);
 
-	m_playerNew->Update(m_dt);
 	m_waveSystem->Update(m_dt);
 
 
