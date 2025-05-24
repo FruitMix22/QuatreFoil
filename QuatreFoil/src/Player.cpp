@@ -23,6 +23,7 @@ void Player::CreatePlayer()
 	m_player->CreateQuad(glm::vec2(250, -680), glm::vec2(30, 40));
 	m_registry.emplace<PlayerComp>(m_player->GetEntity());
 	m_registry.emplace<RenderLayer>(m_player->GetEntity(), RenderLayer::Characters);
+	m_registry.emplace<Animator>(m_player->GetEntity(), glm::vec2(414.f,748.f), glm::vec2(69.f, 44.f));
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
 	// Create hit box
@@ -38,11 +39,6 @@ void Player::moveX(float const speed, float const dt)
 	transformPlayerComp->position += glm::vec2(speed * dt, 0.f);
 }
  
-auto& Player::GetTransformComp() const
-{
-	return m_registry.get<Transform>(m_player->GetEntity());
-}
-
 void Player::SpawnHitboxRight()
 {
 	if (canAttack)
@@ -69,6 +65,11 @@ void Player::SpawnHitboxLeft()
 
 void Player::Update(float dt)
 {
+	auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
+	animatorComp.setAnimState(Animator::animState::Idle);
+	animatorComp.Update(dt);
+
+
 	if (hitboxTimeActive <= hitBoxTime)
 	{
 		hitboxTimeActive += dt;

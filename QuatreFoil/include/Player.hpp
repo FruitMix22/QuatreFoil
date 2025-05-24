@@ -7,6 +7,7 @@
 #include "Components/RenderLayer.hpp"
 #include "Components/Collider.hpp"
 #include "Components/HitBox.hpp"
+#include "Components/Animator.hpp"
 #include "Core/include/Console.hpp"
 #include <memory>
 
@@ -28,8 +29,6 @@ public:
 	// Move player by a distance.
 	// @param speed: Speed that the player moves by.
 	void moveX(float const speed, float const dt);
-
-	auto& Player::GetTransformComp() const;
 private:
 
 	entt::registry& m_registry;

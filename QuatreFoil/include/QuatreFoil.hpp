@@ -12,6 +12,7 @@
 #include "Renderer/include/Quad.hpp"
 #include "Components/Renderable.hpp"
 #include "Components/RenderLayer.hpp"
+#include "Components/Animator.hpp"
 #include "Core/include/Input.hpp"
 #include "../QuatreFoil/include/Player.hpp"
 #include "../QuatreFoil/include/Enemy.hpp"

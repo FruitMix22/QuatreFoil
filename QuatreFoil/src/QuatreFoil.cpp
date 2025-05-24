@@ -37,15 +37,16 @@ void QuatreFoil::OnUpdate()
 	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
 
 	// Work out anim sprite sheet offset and scale
-	glm::vec2 uvScale = glm::vec2(69.0f / 414.0f, 44.0f / 748.0f);
-	int spriteX = 69 * 0; 
-	int spriteY = 44 * 0;
-	glm::vec2 uvOffset = glm::vec2(spriteX / 414.0f, spriteY / 748.0f);
+	//glm::vec2 uvScale = glm::vec2(69.0f / 414.0f, 44.0f / 748.0f);
+	//int spriteX = 69 * 0; 
+	//int spriteY = 44 * 0;
+	//glm::vec2 uvOffset = glm::vec2(spriteX / 414.0f, spriteY / 748.0f);
 
+	auto& playerAnimator = m_registry.get<Animator>(m_playerNew->GetEntity());
 	auto& playerRenderable = m_registry.get<Renderable>(m_playerNew->GetEntity());
 
-	playerRenderable.m_shader->SetUniform("uvOffset", uvOffset);
-	playerRenderable.m_shader->SetUniform("uvScale", uvScale);
+	playerRenderable.m_shader->SetUniform("uvOffset", playerAnimator.uvOffset);
+	playerRenderable.m_shader->SetUniform("uvScale", playerAnimator.uvScale);
 
 	m_playerNew->Update(m_dt);
 	m_waveSystem->Update(m_dt);

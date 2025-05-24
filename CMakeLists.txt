@@ -110,6 +110,7 @@ add_library(Engine STATIC
     Engine/Components/RenderLayer.hpp
     Engine/Components/Collider.hpp
     Engine/Components/HitBox.hpp
+    Engine/Components/Animator.hpp
     #Engine/Components/Camera.hpp
 )
 
@@ -192,6 +193,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/C
     Engine/Components/RenderLayer.hpp
     Engine/Components/Collider.hpp
     Engine/Components/HitBox.hpp
+    Engine/Components/Animator.hpp
     #Engine/Components/Camera.hpp
 )
 
