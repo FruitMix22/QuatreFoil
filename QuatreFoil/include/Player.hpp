@@ -36,7 +36,7 @@ private:
 	std::unique_ptr<Quad> m_hitBoxDebug;
 
 	float hitboxTimeActive = 0.0f;
-	float hitBoxTime = 0.5f;
+	float hitBoxTime = 0.3f;
 	bool canAttack = true;
 	bool isMoving = false;
 	Transform* transformPlayerComp = nullptr;

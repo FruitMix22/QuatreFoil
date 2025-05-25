@@ -35,25 +35,39 @@ void Player::CreatePlayer()
 
 void Player::moveX(float const speed, float const dt)
 {
-	// Move player on X axis
-	transformPlayerComp->position += glm::vec2(speed * dt, 0.f);
+	if (canAttack)
+	{
+		// Move player on X axis
+		transformPlayerComp->position += glm::vec2(speed * dt, 0.f);
+		auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
+		animatorComp.setAnimState(Animator::animState::Running);
+		// Flip player if moving left or right
+		if (speed < 0) { transformPlayerComp->scale = glm::vec2(-60, 60); }
+		else { transformPlayerComp->scale = glm::vec2(60, 60); }
+	}
+	else
+	{
+		// Move player on X axis
+		transformPlayerComp->position += glm::vec2((speed / 2) * dt, 0.f);
+	}
 
-	// Flip player if moving left or right
-	if (speed < 0) { transformPlayerComp->scale = glm::vec2(-60, 60); }
-	else { transformPlayerComp->scale = glm::vec2(60, 60);  }
+
+
 
 	// Set running
 	isMoving = true;
-	auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
-	animatorComp.setAnimState(Animator::animState::Running);
 }
  
 void Player::SpawnHitboxRight()
 {
 	if (canAttack)
 	{
+
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+		animationComp.setAnimState(Animator::animState::Attacking);
 		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(20.f,-10.0f);
+		transformPlayerComp->scale = glm::vec2(60,60);
 		canAttack = false;
 		hitboxTimeActive = 0.f;
 		Console::Log("Player Attacked.");
@@ -65,7 +79,10 @@ void Player::SpawnHitboxLeft()
 	if (canAttack)
 	{
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+		animationComp.setAnimState(Animator::animState::Attacking);
 		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
+		transformPlayerComp->scale = glm::vec2(-60, 60);
 		canAttack = false;
 		hitboxTimeActive = 0.f;
 		Console::Log("Player Attacked.");
@@ -74,12 +91,11 @@ void Player::SpawnHitboxLeft()
 
 void Player::Update(float dt)
 {
-	if (!isMoving)
+	if (!isMoving && canAttack)
 	{
 		auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
 		animatorComp.setAnimState(Animator::animState::Idle);
 	}
-
 
 	auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
 	animatorComp.Update(dt);

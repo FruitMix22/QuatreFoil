@@ -67,12 +67,32 @@ void QuatreFoil::OnUpdate()
 			if (xOverlap)
 			{
 				killedEntities.push_back(enemyEntity);
-				m_registry.destroy(enemyEntity);
-				Console::Log("Enemy dead.");
+				for (auto& entity : killedEntities)
+				{
+					auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
+					auto& enemyComp = m_registry.get<EnemyComp>(entity);
+					enemyComp.health -= playerComp.damage;
+					Console::Log("Enemy Hit.");
+				}
+
 			}
 		}
 	}
-	m_waveSystem->RemoveDeadEnemies(killedEntities);
+
+	for (auto& entity : killedEntities)
+	{
+		if (auto* enemyComp = m_registry.try_get<EnemyComp>(entity))
+		{
+			if (enemyComp->health <= 0)
+			{
+				Console::Log("Enemy Died.");
+				m_waveSystem->RemoveDeadEnemies(killedEntities);
+				m_registry.destroy(killedEntities.back());
+			}
+		}
+	
+	}
+
 
 
 
@@ -144,17 +164,6 @@ void QuatreFoil::OnImGuiRender()
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
 	if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
 	ImGui::PopStyleColor(1);
-
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
-	if (ImGui::Button("Play ", ImVec2(200.f, 30.f))) { m_currentMode = EngineMode::Gameplay; } // Start gameplay
-	ImGui::PopStyleColor(1);
-
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-	if (ImGui::Button("Stop ", ImVec2(200.f, 30.f))) { m_currentMode = EngineMode::Editor; } // End gameplay
-	ImGui::PopStyleColor(1);
-
-	if (m_currentMode == EngineMode::Editor) { ImGui::TextColored(ImVec4(0.0f, 0.0f, 1.0f, 1.0f), "Editing Mode."); }
-	else { ImGui::TextColored(ImVec4(0.0f, 0.0f, 0.0f, 1.0f), "GamePlay Mode."); } // Mode text
 
 	ImGui::Text("Time in between frames: %f", m_dt); // Delta time text
 	

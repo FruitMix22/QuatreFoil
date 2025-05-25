@@ -38,6 +38,9 @@ struct Animator
 	int startRun = 6;
 	int endRun = 13;
 
+	int startAttack = 14;
+	int endAttack = 21;
+
 	// Animation timing
 	float animUpdate = 0.1f; // Time between frames
 	float timePassed = 0.0f; // Additive time since last update
@@ -71,6 +74,7 @@ struct Animator
 				case animState::Idle:
 				{
 
+					animUpdate = 0.1f;
 				// TODO: Abstract into a function
 					int frameIndex = currentSprite;  // Calculate where to start
 					int col = frameIndex % spritesPerRow;  // column is remainder
@@ -87,8 +91,25 @@ struct Animator
 					break;
 
 				}
+				case animState::Attacking:
+				{
+					animUpdate = 0.03f;
+					int frameIndex = currentSprite;  // Calculate where to start
+					int col = frameIndex % spritesPerRow;  // column is remainder
+					int row = frameIndex / spritesPerRow; // Row is integer left
+
+					// Calculate UV offset in texture space
+					uvOffset = glm::vec2(col * uvScale.x, row * uvScale.y);
+
+
+					// Dont allow to go beyond frames that arent the current state
+					currentSprite++;
+					if (currentSprite > endAttack) currentSprite = startAttack;
+					break;
+				}
 				case animState::Running:
 				{
+					animUpdate = 0.1f;
 					int frameIndex = currentSprite;  // Calculate where to start
 					int col = frameIndex % spritesPerRow;  // column is remainder
 					int row = frameIndex / spritesPerRow; // Row is integer left
@@ -102,16 +123,13 @@ struct Animator
 					if (currentSprite > endRun) currentSprite = startRun;
 					break;
 				}
+				
 
 		
 			}
 
 		}
 	}
-
-
-
-
 
 	void setAnimState(Animator::animState state)
 	{
@@ -126,6 +144,9 @@ struct Animator
 				break;
 			case animState::Running:
 				currentSprite = startRun;
+				break;
+			case animState::Attacking:
+				currentSprite = startAttack;
 				break;
 			}
 		//TODO: Updates as more states are supported

@@ -56,6 +56,8 @@ void Enemy::Update(float dt)
 		{
 			glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp.position);
 			transformEnemyComp.position.x += enemyComp->speed * direction.x * dt;
+
+		//	if (enemyComp->health <= 0) { m_registry.destroy(this->GetEntity()); }
 		}
 	}
 
