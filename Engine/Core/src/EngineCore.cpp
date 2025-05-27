@@ -36,6 +36,9 @@ bool EngineCore::loadEngine(const std::string& windowTitle)
 	/// Set the window as the current context
 	glfwMakeContextCurrent(m_window);
 
+	// Maximise the screen
+	glfwMaximizeWindow(m_window);
+
 	// Load all OpenGL stuff
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -98,8 +101,8 @@ int EngineCore::runEngine()
 		// Run code from the Game Layer.
 		if (m_layer) { m_layer->OnUpdate(); }
 		Input::ProcessInput();
-		if (m_layer) { m_layer->OnImGuiRender(); }
 		if (m_layer) { m_layer->OnRender(); }
+		if (m_layer) { m_layer->OnImGuiRender(); }
 
 		// End ImGui frame
 		m_imGui.End();

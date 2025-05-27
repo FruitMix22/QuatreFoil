@@ -6,6 +6,7 @@ QuatreFoil::QuatreFoil()
 	// Make a camera object & framebuffer
 	m_camera = std::make_unique<Camera>(m_registry);
 	m_fbo = std::make_unique<Framebuffer>(1920, 1080, DEBUG_MODE);
+	m_fbo->Bind(); 
 }
 
 void QuatreFoil::OnAttach()
@@ -108,16 +109,12 @@ void QuatreFoil::OnUpdate()
 
 void QuatreFoil::OnRender()
 {
-	m_fbo->Bind(); // (Not strictly neccesary right now as there are no other FBO's, but will be neccesary in the future with my FBO's.
-
-	// Clear all
-	glClearColor(1.f, 1.f, 1.f, 1.f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	if(DEBUG_MODE){ m_fbo->Bind(); }
 
 	// Run the renderer
 	m_renderer.Render(m_registry);
 
-	m_fbo->Unbind();
+	if(DEBUG_MODE) { m_fbo->Unbind(); }
 }
 
 void QuatreFoil::OnImGuiRender()
