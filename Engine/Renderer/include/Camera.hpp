@@ -3,6 +3,7 @@
 #include "glm.hpp"
 #include "../glm/gtc/matrix_transform.hpp"
 
+
 // Simple camera system
 class Camera
 {
@@ -29,8 +30,9 @@ public:
 	// Sets camera perspective.
 	// @param newPerspective: New perspective for camera.
 	void SetPerspective(glm::vec2 newPerspective) { m_perspective = newPerspective; }
+	float m_zoom = 1.5f;
+	glm::vec2 m_position = glm::vec2(500.f,600.f); // Camera pos
 private:
-	glm::vec2 m_position = glm::vec2(0.f); // Camera pos
-	glm::vec2 m_perspective = glm::vec2(1000.f, 800.f); // Camera perspective
+	glm::vec2 m_perspective = glm::vec2(1920.f, 1080.f); // Camera perspective
 	entt::entity m_camera; // Camera entity
 };

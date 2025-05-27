@@ -32,5 +32,7 @@ private:
 	float hitboxTimeActive = 0.0f;
 	float hitBoxTime = 0.5f;
 	bool canAttack = true;
+	bool hasBeenHit = false;
 	glm::vec2& playerPos = glm::vec2(0.f, 0.f);
+	float timeAccumulated = 0.f;
 };

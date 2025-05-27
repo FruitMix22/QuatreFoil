@@ -5,7 +5,7 @@ QuatreFoil::QuatreFoil()
 {
 	// Make a camera object & framebuffer
 	m_camera = std::make_unique<Camera>(m_registry);
-	m_fbo = std::make_unique<Framebuffer>(1000, 800);
+	m_fbo = std::make_unique<Framebuffer>(1920, 1080, DEBUG_MODE);
 }
 
 void QuatreFoil::OnAttach()
@@ -32,10 +32,10 @@ void QuatreFoil::OnUpdate()
 {
 	m_playerNew->Update(m_dt);
 	auto& playerTransform = m_registry.get<Transform>(m_playerNew->GetEntity());
-	m_camera->Setposition(glm::vec2(playerTransform.position.x -250.f, 0.f));
+	m_camera->Setposition(glm::vec2(playerTransform.position.x +625.f, 880.f));
 
-	if (playerTransform.position.x <= -1000) { playerTransform.position.x = -1000; }
-	if (playerTransform.position.x >=  1800) { playerTransform.position.x =  1800; }
+	if (playerTransform.position.x <= -890) { playerTransform.position.x = -950; }
+	if (playerTransform.position.x >=  1500) { playerTransform.position.x = 1500; }
 
 	auto& playerAnimator = m_registry.get<Animator>(m_playerNew->GetEntity());
 	auto& playerRenderable = m_registry.get<Renderable>(m_playerNew->GetEntity());
@@ -71,7 +71,7 @@ void QuatreFoil::OnUpdate()
 				{
 					auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
 					auto& enemyComp = m_registry.get<EnemyComp>(entity);
-					enemyComp.health -= playerComp.damage;
+					enemyComp.hit(playerComp.damage);
 					Console::Log("Enemy Hit.");
 				}
 
@@ -79,6 +79,7 @@ void QuatreFoil::OnUpdate()
 		}
 	}
 
+	// Kill enemy if health reduced to 0
 	for (auto& entity : killedEntities)
 	{
 		if (auto* enemyComp = m_registry.try_get<EnemyComp>(entity))
@@ -125,114 +126,125 @@ void QuatreFoil::OnRender()
 
 void QuatreFoil::OnImGuiRender()
 {
-	// Make the whole window a dock space
-	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
-
-	// Build dock space for the window 
-	if (!dockspace_built) { generateDockSpace(); }
-
-	// Set the size for the game viewport window
-	ImVec2 gameViewportSize = ImVec2(m_camera->GetPerspective().x, m_camera->GetPerspective().y);
-
-	// Set window size constraints before beginning the window
-	ImGui::SetNextWindowSize(gameViewportSize, ImGuiCond_Always);
-	ImGui::SetNextWindowSizeConstraints(gameViewportSize, gameViewportSize);
-
-	/***************************
-	*		Game view          *
-	***************************/
-
-	// Create a viewport window
-	ImGui::Begin("Viewport");
-	ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
-	ImGui::End();
-
-	/***************************
-	*		Bottom Bar         *
-	***************************/
-
-	int entityCount = 0;
-	auto& view = m_registry.view<Transform>();
-
-	for (auto entity : view)
+	// Only render engine gui if in Debug build
+	if (DEBUG_MODE)
 	{
-		entityCount++;
-	}
-	ImGui::Begin("Bottom Bar");
-	ImGui::Text("Current number of entities: %d", entityCount); // Number of entities being rendered
 
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-	if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
-	ImGui::PopStyleColor(1);
+		// Make the whole window a dock space
+		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
 
-	ImGui::Text("Time in between frames: %f", m_dt); // Delta time text
+		// Build dock space for the window 
+		if (!dockspace_built) { generateDockSpace(); }
+
+		// Set the size for the game viewport window
+		ImVec2 gameViewportSize = ImVec2(m_camera->GetPerspective().x, m_camera->GetPerspective().y);
+
+		// Set window size constraints before beginning the window
+		ImGui::SetNextWindowSize(gameViewportSize, ImGuiCond_Always);
+		ImGui::SetNextWindowSizeConstraints(gameViewportSize, gameViewportSize);
+
+		/***************************
+		*		Game view          *
+		***************************/
+
+		// Create a viewport window
+		ImGui::Begin("Viewport");
+		ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
+		ImGui::End();
+
+		/***************************
+		*		Bottom Bar         *
+		***************************/
+
+		int entityCount = 0;
+		auto& view = m_registry.view<Transform>();
+
+		for (auto entity : view)
+		{
+			entityCount++;
+		}
+		ImGui::Begin("Bottom Bar");
+		ImGui::Text("Current number of entities: %d", entityCount); // Number of entities being rendered
+
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+		if (ImGui::Button("Close ", ImVec2(200.f, 30.f))) { m_terminate = true; } // Button to close the program
+		ImGui::PopStyleColor(1);
+
+		ImGui::Text("Time in between frames: %f", m_dt); // Delta time text
+
+		ImGui::Text("FPS: %f", GetFPS()); // FPS text
+
+		ImGui::End();
+
+		/***************************
+		*		Right Bar          *
+		***************************/
+
+		static int selectedItem = 0; // the currently selected entity
+
+		m_entityNames.clear(); // clear the list to make sure it doesnt buffer from previous frames
+		m_items.clear(); // Same for the items...
+
+		// for every entiy in the quad, add to a list of the number of the entity
+		for (int i = 0; i < m_quads.size(); i++)
+		{
+			// Raw pointers go boom so this needs to be here
+			m_entityNames.push_back(std::to_string(i));
+			m_items.push_back(m_entityNames.back().c_str());
+		}
+
+		ImGui::Begin("Right Panel");
+		ImGui::Combo("Selected entity", &selectedItem, m_items.data(), static_cast<int>(m_items.size())); // Currently selected entity
+		auto& transform = m_registry.get<Transform>(m_quads[selectedItem].GetEntity()); // Start editing the transform of the current selected entity
+		ImGui::SliderFloat("X pos", &transform.position.x, -100.0f, 1000.f);
+		ImGui::SliderFloat("Y pos", &transform.position.y, -800.0f, 1000.f);
+
+		if (ImGui::Button("Spawn new entity", ImVec2(200.f, 30.f)))
+		{
+			spawnNewEntity(); // Spawn a new entity
+			selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)}
+		}
+
+		auto& transformPlayerComp = m_registry.get<Transform>(m_playerNew->GetEntity());
+		if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f)); // Player x Pos slider
+
 	
-	ImGui::Text("FPS: %f", GetFPS()); // FPS text
+		(ImGui::SliderFloat("Camera zoom", &m_camera->m_zoom, 0.f, 2.f));
+		(ImGui::SliderFloat("Camera x", &m_camera->m_position.x, -3000.f, 3000.f));
+		(ImGui::SliderFloat("Camera y", &m_camera->m_position.y, -3000.f, 3000.f));
 
-	ImGui::End();
 
-	/***************************
-	*		Right Bar          *
-	***************************/
+		ImGui::Text("Camera X Pos: %.2f", m_camera->GetPosition().x); // camera x Pos 
 
-	static int selectedItem = 0; // the currently selected entity
+		if (ImGui::Button("Kill all Enemies.")) { m_waveSystem->KillAllEnemies(); }
 
-	m_entityNames.clear(); // clear the list to make sure it doesnt buffer from previous frames
-	m_items.clear(); // Same for the items...
+		ImGui::End();
 
-	// for every entiy in the quad, add to a list of the number of the entity
-	for (int i = 0; i < m_quads.size(); i++)
-	{
-		// Raw pointers go boom so this needs to be here
-		m_entityNames.push_back(std::to_string(i));
-		m_items.push_back(m_entityNames.back().c_str());
+		/***************************
+		*     Bottom Right Bar     *
+		***************************/
+
+		ImGui::Begin("Console");
+
+		// Optionally clear
+		if (ImGui::Button("Clear")) Console::Clear();
+
+		// Get log lines
+		const auto& logs = Console::GetLogs();
+
+		// Check if the user is at the bottom before adding text
+		ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(200, 200, 200, 255)); // dark gray
+		ImGui::BeginChild("ConsoleScrollRegion", ImVec2(0, 0), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+		bool shouldScroll = ImGui::GetScrollY() >= ImGui::GetScrollMaxY();
+
+		for (const auto& line : logs) ImGui::TextWrapped("%s", line.c_str());
+
+		if (shouldScroll) ImGui::SetScrollHereY(1.0f);
+
+		ImGui::EndChild();
+		ImGui::PopStyleColor();
+		ImGui::End();
 	}
-
-	ImGui::Begin("Right Panel");
-	ImGui::Combo("Selected entity", &selectedItem, m_items.data(), static_cast<int>(m_items.size())); // Currently selected entity
-	auto& transform = m_registry.get<Transform>(m_quads[selectedItem].GetEntity()); // Start editing the transform of the current selected entity
-	ImGui::SliderFloat("X pos", &transform.position.x, -100.0f, 1000.f);
-	ImGui::SliderFloat("Y pos", &transform.position.y, -800.0f, 1000.f);
-
-	if (ImGui::Button("Spawn new entity", ImVec2(200.f, 30.f)))
-	{
-		spawnNewEntity(); // Spawn a new entity
-		selectedItem = m_quads.size() - 1; // set current item to new one (ease of use)}
-	}
-
-	auto& transformPlayerComp = m_registry.get<Transform>(m_playerNew->GetEntity());
-	if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f)); // Player x Pos slider
-
-	ImGui::Text("Camera X Pos: %.2f" ,m_camera->GetPosition().x); // camera x Pos slider
-
-	if (ImGui::Button("Kill all Enemies.")) { m_waveSystem->KillAllEnemies(); }
-
-	ImGui::End();
-
-	/***************************
-	*     Bottom Right Bar     *
-	***************************/
-
-	ImGui::Begin("Console");
-
-	// Optionally clear
-	if (ImGui::Button("Clear")) Console::Clear();
-
-	// Get log lines
-	const auto& logs = Console::GetLogs();
-
-	// Check if the user is at the bottom before adding text
-	ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(200, 200, 200, 255)); // dark gray
-	ImGui::BeginChild("ConsoleScrollRegion", ImVec2(0, 0), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-	bool shouldScroll = ImGui::GetScrollY() >= ImGui::GetScrollMaxY();
-
-	for (const auto& line : logs) ImGui::TextWrapped("%s", line.c_str());
-
-	if (shouldScroll) ImGui::SetScrollHereY(1.0f);
-
-	ImGui::EndChild();
-	ImGui::PopStyleColor();
-	ImGui::End();
 }
 
 void QuatreFoil::generateFloor()

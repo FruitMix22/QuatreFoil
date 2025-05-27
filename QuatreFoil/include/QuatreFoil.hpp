@@ -22,6 +22,12 @@
 #include <vector>
 #include <glm.hpp>
 
+#ifdef _DEBUG
+constexpr bool DEBUG_MODE = true;
+#else
+constexpr bool DEBUG_MODE = false;
+#endif
+
 // Game layer.
 class QuatreFoil : public Layer
 {

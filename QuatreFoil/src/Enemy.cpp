@@ -54,13 +54,20 @@ void Enemy::Update(float dt)
 		auto& transformEnemyComp = m_registry.get<Transform>(m_enemy->GetEntity());
 		if (auto* enemyComp = m_registry.try_get<EnemyComp>(m_enemy->GetEntity()))
 		{
+			if (enemyComp->hasBeenHit)
+			{
+				timeAccumulated += dt;
+			}
+			if (timeAccumulated >= 0.8f)
+			{
+				enemyComp->hasBeenHit = false;
+			}
 			glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp.position);
 			transformEnemyComp.position.x += enemyComp->speed * direction.x * dt;
-
-		//	if (enemyComp->health <= 0) { m_registry.destroy(this->GetEntity()); }
 		}
 	}
 
 }
+
 
 

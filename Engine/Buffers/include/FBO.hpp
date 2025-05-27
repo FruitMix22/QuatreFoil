@@ -7,7 +7,7 @@ public:
 	// Generates frame buffer.
 	// @param width: width of the texture.
 	// @param height: height of the texture.
-	Framebuffer(unsigned int width, unsigned int height);
+	Framebuffer(unsigned int width, unsigned int height, bool debugMode);
 	~Framebuffer();
 
 	// Binds the buffer.
@@ -30,6 +30,8 @@ private:
 
 	unsigned int m_width; // width of the texture
 	unsigned int m_height; // height of the texture
+
+	bool m_useFBO = true; // Knows wether or not to bind to default or a different ID
 
 	// Deletes previous FBO and creates new one.
 	void CreateFBO();

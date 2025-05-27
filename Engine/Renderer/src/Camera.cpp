@@ -13,13 +13,28 @@ Camera::~Camera()
 
 glm::mat4 Camera::GetViewMatrix()
 {
-	glm::mat4 view(1.f);
-	return view = glm::translate(view, glm::vec3(-m_position.x, -m_position.y, 0.f));
+	float halfW = (m_perspective.x / m_zoom) * 0.5f;
+	float halfH = (m_perspective.y / m_zoom) * 0.5f;
+
+	glm::mat4 view(1.0f);
+
+	// Since Y axis is flipped in projection, add halfH to Y to center properly
+	view = glm::translate(view, glm::vec3(-m_position.x + halfW, -m_position.y + halfH, 0.0f));
+
+	return view;
 }
+
+
+
+
 
 glm::mat4 Camera::GetProjectionMatrix()
 {
-	return glm::ortho(0.0f, m_perspective.x, m_perspective.y, 0.0f, -1.0f, 1.0f);
+	float halfW = (m_perspective.x / m_zoom) * 0.5f;
+	float halfH = (m_perspective.y / m_zoom) * 0.5f;
+
+	return glm::ortho(-halfW, halfW, halfH, -halfH, -1.0f, 1.0f);
+
 }
 
 glm::vec2 Camera::GetPerspective()

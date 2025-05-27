@@ -3,8 +3,8 @@
 #include <glad/glad.h>
 #include <iostream>
 
-Framebuffer::Framebuffer(unsigned int width, unsigned int height)
-	: m_width(width), m_height(height)
+Framebuffer::Framebuffer(unsigned int width, unsigned int height, bool debugMode)
+	: m_width(width), m_height(height), m_useFBO(debugMode)
 {
 	CreateFBO();
 }
@@ -49,7 +49,14 @@ void Framebuffer::CreateFBO()
 
 void Framebuffer::Bind() const
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
+	if (m_useFBO)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
+	}
+	else
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
 }
 
 void Framebuffer::Unbind() const
