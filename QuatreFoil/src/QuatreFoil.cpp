@@ -93,10 +93,6 @@ void QuatreFoil::OnUpdate()
 		}
 	
 	}
-
-
-
-
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
 	for (auto entity : view)
@@ -149,7 +145,7 @@ void QuatreFoil::OnImGuiRender()
 
 		// Create a viewport window
 		ImGui::Begin("Viewport");
-		ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), gameViewportSize, ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
+		ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), ImVec2(gameViewportSize.x / 1.4, gameViewportSize.y / 1.4), ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
 		ImGui::End();
 
 		/***************************
@@ -207,12 +203,6 @@ void QuatreFoil::OnImGuiRender()
 
 		auto& transformPlayerComp = m_registry.get<Transform>(m_playerNew->GetEntity());
 		if (ImGui::SliderFloat("Player X Pos", &transformPlayerComp.position.x, -200.f, 1000.f)); // Player x Pos slider
-
-	
-		(ImGui::SliderFloat("Camera zoom", &m_camera->m_zoom, 0.f, 2.f));
-		(ImGui::SliderFloat("Camera x", &m_camera->m_position.x, -3000.f, 3000.f));
-		(ImGui::SliderFloat("Camera y", &m_camera->m_position.y, -3000.f, 3000.f));
-
 
 		ImGui::Text("Camera X Pos: %.2f", m_camera->GetPosition().x); // camera x Pos 
 
