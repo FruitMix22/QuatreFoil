@@ -118,8 +118,16 @@ void QuatreFoil::OnRender()
 
 void QuatreFoil::OnImGuiRender()
 {
-	// Only render engine gui if in Debug build
-	if (DEBUG_MODE)
+	if (!DEBUG_MODE)
+	{
+		ImGui::SetNextWindowPos(ImVec2(10, 10)); // Top-left corner, for example
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(0, 0, 0, 0));
+		ImGui::Begin("Stats Overlay", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
+		ImGui::Text("health : 5");d
+		ImGui::End();
+		ImGui::PopStyleColor();
+	}
+	else // Only render engine gui if in Debug build
 	{
 
 		// Make the whole window a dock space
@@ -142,8 +150,20 @@ void QuatreFoil::OnImGuiRender()
 		// Create a viewport window
 		ImGui::Begin("Viewport");
 		ImGui::Image(static_cast<intptr_t>(m_fbo->GetTextureID()), ImVec2(gameViewportSize.x / 1.4, gameViewportSize.y / 1.4), ImVec2(0, 1), ImVec2(1, 0)); // Image from the frame buffer (game view)
+		ImVec2 viewPortPos = ImGui::GetWindowPos();
 		ImGui::End();
 
+		ImVec2 floatingPos = ImVec2(viewPortPos.x + 20, viewPortPos.y + 30);
+		ImGui::SetNextWindowPos(floatingPos, ImGuiCond_Always);
+		// Begin the floating window
+		ImGui::Begin("Floating Stats Window", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
+		ImGui::SetWindowFontScale(2.f); 
+		auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
+		playerComp.health = 100;
+		ImGui::Text("Health : %f    Enemies: 5", playerComp.health);
+		ImGui::SetWindowFontScale(1.0f); 
+
+		ImGui::End();
 		/***************************
 		*		Bottom Bar         *
 		***************************/
@@ -270,7 +290,7 @@ void QuatreFoil::generateDockSpace()
 	ImGuiID bottom_right;
 
 	// Split off the bottom bar
-	bottom = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.25f, nullptr, &dock_main_id);
+	bottom = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.19f, nullptr, &dock_main_id);
 	// Split off the right sidebar
 	right = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Right, 0.3f, nullptr, &dock_main_id);
 	// Split bottom again to get bottom-right
