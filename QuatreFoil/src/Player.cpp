@@ -109,7 +109,9 @@ void Player::Update(float dt)
 	else
 	{
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+		auto& hitBoxComp = m_registry.get<HitBox>(m_hitBoxDebug->GetEntity());
 		transformHitBoxComp.position = glm::vec2(4000, -2000);
+		hitBoxComp.resetHitEnemies();
 		canAttack = true;
 	}
 }

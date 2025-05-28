@@ -47,6 +47,7 @@ void QuatreFoil::OnUpdate()
 	m_waveSystem->Update(m_dt);
 
 
+	std::vector<entt::entity> hitEntities;
 	std::vector<entt::entity> killedEntities;
 
 	// Temp collision system
@@ -57,6 +58,7 @@ void QuatreFoil::OnUpdate()
 	{
 		auto& hitBoxTransform = hitboxView.get<Transform>(hitBoxEntity);
 		auto& hitBoxCollider = hitboxView.get<Collider>(hitBoxEntity);
+		auto& hitBoxComp = hitboxView.get<HitBox>(hitBoxEntity);
 
 		for (auto enemyEntity : enemyView)
 		{
@@ -65,35 +67,32 @@ void QuatreFoil::OnUpdate()
 
 			bool xOverlap = std::abs(hitBoxTransform.position.x - enemyTransform.position.x) <= (hitBoxCollider.halfWidth + enemyCollider.halfWidth);
 
-			if (xOverlap)
+			if (xOverlap && !hitBoxComp.hasBeenHit(enemyEntity))
 			{
-				killedEntities.push_back(enemyEntity);
-				for (auto& entity : killedEntities)
+				hitBoxComp.addHitEnemy(enemyEntity);
+
+				auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
+				auto& enemyComp = m_registry.get<EnemyComp>(enemyEntity);
+
+				enemyComp.hit(playerComp.damage);
+				Console::Log("Enemy Hit.");
+				
+
+			}
+
+			if (auto* enemyComp = m_registry.try_get<EnemyComp>(enemyEntity))
+			{
+				if (enemyComp->health <= 0)
 				{
-					auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
-					auto& enemyComp = m_registry.get<EnemyComp>(entity);
-					enemyComp.hit(playerComp.damage);
-					Console::Log("Enemy Hit.");
+					Console::Log("Enemy Died.");
+					m_waveSystem->RemoveDeadEnemy(enemyEntity);
+					m_registry.destroy(enemyEntity);
 				}
-
 			}
 		}
 	}
 
-	// Kill enemy if health reduced to 0
-	for (auto& entity : killedEntities)
-	{
-		if (auto* enemyComp = m_registry.try_get<EnemyComp>(entity))
-		{
-			if (enemyComp->health <= 0)
-			{
-				Console::Log("Enemy Died.");
-				m_waveSystem->RemoveDeadEnemies(killedEntities);
-				m_registry.destroy(killedEntities.back());
-			}
-		}
-	
-	}
+
 	// Update all uniforms for all renderables
 	auto view = m_registry.view<Renderable, Transform>();
 	for (auto entity : view)

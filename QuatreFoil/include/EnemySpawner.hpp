@@ -17,7 +17,7 @@ public:
 	// DEBUG TOOL
 	void KillAllEnemies();
 
-	void RemoveDeadEnemies(std::vector<entt::entity>& deadEntities);
+	void RemoveDeadEnemy(entt::entity& deadEntities);
 
 private:
 	void SpawnWave();

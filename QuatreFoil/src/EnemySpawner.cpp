@@ -91,17 +91,20 @@ void EnemySpawner::KillAllEnemies()
 	for (auto& enemy : m_enemies)
 	{
 		m_registry.destroy(enemy->GetEntity());
-
 	}
 	m_enemies.clear();
 }
 
-void EnemySpawner::RemoveDeadEnemies(std::vector<entt::entity>& deadEntities)
+void EnemySpawner::RemoveDeadEnemy(entt::entity& deadEntity)
 {
-	m_enemies.erase(std::remove_if(m_enemies.begin(), m_enemies.end(),
-		[&](const std::unique_ptr<Enemy>& enemy)
+	for (int i = 0; i < m_enemies.size(); ++i)
+	{
+		entt::entity currentEntity = m_enemies[i]->GetEntity();
+
+		if (currentEntity == deadEntity)
 		{
-			return std::find(deadEntities.begin(), deadEntities.end(), enemy->GetEntity()) != deadEntities.end();
-		}),
-		m_enemies.end());
+			m_enemies.erase(m_enemies.begin() + i);
+			break; 
+		}
+	}
 }
