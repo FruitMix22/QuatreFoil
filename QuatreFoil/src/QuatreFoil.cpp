@@ -35,7 +35,7 @@ void QuatreFoil::OnUpdate()
 	auto& playerTransform = m_registry.get<Transform>(m_playerNew->GetEntity());
 	m_camera->Setposition(glm::vec2(playerTransform.position.x +625.f, 880.f));
 
-	if (playerTransform.position.x <= -890) { playerTransform.position.x = -950; }
+	if (playerTransform.position.x <= -650) { playerTransform.position.x = -650; }
 	if (playerTransform.position.x >=  1500) { playerTransform.position.x = 1500; }
 
 	auto& playerAnimator = m_registry.get<Animator>(m_playerNew->GetEntity());

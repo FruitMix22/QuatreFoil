@@ -69,7 +69,7 @@ glm::vec2 EnemySpawner::GetOffScreenPosition()
 		auto& transformPlayerComp = m_registry.get<Transform>(entity);
 
 	
-		float offscreenDistance = 600.f; 
+		float offscreenDistance = 1000.f; 
 		float spreadRange = 200.f;     
 
 		bool spawnLeft = (rand() % 2) == 0;
