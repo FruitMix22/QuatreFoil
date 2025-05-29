@@ -127,18 +127,36 @@ void QuatreFoil::OnImGuiRender()
 {
 	if (currentGameState == GameState::Menu)
 	{
-		// Set the size for the game viewport window
+		ImGuiWindowFlags flags = ImGuiWindowFlags_NoTitleBar |
+			ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoScrollbar |
+			ImGuiWindowFlags_NoSavedSettings |
+			ImGuiWindowFlags_NoBackground;
 		ImVec2 gameViewportSize = ImVec2(m_camera->GetPerspective().x, m_camera->GetPerspective().y);
+		ImGui::SetNextWindowPos(ImVec2(0, 0)); 
+		ImGui::SetNextWindowSize(gameViewportSize, ImGuiCond_Always);
+		ImGui::SetNextWindowSizeConstraints(gameViewportSize, gameViewportSize);
+		ImGui::Begin("Background", nullptr, flags);
+		ImGui::Image(menuBackground->GetID(), ImVec2(1920, 1080));
+		ImGui::End();
+
+
+		// Set the size for the game viewport window
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(0, 0, 0, 0));
 		// Set window size constraints before beginning the window
 		ImGui::SetNextWindowSize(gameViewportSize, ImGuiCond_Always);
 		ImGui::SetNextWindowSizeConstraints(gameViewportSize, gameViewportSize);
 
-		ImGui::Begin("Menu", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
+		
+		ImGui::SetNextWindowPos(ImVec2(800, 480));
+		ImGui::SetNextWindowFocus();
+		ImGui::Begin("Menu", nullptr, flags);
 		if (ImGui::Button("Start Game", ImVec2(200,50))) { currentGameState = GameState::GamePlay; }
 		if (ImGui::Button("Quit Game", ImVec2(200, 50))) { m_terminate = true; }
 		ImGui::End();
 		ImGui::PopStyleColor();
+	
 	}
 	// If game is active
 	if (currentGameState == GameState::GamePlay)
@@ -146,7 +164,7 @@ void QuatreFoil::OnImGuiRender()
 		auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
 		if (!DEBUG_MODE)
 		{
-			ImGui::SetNextWindowPos(ImVec2(10, 10)); // Top-left corner, for example
+			ImGui::SetNextWindowPos(ImVec2(10, 10)); 
 			ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(0, 0, 0, 0));
 			ImGui::Begin("Stats Overlay", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
 			ImGui::Text("health: %.0f", playerComp.health);
@@ -233,6 +251,7 @@ void QuatreFoil::OnImGuiRender()
 			}
 
 			ImGui::Begin("Right Panel");
+		
 			ImGui::Combo("Selected entity", &selectedItem, m_items.data(), static_cast<int>(m_items.size())); // Currently selected entity
 			auto& transform = m_registry.get<Transform>(m_quads[selectedItem].GetEntity()); // Start editing the transform of the current selected entity
 			ImGui::SliderFloat("X pos", &transform.position.x, -100.0f, 1000.f);

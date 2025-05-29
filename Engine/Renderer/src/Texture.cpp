@@ -27,7 +27,6 @@ Texture::Texture(const char* imagePath, bool forceAlpha)
 		glGenerateMipmap(GL_TEXTURE_2D);
 
 		stbi_image_free(data);
-
 	}
 }
 
