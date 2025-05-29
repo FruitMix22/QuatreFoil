@@ -18,11 +18,19 @@ void QuatreFoil::OnStart()
 {
 	currentGameState = GameState::Menu;
 
+	if (DEBUG_MODE)
+	{
+		m_playerNew->renderHitBox = true;
+	}
+
 	// Spawn Temp floor & Player & background
 	generateFloor();
 	m_playerNew->CreatePlayer();
 	createBackground();
 	// TODO: Change when adding more meshes
+
+
+
 
 	// Set inputs            //input    //function ran when pressed
 	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(300.f, m_dt);});
@@ -140,7 +148,7 @@ void QuatreFoil::OnImGuiRender()
 		ImGui::Begin("Background", nullptr, flags);
 		ImGui::Image(menuBackground->GetID(), ImVec2(1920, 1080));
 		ImGui::End();
-
+		 
 
 		// Set the size for the game viewport window
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(0, 0, 0, 0));

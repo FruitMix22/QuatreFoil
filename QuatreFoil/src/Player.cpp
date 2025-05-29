@@ -28,6 +28,12 @@ void Player::CreatePlayer()
 
 	// Create hit box
 	m_hitBoxDebug->CreateQuad(glm::vec2(4000, -2000), glm::vec2(20, 50));
+	if (m_registry.all_of<Renderable>(m_hitBoxDebug->GetEntity()) && !renderHitBox) 
+	{
+		m_registry.remove<Renderable>(m_hitBoxDebug->GetEntity());
+		std::cout << "Removed renderable";
+	}
+	//m_hitBoxDebug->GetEntity()
 	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
 	m_registry.emplace<HitBox>(m_hitBoxDebug->GetEntity());
 	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 10.f);
@@ -52,32 +58,85 @@ void Player::moveX(float const speed, float const dt)
 	}
 
 
-
-
 	// Set running
 	isMoving = true;
 }
  
+bool Player::doesMatchCombo(const std::vector<AttackType>& combo)
+{
+	if (attackHistory.size() < combo.size()) return false;
+
+	// Compare from the end of attackHistory
+	for (int i = 0; i < combo.size(); ++i) {
+		if (attackHistory[attackHistory.size() - combo.size() + i] != combo[i]) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 void Player::SpawnHitboxRight()
 {
 	if (canAttack)
 	{
+		// Atack stream
+		attackHistory.push_back(AttackType::Right);
 
-		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
-		animationComp.setAnimState(Animator::animState::Attacking);
-		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(20.f,-10.0f);
-		transformPlayerComp->scale = glm::vec2(60,60);
-		canAttack = false;
-		hitboxTimeActive = 0.f;
-		Console::Log("Player Attacked.");
+		if (doesMatchCombo(SideSlashRight))
+		{
+			attackHistory.clear();
+			auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+			auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+			auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
+			animationComp.setAnimState(Animator::animState::AttackSlash);
+			//Make it do more damage
+			playerComp.damage = 100;
+			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(30.f, -10.0f);
+			transformPlayerComp->scale = glm::vec2(60, 60);
+			canAttack = false;
+			hitboxTimeActive = 0.f;
+			Console::Log("Player did COMBBOOOO.");
+		}
+		else
+		{
+			auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+			auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+			animationComp.setAnimState(Animator::animState::Attacking);
+			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(30.f, -10.0f);
+			transformPlayerComp->scale = glm::vec2(60, 60);
+			canAttack = false;
+			hitboxTimeActive = 0.f;
+			Console::Log("Player Attacked.");
+		}
 	}
 }
 
 void Player::SpawnHitboxLeft()
 {
+	// Atack stream
+	attackHistory.push_back(AttackType::Left);
+
+	if (doesMatchCombo(SideSlashLeft))
+	{
+		attackHistory.clear();
+		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+		auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
+		animationComp.setAnimState(Animator::animState::AttackSlash);
+		//Make it do more damage
+		playerComp.damage = 100;
+		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
+		transformPlayerComp->scale = glm::vec2(-60, 60);
+		canAttack = false;
+		hitboxTimeActive = 0.f;
+		Console::Log("Player did COMBBOOOO.");
+	}
 	if (canAttack)
 	{
+		// Attack stream
+		attackHistory.push_back(AttackType::Left);
+
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
 		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
 		animationComp.setAnimState(Animator::animState::Attacking);
@@ -110,6 +169,8 @@ void Player::Update(float dt)
 	{
 		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
 		auto& hitBoxComp = m_registry.get<HitBox>(m_hitBoxDebug->GetEntity());
+		auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
+		playerComp.damage = 20;
 		transformHitBoxComp.position = glm::vec2(4000, -2000);
 		hitBoxComp.resetHitEnemies();
 		canAttack = true;
