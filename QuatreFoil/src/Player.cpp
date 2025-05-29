@@ -31,7 +31,6 @@ void Player::CreatePlayer()
 	if (m_registry.all_of<Renderable>(m_hitBoxDebug->GetEntity()) && !renderHitBox) 
 	{
 		m_registry.remove<Renderable>(m_hitBoxDebug->GetEntity());
-		std::cout << "Removed renderable";
 	}
 	//m_hitBoxDebug->GetEntity()
 	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);

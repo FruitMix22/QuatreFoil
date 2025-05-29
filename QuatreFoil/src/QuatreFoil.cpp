@@ -57,6 +57,15 @@ void QuatreFoil::OnUpdate()
 		playerRenderable.m_shader->SetUniform("uvOffset", playerAnimator.uvOffset);
 		playerRenderable.m_shader->SetUniform("uvScale", playerAnimator.uvScale);
 
+		auto& ememyview = m_registry.view<EnemyComp, Renderable, Animator>();
+		for (auto& enemy : ememyview)
+		{
+			auto& enemyRenderable = m_registry.get<Renderable>(enemy);
+			auto& enemyAnimator = m_registry.get<Animator>(enemy);
+			enemyRenderable.m_shader->SetUniform("uvOffset", enemyAnimator.uvOffset);
+			enemyRenderable.m_shader->SetUniform("uvScale", enemyAnimator.uvScale);
+		}
+
 		m_waveSystem->Update(m_dt);
 
 
@@ -107,7 +116,7 @@ void QuatreFoil::OnUpdate()
 
 
 		// Update all uniforms for all renderables
-		auto view = m_registry.view<Renderable, Transform>();
+		auto& view = m_registry.view<Renderable, Transform>();
 		for (auto entity : view)
 		{
 			auto& renderable = view.get<Renderable>(entity);

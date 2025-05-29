@@ -6,6 +6,7 @@
 #include "Components/EnemyComp.hpp"
 #include "Components/Transform.hpp"
 #include "Components/RenderLayer.hpp"
+#include "Components/Animator.hpp"
 #include "Components/Collider.hpp"
 #include <memory>
 
