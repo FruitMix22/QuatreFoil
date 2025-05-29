@@ -19,6 +19,9 @@ public:
 
 	void RemoveDeadEnemy(entt::entity& deadEntities);
 
+	int GetNumberOfEnemiesActive() { return m_enemies.size(); }
+	int GetCurrentWave() { return m_waveNumber; }
+
 private:
 	void SpawnWave();
 	glm::vec2 GetOffScreenPosition();

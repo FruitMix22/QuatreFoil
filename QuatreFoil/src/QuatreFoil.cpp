@@ -23,8 +23,8 @@ void QuatreFoil::OnStart()
 	// TODO: Change when adding more meshes
 
 	// Set inputs            //input    //function ran when pressed
-	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(200.f, m_dt);});
-	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-200.f, m_dt);});
+	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(300.f, m_dt);});
+	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-300.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_RIGHT, [this] {m_playerNew->SpawnHitboxRight();});
 	Input::RegisterCallBack(GLFW_KEY_LEFT, [this] {m_playerNew->SpawnHitboxLeft();});
 }
@@ -118,18 +118,20 @@ void QuatreFoil::OnRender()
 
 void QuatreFoil::OnImGuiRender()
 {
+	auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
 	if (!DEBUG_MODE)
 	{
 		ImGui::SetNextWindowPos(ImVec2(10, 10)); // Top-left corner, for example
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(0, 0, 0, 0));
 		ImGui::Begin("Stats Overlay", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
-		ImGui::Text("health : 5");d
+		ImGui::Text("health: %.0f", playerComp.health);
+		ImGui::Text("Enemies Remaining: %.0f", (float)m_waveSystem->GetNumberOfEnemiesActive());
+		ImGui::Text("Current Wave: %.0f", (float)m_waveSystem->GetCurrentWave() - 1);
 		ImGui::End();
 		ImGui::PopStyleColor();
 	}
 	else // Only render engine gui if in Debug build
 	{
-
 		// Make the whole window a dock space
 		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
 
@@ -158,9 +160,9 @@ void QuatreFoil::OnImGuiRender()
 		// Begin the floating window
 		ImGui::Begin("Floating Stats Window", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
 		ImGui::SetWindowFontScale(2.f); 
-		auto& playerComp = m_registry.get<PlayerComp>(m_playerNew->GetEntity());
-		playerComp.health = 100;
-		ImGui::Text("Health : %f    Enemies: 5", playerComp.health);
+		ImGui::Text("health: %.0f", playerComp.health);
+		ImGui::Text("Enemies Remaining: %.0f", (float)m_waveSystem->GetNumberOfEnemiesActive());
+		ImGui::Text("Current Wave: %.0f", (float)m_waveSystem->GetCurrentWave() - 1);
 		ImGui::SetWindowFontScale(1.0f); 
 
 		ImGui::End();
