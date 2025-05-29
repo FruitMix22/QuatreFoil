@@ -55,6 +55,13 @@ public:
 
 private:
 
+	enum class GameState
+	{
+		Menu = 0,
+		GamePlay = 1
+	};
+
+	GameState currentGameState; // Current game state
 	entt::registry m_registry; // Entity registry.
 	Renderer m_renderer; // Renderer object.
 	std::unique_ptr<Framebuffer>m_fbo; // Frame buffer. 
