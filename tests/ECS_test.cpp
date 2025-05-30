@@ -4,10 +4,16 @@
 #include <Components/EnemyComp.hpp>
 #include <Components/HitBox.hpp>
 #include <Components/PlayerComp.hpp>
-#include <Components/Renderable.hpp>
 #include <Components/RenderLayer.hpp>
 #include <Components/Transform.hpp>
 #include <entt/entt.hpp>
+
+// Dummy classes (only to test renderable)
+class VAO {};
+class Shader {};
+class Texture {};
+
+#include <Components/Renderable.hpp>
 
 // Make an entity with animation comp
 struct MakeAnimEntt
@@ -245,3 +251,153 @@ TEST_F(EnemyTest, damageFuncWorks)
 	EXPECT_EQ(enemyComp.health, expectedResult);
 	EXPECT_TRUE(enemyComp.hasBeenHit);
 }
+
+// Make an entity with hitbox comp
+struct MakeHitBoxEntt
+{
+	// Create registry and entity
+	entt::registry reg;
+	entt::entity entity;
+
+	// create entity with relevent comps
+	MakeHitBoxEntt()
+	{
+		entity = reg.create();
+		reg.emplace<HitBox>(entity);
+	}
+};
+
+// Create test instance -> makes new helper for every test
+class HitBoxTest : public::testing::Test
+{
+protected:
+	MakeHitBoxEntt helper;
+};
+
+TEST_F(HitBoxTest, damageEqual)
+{
+	auto& hitBoxComp = helper.reg.get<HitBox>(helper.entity);
+
+	float expectedDamage = 100.f;
+
+	EXPECT_FLOAT_EQ(expectedDamage, hitBoxComp.damage);
+}
+
+TEST_F(HitBoxTest, addHitEnemyWorks)
+{
+	auto& hitBoxComp = helper.reg.get<HitBox>(helper.entity);
+
+	entt::entity tempEntity;
+	tempEntity = helper.reg.create();
+
+	hitBoxComp.addHitEnemy(tempEntity);
+
+	EXPECT_TRUE(hitBoxComp.hasBeenHit(tempEntity));
+}
+
+
+TEST_F(HitBoxTest, clearHitEntitiesWorks)
+{
+	auto& hitBoxComp = helper.reg.get<HitBox>(helper.entity);
+
+	entt::entity tempEntity;
+	tempEntity = helper.reg.create();
+
+	hitBoxComp.addHitEnemy(tempEntity);
+
+	hitBoxComp.resetHitEnemies();
+
+	EXPECT_EQ(hitBoxComp.hitEnemies.size(), 0);
+
+}
+
+// Make an entity with player comp
+struct MakePlayerEntt
+{
+	// Create registry and entity
+	entt::registry reg;
+	entt::entity entity;
+
+	// create entity with relevent comps
+	MakePlayerEntt()
+	{
+		entity = reg.create();
+		reg.emplace<PlayerComp>(entity);
+	}
+};
+
+// Create test instance -> makes new helper for every test
+class PlayerCompTest : public::testing::Test
+{
+protected:
+	MakePlayerEntt helper;
+};
+
+TEST_F(PlayerCompTest, constructVarsWork)
+{
+	auto& playerComp = helper.reg.get<PlayerComp>(helper.entity);
+
+	EXPECT_FLOAT_EQ(playerComp.health, 100.f);
+	EXPECT_FLOAT_EQ(playerComp.speed, 100.f);
+	EXPECT_FLOAT_EQ(playerComp.damage, 20.f);
+}
+
+// Make an entity with renderable comp
+struct MakeRenderableEntt
+{
+	// Create registry and entity
+	entt::registry reg;
+	entt::entity entity;
+
+
+	// create entity with relevent comps
+	MakeRenderableEntt()
+	{
+		entity = reg.create();
+		reg.emplace<Renderable>(entity);
+	}
+};
+
+// Create test instance -> makes new helper for every test
+class RenderableCompTest : public::testing::Test
+{
+protected:
+	MakeRenderableEntt helper;
+};
+
+TEST_F(RenderableCompTest, intialisesNullPtrs)
+{
+	auto& renderableComp = helper.reg.get<Renderable>(helper.entity);
+
+	EXPECT_EQ(renderableComp.m_vao, nullptr);
+	EXPECT_EQ(renderableComp.m_shader, nullptr);
+	EXPECT_EQ(renderableComp.m_texture, nullptr);
+}
+
+TEST_F(RenderableCompTest, canStorePtrs)
+{
+	auto& renderableComp = helper.reg.get<Renderable>(helper.entity);
+
+	auto vao = std::make_shared<VAO>();
+	auto shader = std::make_shared<Shader>();
+	auto texture = std::make_shared<Texture>();
+
+	renderableComp.m_vao = vao;
+	renderableComp.m_shader = shader;
+	renderableComp.m_texture = texture;
+
+	EXPECT_EQ(renderableComp.m_vao, vao);
+	EXPECT_EQ(renderableComp.m_shader, shader);
+	EXPECT_EQ(renderableComp.m_texture, texture);
+}
+
+
+TEST(RenderLayerCompTest, numRenderLayersCorrect)
+{
+	constexpr size_t expectedLayers = 5;
+
+	EXPECT_EQ(expectedLayers, NUM_RENDER_LAYERS);
+}
+
+
+
