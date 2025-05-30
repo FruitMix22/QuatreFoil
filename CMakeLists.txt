@@ -249,9 +249,14 @@ imgui
 
 # Google test stuff
 add_executable(MyTests tests/ECS_test.cpp)
-target_link_libraries(MyTests gtest_main)
-include(GoogleTest)
-gtest_discover_tests(MyTests)
+target_include_directories(MyTests PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Engine
+    ${CMAKE_CURRENT_SOURCE_DIR}/QuatreFoil/include
+)
+target_link_libraries(MyTests PRIVATE
+    Engine
+    gtest_main
+)
 
 
 #------------------------*

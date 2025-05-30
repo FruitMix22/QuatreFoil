@@ -7,3 +7,6 @@
 #include <../../Engine/Components/Renderable.hpp>
 #include <../../Engine/Components/RenderLayer.hpp>
 #include <../../Engine/Components/Transform.hpp>
+
+// Animator test
+TEST(AnimTest)
