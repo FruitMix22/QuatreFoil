@@ -1,0 +1,9 @@
+#include <gtest/gtest.h>
+#include <../../Engine/Components/Animator.hpp>
+#include <../../Engine/Components/Collider.hpp>
+#include <../../Engine/Components/EnemyComp.hpp>
+#include <../../Engine/Components/HitBox.hpp>
+#include <../../Engine/Components/PlayerComp.hpp>
+#include <../../Engine/Components/Renderable.hpp>
+#include <../../Engine/Components/RenderLayer.hpp>
+#include <../../Engine/Components/Transform.hpp>

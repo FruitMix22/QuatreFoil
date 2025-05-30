@@ -43,6 +43,19 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(imgui)
 
+include(FetchContent)
+
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+
+# Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(googletest)
+
+
 set(IMGUI_SOURCES
     ${imgui_SOURCE_DIR}/imgui.cpp
     ${imgui_SOURCE_DIR}/imgui_draw.cpp
@@ -233,6 +246,13 @@ glad
 EnTT::EnTT
 imgui
 )
+
+# Google test stuff
+add_executable(MyTests tests/ECS_test.cpp)
+target_link_libraries(MyTests gtest_main)
+include(GoogleTest)
+gtest_discover_tests(MyTests)
+
 
 #------------------------*
 # Shader Management
