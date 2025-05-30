@@ -61,3 +61,55 @@ TEST_F(AnimTest, uvScaleCorrect)
 	EXPECT_EQ(uvScale, animComp.uvScale);
 }
 
+TEST_F(AnimTest, AnimStateUpdate)
+{
+	auto& animComp = helper.reg.get<Animator>(helper.entity);
+	animComp.setAnimState(Animator::animState::Running);
+	EXPECT_EQ(Animator::animState::Running, animComp.currentAnimState);
+}
+
+TEST_F(AnimTest, currentSpriteResets)
+{
+	auto& animComp = helper.reg.get<Animator>(helper.entity);
+	animComp.setAnimState(Animator::animState::Running);
+	EXPECT_TRUE(animComp.startRun == animComp.currentSprite);
+}
+
+TEST_F(AnimTest, doesNotResetFrameOnSameState)
+{
+	auto& anim = helper.reg.get<Animator>(helper.entity);
+
+	anim.setAnimState(Animator::animState::Running);
+	anim.currentSprite = 8; // midway in the running anim
+
+	anim.setAnimState(Animator::animState::Running);
+
+	// Test the branching
+	EXPECT_EQ(anim.currentSprite, 8); 
+}
+
+TEST_F(AnimTest, doesNotAdvanceBeforeAnimUpdate)
+{
+	auto& anim = helper.reg.get<Animator>(helper.entity);
+	anim.setAnimState(Animator::animState::Idle);
+	anim.currentSprite = 2;
+
+	float dt = anim.animUpdate / 2.0f;  // Not enough time
+	anim.Update(dt);
+
+	EXPECT_EQ(anim.currentSprite, 2);
+}
+
+TEST_F(AnimTest, doesAdvanceAfterAnimUpdate)
+{
+	auto& anim = helper.reg.get<Animator>(helper.entity);
+	anim.setAnimState(Animator::animState::Idle);
+	anim.currentSprite = 2;
+
+	float dt = anim.animUpdate;  // enough time
+	anim.Update(dt);
+
+	EXPECT_EQ(anim.currentSprite, 3);
+}
+
+
