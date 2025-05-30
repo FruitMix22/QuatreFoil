@@ -1,4 +1,5 @@
 #pragma once 
+#include <entt/entt.hpp>
 
 // Values for the hitbox of the player.
 struct HitBox

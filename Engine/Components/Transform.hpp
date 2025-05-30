@@ -1,5 +1,8 @@
 #pragma once
 #include "glm.hpp"
+#include "../glm/gtc/matrix_transform.hpp"
+#include "../glm/gtc/type_ptr.hpp"
+
 
 // Allows an entity to be moved, rotated, and scaled.
 struct Transform
