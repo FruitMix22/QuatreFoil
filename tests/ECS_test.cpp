@@ -112,14 +112,14 @@ TEST_F(AnimTest, doesAdvanceAfterAnimUpdate)
 	EXPECT_EQ(anim.currentSprite, 3);
 }
 
-// Make an entity with animation comp
+// Make an entity with Transform and collider comp
 struct MakeTransformColliderEntt
 {
 	// Create registry and entity
 	entt::registry reg;
 	entt::entity entity;
 
-	// create entity with animation comp
+	// create entity with relevent comps
 	MakeTransformColliderEntt()
 	{
 		entity = reg.create();
@@ -174,7 +174,74 @@ TEST_F(ColliderTransformTest, ScaleAffectsMatrix)
 	EXPECT_FLOAT_EQ(model[1][1], 3.f);
 }
 
+TEST_F(ColliderTransformTest, ColliderBoundsWork)
+{
+	auto& transform = helper.reg.get<Transform>(helper.entity);
+	auto& collider = helper.reg.get<Collider>(helper.entity);
 
+	transform.position = { 5.f, 0.f };
+	transform.scale = { 2.f, 1.f };
+	collider.halfWidth = 1.f;
 
+	// Expected results
+	float expectedMinX = 5.f - (1.f * 2.f);
+	float expectedMaxX = 5.f + (1.f * 2.f);
 
+	glm::mat4 model = transform.GetModelMatrix();
 
+	float actualCenterX = model[3][0]; // x pos
+	float actualMinX = actualCenterX - (collider.halfWidth * transform.scale.x);
+	float actualMaxX = actualCenterX + (collider.halfWidth * transform.scale.x);
+
+	EXPECT_FLOAT_EQ(actualMinX, expectedMinX);
+	EXPECT_FLOAT_EQ(actualMaxX, expectedMaxX);
+}
+
+// Make an entity with enemy comp
+struct MakeEnemyEntt
+{
+	// Create registry and entity
+	entt::registry reg;
+	entt::entity entity;
+
+	// create entity with relevent comps
+	MakeEnemyEntt()
+	{
+		entity = reg.create();
+		reg.emplace<EnemyComp>(entity);
+	}
+};
+
+// Create test instance -> makes new helper for every test
+class EnemyTest : public::testing::Test
+{
+protected:
+	MakeEnemyEntt helper;
+};
+
+TEST_F(EnemyTest, enemyHealthCheck)
+{
+	auto& enemyComp = helper.reg.get<EnemyComp>(helper.entity);
+
+	float expectedHealth = 100.f;
+	float expectedSpeed = 30.f;
+
+	EXPECT_FLOAT_EQ(expectedHealth, enemyComp.health);
+	EXPECT_FLOAT_EQ(expectedSpeed, enemyComp.speed);
+	EXPECT_TRUE(enemyComp.canAttack);
+	EXPECT_FALSE(enemyComp.hasBeenHit);
+}
+
+TEST_F(EnemyTest, damageFuncWorks)
+{
+	auto& enemyComp = helper.reg.get<EnemyComp>(helper.entity);
+
+	float damage = 5.f;
+
+	float expectedResult = enemyComp.health - damage;
+
+	enemyComp.hit(damage);
+
+	EXPECT_EQ(enemyComp.health, expectedResult);
+	EXPECT_TRUE(enemyComp.hasBeenHit);
+}
