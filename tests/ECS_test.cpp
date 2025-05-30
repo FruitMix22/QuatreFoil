@@ -112,4 +112,69 @@ TEST_F(AnimTest, doesAdvanceAfterAnimUpdate)
 	EXPECT_EQ(anim.currentSprite, 3);
 }
 
+// Make an entity with animation comp
+struct MakeTransformColliderEntt
+{
+	// Create registry and entity
+	entt::registry reg;
+	entt::entity entity;
+
+	// create entity with animation comp
+	MakeTransformColliderEntt()
+	{
+		entity = reg.create();
+		reg.emplace<Collider>(entity);
+		reg.emplace<Transform>(entity);
+	}
+};
+
+// Create test instance -> makes new helper for every test
+class ColliderTransformTest : public::testing::Test
+{
+protected:
+	MakeTransformColliderEntt helper;
+};
+
+TEST_F(ColliderTransformTest, DoesTransformHaveCorrectValues)
+{
+	auto& transform = helper.reg.get<Transform>(helper.entity);
+
+	EXPECT_EQ(transform.position, glm::vec2(0.f, 0.f));
+	EXPECT_EQ(transform.scale, glm::vec2(1.f, 1.f));
+	EXPECT_FLOAT_EQ(transform.rotation, 0.f);
+}
+
+TEST_F(ColliderTransformTest, defaultTransform)
+{
+	auto& transform = helper.reg.get<Transform>(helper.entity);
+
+	glm::mat4 expected = glm::mat4(1.f);
+
+	EXPECT_EQ(transform.GetModelMatrix(), expected);
+}
+
+TEST_F(ColliderTransformTest, transformModelMatrrixTest)
+{
+	auto& transform = helper.reg.get<Transform>(helper.entity);
+	transform.position = { 5.f, 10.f };
+
+	glm::mat4 modelMatrix = transform.GetModelMatrix();
+
+	EXPECT_FLOAT_EQ(modelMatrix[3][0], 5.f);
+	EXPECT_FLOAT_EQ(modelMatrix[3][1], -10.f); // y is flipped for screen space
+}
+
+TEST_F(ColliderTransformTest, ScaleAffectsMatrix)
+{
+	auto& transform = helper.reg.get<Transform>(helper.entity);
+	transform.scale = { 2.f, 3.f };
+	glm::mat4 model = transform.GetModelMatrix();
+
+	EXPECT_FLOAT_EQ(model[0][0], 2.f);
+	EXPECT_FLOAT_EQ(model[1][1], 3.f);
+}
+
+
+
+
 
