@@ -117,37 +117,39 @@ void Player::SpawnHitboxRight()
 
 void Player::SpawnHitboxLeft()
 {
-	// Atack stream
-	attackHistory.push_back(AttackType::Left);
-
-	if (doesMatchCombo(SideSlashLeft))
-	{
-		attackHistory.clear();
-		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
-		auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
-		animationComp.setAnimState(Animator::animState::AttackSlash);
-		//Make it do more damage
-		playerComp.damage = 100;
-		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
-		transformPlayerComp->scale = glm::vec2(-60, 60);
-		canAttack = false;
-		hitboxTimeActive = 0.f;
-		Console::Log("Player did COMBBOOOO.");
-	}
 	if (canAttack)
 	{
-		// Attack stream
+
+
+		// Atack stream
 		attackHistory.push_back(AttackType::Left);
 
-		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
-		animationComp.setAnimState(Animator::animState::Attacking);
-		transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
-		transformPlayerComp->scale = glm::vec2(-60, 60);
-		canAttack = false;
-		hitboxTimeActive = 0.f;
-		Console::Log("Player Attacked.");
+		if (doesMatchCombo(SideSlashLeft))
+		{
+			attackHistory.clear();
+			auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+			auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+			auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
+			animationComp.setAnimState(Animator::animState::AttackSlash);
+			//Make it do more damage
+			playerComp.damage = 100;
+			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
+			transformPlayerComp->scale = glm::vec2(-60, 60);
+			canAttack = false;
+			hitboxTimeActive = 0.f;
+			Console::Log("Player did COMBBOOOO.");
+		}
+		else
+		{
+			auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+			auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
+			animationComp.setAnimState(Animator::animState::Attacking);
+			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
+			transformPlayerComp->scale = glm::vec2(-60, 60);
+			canAttack = false;
+			hitboxTimeActive = 0.f;
+			Console::Log("Player Attacked.");
+		}
 	}
 }
 

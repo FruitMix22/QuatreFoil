@@ -46,7 +46,10 @@ void EnemySpawner::SpawnWave()
 
 			auto enemy = std::make_unique<Enemy>(m_registry);
 			enemy->CreateEnemy(spawnPos.x);
-			//Console::Log("Spawning enemy at: " + std::to_string(spawnPos.x));
+			auto* enemyComp = m_registry.try_get<EnemyComp>(enemy->GetEntity());
+			enemyComp->health = enemyComp->health * m_waveNumber / 2;
+
+			Console::Log("Spawning with health: " + std::to_string(enemyComp->health));
 
 			m_enemies.push_back(std::move(enemy));
 		}

@@ -98,8 +98,6 @@ void QuatreFoil::OnUpdate()
 
 					enemyComp.hit(playerComp.damage);
 					Console::Log("Enemy Hit.");
-
-
 				}
 
 				if (auto* enemyComp = m_registry.try_get<EnemyComp>(enemyEntity))
