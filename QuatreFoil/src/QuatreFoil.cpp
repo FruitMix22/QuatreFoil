@@ -18,7 +18,7 @@ void QuatreFoil::OnAttach()
 
 void QuatreFoil::OnStart()
 {
-	currentGameState = GameState::Menu;
+	currentGameState = GameState::Menu; 
 
 	// Set inputs            //input    //function ran when pressed
 	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(300.f, m_dt);});
