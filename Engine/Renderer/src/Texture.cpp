@@ -3,6 +3,7 @@
 #include "Renderer/include/Texture.hpp"
 #include "Core/include/Console.hpp"
 #include "stb_image.h"
+#include <iostream>
 
 
 Texture::Texture(const char* imagePath, bool forceAlpha)
@@ -11,6 +12,7 @@ Texture::Texture(const char* imagePath, bool forceAlpha)
 	if (!data)
 	{
 		Console::Log("Image for texture load failed: " + std::string(stbi_failure_reason()));
+		std::cout << "Image for texture load failed: " << std::string(stbi_failure_reason()) << std::endl;
 	}
 	else 
 	{

@@ -346,7 +346,7 @@ void QuatreFoil::generateFloor()
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
-		m_quads.back().SetTextureImagePath("../QuatreFoil//Assets/Textures/mcGrass.jpg");
+		m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/mcGrass.jpg");
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
 		m_registry.emplace<RenderLayer>(m_quads.back().GetEntity(), RenderLayer::MidGround);
 		xPositionTile += 120.f;
