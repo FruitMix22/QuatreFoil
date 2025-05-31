@@ -43,6 +43,10 @@ public:
     // Sets layer from the users game.
     // @param layer: Your game layer.
     void SetLayer(std::shared_ptr<Layer> layer);
+
+    // Returns the window.
+    // @return GLFW Window pointer.
+    GLFWwindow* getWindow() { return m_window; }
 private:
     GLFWwindow* m_window = nullptr; // GLFW window pointer
     ImGuiLayer m_imGui; // Manages ImGui UI

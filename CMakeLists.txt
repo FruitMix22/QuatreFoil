@@ -248,7 +248,10 @@ imgui
 )
 
 # Google test stuff
-add_executable(MyTests tests/ECS_test.cpp)
+add_executable(MyTests
+    tests/ECS_test.cpp
+    tests/Core_test.cpp
+)
 target_include_directories(MyTests PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Engine
     ${CMAKE_CURRENT_SOURCE_DIR}/QuatreFoil/include
