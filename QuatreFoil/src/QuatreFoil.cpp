@@ -72,7 +72,7 @@ void QuatreFoil::OnUpdate()
 		std::vector<entt::entity> hitEntities;
 		std::vector<entt::entity> killedEntities;
 
-		// Temp collision system
+		// HitBox collision
 		auto hitboxView = m_registry.view<HitBox, Transform, Collider>();
 		auto enemyView = m_registry.view<EnemyComp, Transform, Collider>();
 
@@ -113,6 +113,28 @@ void QuatreFoil::OnUpdate()
 				}
 			}
 		}
+
+		auto playerEntity = m_playerNew->GetEntity();
+		//auto& playerTransform = m_registry.get<Transform>(playerEntity);
+		auto& playerCollider = m_registry.get<Collider>(playerEntity);
+		auto& playerComp = m_registry.get<PlayerComp>(playerEntity);
+
+		for (auto enemyEntity : enemyView)
+		{
+			auto& enemyTransform = enemyView.get<Transform>(enemyEntity);
+			auto& enemyCollider = enemyView.get<Collider>(enemyEntity);
+			auto& enemyComp = enemyView.get<EnemyComp>(enemyEntity);
+
+			bool xOverlap = std::abs(playerTransform.position.x - enemyTransform.position.x) <= (playerCollider.halfWidth + enemyCollider.halfWidth);
+
+			if (xOverlap && !playerComp.hasBeenHit)
+			{
+				playerComp.hit(enemyComp.damage);
+
+				Console::Log("Player Hit!");
+			}
+		}
+
 
 
 		// Update all uniforms for all renderables

@@ -27,6 +27,9 @@ void Enemy::CreateEnemy(float posX)
 		m_registry.emplace<Animator>(m_enemy->GetEntity(), glm::vec2(176.f,32.f), glm::vec2(16.f,32.f));
 		auto& enemyAnim = m_registry.get<Animator>(m_enemy->GetEntity());
 		enemyAnim.endIdle = 6;
+
+		auto& enemyRenderComp = m_registry.get<Renderable>(m_enemy->GetEntity());
+		enemyRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 1.f, 1.f, 1.f));
 	}
 }
 
@@ -61,15 +64,19 @@ void Enemy::Update(float dt)
 	{
 		auto& playerTransform = view.get<Transform>(entity);
 		auto& transformEnemyComp = m_registry.get<Transform>(m_enemy->GetEntity());
+		auto& enemyRenderComp = m_registry.get<Renderable>(m_enemy->GetEntity());
 		if (auto* enemyComp = m_registry.try_get<EnemyComp>(m_enemy->GetEntity()))
 		{
 			if (enemyComp->hasBeenHit)
 			{
 				timeAccumulated += dt;
+				enemyRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 0.f, 0.f, 1.f));
 			}
 			if (timeAccumulated >= 0.8f)
 			{
 				enemyComp->hasBeenHit = false;
+				timeAccumulated = 0.f;
+				enemyRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 1.f, 1.f, 1.f));
 			}
 			glm::vec2 direction = glm::normalize(playerTransform.position - transformEnemyComp.position);
 			transformEnemyComp.position.x += enemyComp->speed * direction.x * dt;

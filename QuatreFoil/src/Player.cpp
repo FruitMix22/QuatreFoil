@@ -24,6 +24,7 @@ void Player::CreatePlayer()
 	m_registry.emplace<PlayerComp>(m_player->GetEntity());
 	m_registry.emplace<RenderLayer>(m_player->GetEntity(), RenderLayer::Characters);
 	m_registry.emplace<Animator>(m_player->GetEntity(), glm::vec2(414.f,748.f), glm::vec2(69.f, 44.f));
+	m_registry.emplace<Collider>(m_player->GetEntity(), 20.f);
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
 	// Create hit box
@@ -31,11 +32,14 @@ void Player::CreatePlayer()
 	if (m_registry.all_of<Renderable>(m_hitBoxDebug->GetEntity()) && !renderHitBox) 
 	{
 		m_registry.remove<Renderable>(m_hitBoxDebug->GetEntity());
-	}
+	} 
 	//m_hitBoxDebug->GetEntity()
 	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
 	m_registry.emplace<HitBox>(m_hitBoxDebug->GetEntity());
 	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 10.f);
+
+	auto& playerRenderComp = m_registry.get<Renderable>(m_player->GetEntity());
+	playerRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 1.f, 1.f, 1.f));
 }
 
 void Player::moveX(float const speed, float const dt)
@@ -158,21 +162,40 @@ void Player::Update(float dt)
 	auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
 	animatorComp.Update(dt);
 
-	isMoving = false; // Reset for next frame
+	auto& playerRenderComp = m_registry.get<Renderable>(m_player->GetEntity());
 
-	if (hitboxTimeActive <= hitBoxTime)
+	// Damage frames
+	if (auto* playerComp = m_registry.try_get<PlayerComp>(m_player->GetEntity()))
 	{
-		hitboxTimeActive += dt;
-	}
-	else
-	{
-		auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
-		auto& hitBoxComp = m_registry.get<HitBox>(m_hitBoxDebug->GetEntity());
-		auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
-		playerComp.damage = 20;
-		transformHitBoxComp.position = glm::vec2(4000, -2000);
-		hitBoxComp.resetHitEnemies();
-		canAttack = true;
+		if (playerComp->hasBeenHit)
+		{
+			timeAccumulated += dt;
+
+			playerRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 0.f, 0.f, 1.f));
+		}
+		if (timeAccumulated >= 0.8f)
+		{
+			playerComp->hasBeenHit = false;
+			playerRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 1.f, 1.f, 1.f));
+			timeAccumulated = 0.f;
+		}
+
+		isMoving = false; // Reset for next frame
+
+		if (hitboxTimeActive <= hitBoxTime)
+		{
+			hitboxTimeActive += dt;
+		}
+		else
+		{
+			auto& transformHitBoxComp = m_registry.get<Transform>(m_hitBoxDebug->GetEntity());
+			auto& hitBoxComp = m_registry.get<HitBox>(m_hitBoxDebug->GetEntity());
+			auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
+			playerComp.damage = 20;
+			transformHitBoxComp.position = glm::vec2(4000, -2000);
+			hitBoxComp.resetHitEnemies();
+			canAttack = true;
+		}
 	}
 }
 

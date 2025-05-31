@@ -6,6 +6,8 @@ struct EnemyComp
 	float health = 100.f;
 	// Speed of the enemy.
 	float speed = 30.f;
+	// Damage
+	float damage = 20.f;
 
 	bool canAttack = true;
 	bool hasBeenHit = false;

@@ -65,4 +65,5 @@ private:
 	bool canAttack = true;
 	bool isMoving = false;
 	Transform* transformPlayerComp = nullptr;
+	float timeAccumulated = 0.f;
 };
