@@ -14,6 +14,8 @@ public:
 
 	void Update(float dt);
 
+	void Reset();
+
 	// DEBUG TOOL
 	void KillAllEnemies();
 

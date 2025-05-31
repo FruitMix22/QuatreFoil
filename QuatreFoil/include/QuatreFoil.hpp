@@ -40,6 +40,8 @@ public:
 	void OnImGuiRender() override;
 	void OnRender() override;
 
+	// Start game
+	void StartGame();
 	// Generate floor for the game.
 	void generateFloor();
 	// Generate dock space for the ImGui panels.
@@ -70,8 +72,8 @@ private:
 	glm::vec2 cameraPos = glm::vec2(0.f, 0.f); // Position of camera (world space). 
 
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
-	std::unique_ptr<Player> m_playerNew = std::make_unique<Player>(m_registry);
-	std::unique_ptr<EnemySpawner> m_waveSystem = std::make_unique<EnemySpawner>(m_registry);
+	std::unique_ptr<Player> m_playerNew;
+	std::unique_ptr<EnemySpawner> m_waveSystem;
 	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("Textures/MenuBackground.jpg", true);
 	
 	int quadChoice = 0; // Current entity selected

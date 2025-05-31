@@ -17,7 +17,7 @@ Enemy::~Enemy() { m_enemy.reset(); }
 void Enemy::CreateEnemy(float posX)
 { 
 	{
-		m_enemy->SetTextureImagePath("../QuatreFoil/Assets/Textures/enemySlime.png");
+		m_enemy->SetTextureImagePath("Textures/enemySlime.png");
 		m_enemy->SetVertexPath("Shaders/playerVert.glsl");
 		m_enemy->SetFragPath("Shaders/playerFrag.glsl");
 		m_enemy->CreateQuad(glm::vec2(posX, -680), glm::vec2(30, 40));

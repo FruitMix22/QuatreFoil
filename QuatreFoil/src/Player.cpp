@@ -17,7 +17,7 @@ entt::entity Player::GetHitBoxEntity() const
 
 void Player::CreatePlayer()
 {
-	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/warriorSpriteSheet.png");
+	m_player->SetTextureImagePath("Textures/warriorSpriteSheet.png");
 	m_player->SetVertexPath("Shaders/playerVert.glsl");
 	m_player->SetFragPath("Shaders/playerFrag.glsl");
 	m_player->CreateQuad(glm::vec2(250, -660), glm::vec2(60, 60));
@@ -40,6 +40,25 @@ void Player::CreatePlayer()
 
 	auto& playerRenderComp = m_registry.get<Renderable>(m_player->GetEntity());
 	playerRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 1.f, 1.f, 1.f));
+}
+
+void Player::ResetPlayer()
+{
+	auto& transformComp = m_registry.get<Transform>(m_player->GetEntity());
+	transformComp.position = glm::vec2(250, -660);
+	transformComp.scale = glm::vec2(60, 60);
+
+	auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
+	playerComp.hasBeenHit = false;
+	playerComp.damage = 20;
+
+	canAttack = true;
+	hitboxTimeActive = 0.f;
+	attackHistory.clear();
+	isMoving = false;
+
+	auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
+	animatorComp.setAnimState(Animator::animState::Idle);
 }
 
 void Player::moveX(float const speed, float const dt)

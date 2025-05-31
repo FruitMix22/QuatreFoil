@@ -7,6 +7,8 @@ QuatreFoil::QuatreFoil()
 	m_camera = std::make_unique<Camera>(m_registry);
 	m_fbo = std::make_unique<Framebuffer>(1920, 1080, DEBUG_MODE);
 	m_fbo->Bind(); 
+
+	m_waveSystem = std::make_unique<EnemySpawner>(m_registry);
 }
 
 void QuatreFoil::OnAttach()
@@ -18,25 +20,46 @@ void QuatreFoil::OnStart()
 {
 	currentGameState = GameState::Menu;
 
-	if (DEBUG_MODE)
-	{
-		m_playerNew->renderHitBox = true;
-	}
-
-	// Spawn Temp floor & Player & background
-	generateFloor();
-	m_playerNew->CreatePlayer();
-	createBackground();
-	// TODO: Change when adding more meshes
-
-
-
-
 	// Set inputs            //input    //function ran when pressed
 	Input::RegisterCallBack(GLFW_KEY_D, [this] {m_playerNew->moveX(300.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_A, [this] {m_playerNew->moveX(-300.f, m_dt);});
 	Input::RegisterCallBack(GLFW_KEY_RIGHT, [this] {m_playerNew->SpawnHitboxRight();});
 	Input::RegisterCallBack(GLFW_KEY_LEFT, [this] {m_playerNew->SpawnHitboxLeft();});
+}
+
+void QuatreFoil::StartGame()
+{
+
+
+	for (auto& quad : m_quads)
+	{
+		m_registry.destroy(quad.GetEntity());
+	}
+	m_quads.clear();
+
+	if (m_waveSystem) 
+	{
+		m_waveSystem->KillAllEnemies();
+		m_waveSystem->Reset();
+	}
+
+	if (m_playerNew && m_playerNew->GetEntity() != entt::null)
+	{
+		m_registry.destroy(m_playerNew->GetEntity()); 
+	}
+
+	m_playerNew = std::make_unique<Player>(m_registry);
+	m_playerNew->CreatePlayer();
+
+	#ifdef DEBUG_MODE
+	m_playerNew->renderHitBox = true;
+	#endif
+
+	generateFloor();
+
+	createBackground();
+
+	currentGameState = GameState::GamePlay;
 }
 
 void QuatreFoil::OnUpdate()
@@ -133,6 +156,12 @@ void QuatreFoil::OnUpdate()
 			}
 		}
 
+		if (playerComp.health <= 0)
+		{
+			Console::Log("Player Died!");
+			currentGameState = GameState::Menu; // Reset to menu if player dies
+		}
+
 
 
 		// Update all uniforms for all renderables
@@ -189,7 +218,7 @@ void QuatreFoil::OnImGuiRender()
 		ImGui::SetNextWindowPos(ImVec2(800, 480));
 		ImGui::SetNextWindowFocus();
 		ImGui::Begin("Menu", nullptr, flags);
-		if (ImGui::Button("Start Game", ImVec2(200,50))) { currentGameState = GameState::GamePlay; }
+		if (ImGui::Button("Start Game", ImVec2(200, 50))) { StartGame(); }
 		if (ImGui::Button("Quit Game", ImVec2(200, 50))) { m_terminate = true; }
 		ImGui::End();
 		ImGui::PopStyleColor();
@@ -346,7 +375,7 @@ void QuatreFoil::generateFloor()
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
-		m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/mcGrass.jpg");
+		m_quads.back().SetTextureImagePath("Textures/mcGrass.jpg");
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -800), glm::vec2(60, 80));
 		m_registry.emplace<RenderLayer>(m_quads.back().GetEntity(), RenderLayer::MidGround);
 		xPositionTile += 120.f;
@@ -400,7 +429,7 @@ void QuatreFoil::spawnNewEntity()
 void QuatreFoil::createBackground()
 {
 	Quad background(m_registry);
-	background.SetTextureImagePath("../QuatreFoil/Assets/Textures/tempBackground.jpg");
+	background.SetTextureImagePath("Textures/tempBackground.jpg");
 	background.CreateQuad(glm::vec2(200.f, -350.0f), glm::vec2(2000, 600));
 	m_registry.emplace<RenderLayer>(background.GetEntity(), RenderLayer::Background);
 }

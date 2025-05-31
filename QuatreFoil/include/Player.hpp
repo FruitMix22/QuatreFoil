@@ -30,6 +30,7 @@ public:
 	entt::entity GetHitBoxEntity() const;
 	void Update(float dt);
 	void CreatePlayer();
+	void ResetPlayer();
 
 	void SpawnHitboxRight();
 	void SpawnHitboxLeft();

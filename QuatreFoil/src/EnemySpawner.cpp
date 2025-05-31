@@ -30,6 +30,21 @@ void EnemySpawner::Update(float dt)
 
 }
 
+void EnemySpawner::Reset()
+{
+	m_waveNumber = 1;
+	m_timeSinceLastSpawn = 0.f;
+	m_spawnCooldown = 2.0f;
+	m_waveCleared = false;
+
+	for (auto& enemy : m_enemies)
+	{
+		m_registry.destroy(enemy->GetEntity());
+	}
+
+	m_enemies.clear();
+}
+
 void EnemySpawner::SpawnWave()
 {
 	int enemiesToSpawn = m_waveNumber * 3;
