@@ -10,6 +10,8 @@ struct PlayerComp
 	bool hasBeenHit = false;
 	float timeAccumulated = 0.f;
 
+	// Apply damage to the player.
+	// @param damage The amount of damage to apply.
 	void hit(float damage)
 	{
 		health -= damage;

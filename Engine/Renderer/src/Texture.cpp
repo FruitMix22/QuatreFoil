@@ -10,6 +10,7 @@ Texture::Texture(const char* imagePath, bool forceAlpha)
 	unsigned char* data = stbi_load(imagePath, &width, &height, &nrChannels, STBI_rgb_alpha);
 	if (!data)
 	{
+		// If the image failed to load, log the error.
 		Console::Log("Image for texture load failed: " + std::string(stbi_failure_reason()));
 	}
 	else 

@@ -26,6 +26,6 @@ public:
 		Gameplay
 	};
 
-	EngineMode m_currentMode = EngineMode::Editor;
+	EngineMode m_currentMode = EngineMode::Editor; // Curent mode
 
 };
