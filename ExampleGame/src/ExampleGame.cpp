@@ -50,6 +50,9 @@ void ExampleGame::OnImGuiRender()
 	ImGui::Begin("Example Game Layer");
 	ImGui::Text("FPS: %.1f", GetFPS());
 	ImGui::Text("Camera Position: (%.2f, %.2f)", m_camera->GetPosition().x, m_camera->GetPosition().y);
+
+	ImGui::SliderFloat("Camera pos.x ", &cameraPos.x, -500, 500);
+	m_camera->Setposition(cameraPos); // Update camera position
 	auto& view = m_registry.view<Transform>();
 	for (auto& entity : view)
 	{

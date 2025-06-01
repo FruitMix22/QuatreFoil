@@ -19,7 +19,7 @@ glm::mat4 Camera::GetViewMatrix()
 	glm::mat4 view(1.0f);
 
 	// Since Y axis is flipped in projection, add halfH to Y to center properly
-	view = glm::translate(view, glm::vec3(-m_position.x + halfW, -m_position.y + halfH, 0.0f));
+	view = glm::translate(view, glm::vec3(-m_truePos.x + halfW, -m_truePos.y + halfH, 0.0f));
 
 	return view;
 }
@@ -44,5 +44,5 @@ glm::vec2 Camera::GetPerspective()
 
 glm::vec2 Camera::GetPosition()
 {
-	return m_position;
+	return m_truePos - glm::vec2(500.f,600.f);
 }
