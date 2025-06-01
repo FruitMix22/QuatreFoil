@@ -7,6 +7,6 @@ This root branch doesn't contain any code. It's just here to guide you to the ri
 - 🎮 **Game:** [Go to `game-main` branch](https://github.com/FruitMix22/Game-Development-Project/tree/game-main) to play or explore the QuatreFoil demo game
 - ⚙️ **Engine:** [Go to `engine-main` branch](https://github.com/FruitMix22/Game-Development-Project/tree/engine-main) to use or modify the game engine
 
-> For releases and downloads, check the [Releases tab](https://github.com/FruitMix22/QuatreFoil/releases)
+> For releases and downloads, check the [Releases tab](https://github.com/FruitMix22/Game-Development-Project/releases)
 
 Thank you.
