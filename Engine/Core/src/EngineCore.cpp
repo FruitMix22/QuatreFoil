@@ -122,6 +122,6 @@ void EngineCore::SetLayer(std::shared_ptr<Layer> layer)
 	if (m_layer)
 	{
 		m_layer->OnAttach();
-		std::cout << "Succesful!\n";
+		std::cout << "Attatching Succesful!\n";
 	}
 }
