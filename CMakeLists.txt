@@ -1,46 +1,67 @@
 cmake_minimum_required(VERSION 3.15)
-project(GDP)
 
-# OOOKAAAAAAAAAAY :
-# KEEP THIS NEAT.
-# ADD FILES AS NECCESSARY.
-# GET USED TO IT BEING CONFUSING.
-# EXPECT IT TO BREAK EVERY OTHER DAY.   
+#--------------------------
+# Project configuration
+#--------------------------
+# Change PROJECT_NAME to your game's name.
+# Change GAME_DIR to point to your game's source folder.
+# Further down there is the game section, you will need to change/add anything relevant to your game.
+# By default, I've set PROJECT_NAME to "ExampleGame" and GAME_DIR to "ExampleGame/"
 
+set(PROJECT_NAME "ExampleGame")              # Change name to your project (executable name).
+set(ENGINE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Engine")   # Change if you have moved the engine folder.
+set(GAME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ExampleGame")  # Folder name for your project.
 
-#------------------------*
-# Dependencies
-#------------------------*
-add_subdirectory(externals/glfw)
+project(${PROJECT_NAME} VERSION 1.0 LANGUAGES CXX) # Sets project name to name you established above.
 
-# Neccessary for filesystem???
+#------------
+# C++ 
+#------------
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# (If you wish to change C++ version, change the 17 to which version you'd like).
 
-# Glad stuff
+#--------------------
+# Dependencies
+#--------------------
+
+# --- GLFW ----
+# GLFW should be in the already assigned folder. 
+# If you move it , update the path below.
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw)
+
+# --- GLAD ---
+# Again, it is already in the correct folder upon download.
+# If moved, change it to match your current location.
+
 set(GLAD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/externals/glad/include)
 set(GLAD_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/externals/glad/src/glad.c)
 add_library(glad STATIC ${GLAD_SOURCE})
 target_include_directories(glad PUBLIC ${GLAD_INCLUDE_DIR})
 
+# --- OpenGL Core ---
 find_package(OpenGL REQUIRED)
 
+
+# --- EnTT ---
+# EnTT is fetched from github automatically.
 include(FetchContent)
-FetchContent_Declare(entt 
+FetchContent_Declare
+(entt 
     GIT_REPOSITORY https://github.com/skypjack/entt.git
     GIT_TAG v3.12.2
 )
 FetchContent_MakeAvailable(entt)
 
-#------------------------*
-# ImGui (docking branch)
-#------------------------*
-FetchContent_Declare(
+
+# --- ImGui ---
+#Also fetches from GitHub.
+FetchContent_Declare
+(
     imgui
     GIT_REPOSITORY https://github.com/ocornut/imgui.git
     GIT_TAG docking
 )
-
 FetchContent_MakeAvailable(imgui)
 
 set(IMGUI_SOURCES
@@ -59,64 +80,63 @@ target_include_directories(imgui PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
 )
 
-# Enable docking support
+# Enable docking support for ImGui.
 target_compile_definitions(imgui PUBLIC IMGUI_ENABLE_DOCKING)
 
-#------------------------*
+#---------------------
 # Engine Library
-#------------------------*
-add_library(Engine STATIC
-    # Core
-    Engine/Core/include/EngineCore.hpp
-    Engine/Core/include/Layer.hpp
-    Engine/Core/include/Input.hpp
-    Engine/Core/include/Console.hpp
+#---------------------
+# This builds the engine as a static library. Other projects e.g., your game will link to it.
+# IF adding new files to the game engine, add them here in their relevant section.
 
-    Engine/Core/src/EngineCore.cpp
-    Engine/Core/src/Input.cpp
-    Engine/Core/src/Console.cpp
+add_library(Engine STATIC
+    # Core and sources
+    ${ENGINE_DIR}/Core/include/EngineCore.hpp
+   ${ENGINE_DIR}/Core/include/Layer.hpp
+    ${ENGINE_DIR}/Core/include/Input.hpp
+    ${ENGINE_DIR}/Core/include/Console.hpp
+
+  ${ENGINE_DIR}/Core/src/EngineCore.cpp
+     ${ENGINE_DIR}/Core/src/Input.cpp
+    ${ENGINE_DIR}/Core/src/Console.cpp
     
     # Buffers
-    Engine/Buffers/include/VBO.hpp
-    Engine/Buffers/include/VAO.hpp
-    Engine/Buffers/include/EBO.hpp
-    Engine/Buffers/include/FBO.hpp
+   ${ENGINE_DIR}/Buffers/include/VBO.hpp
+    ${ENGINE_DIR}/Buffers/include/VAO.hpp
+    ${ENGINE_DIR}/Buffers/include/EBO.hpp
+    ${ENGINE_DIR}/Buffers/include/FBO.hpp
 
-    Engine/Buffers/src/VBO.cpp
-    Engine/Buffers/src/VAO.cpp
-    Engine/Buffers/src/EBO.cpp
-    Engine/Buffers/src/FBO.cpp
+    ${ENGINE_DIR}/Buffers/src/VBO.cpp
+    ${ENGINE_DIR}/Buffers/src/VAO.cpp
+    ${ENGINE_DIR}/Buffers/src/EBO.cpp
+    ${ENGINE_DIR}/Buffers/src/FBO.cpp
     
     # Renderer
-    Engine/Renderer/include/Renderer.hpp
-    Engine/Renderer/include/ImGuiLayer.hpp
-    Engine/Renderer/include/Shader.hpp
-    Engine/Renderer/include/Texture.hpp
-    Engine/Renderer/include/Camera.hpp
-    Engine/Renderer/include/Quad.hpp
-
-    Engine/Renderer/src/Renderer.cpp
-    Engine/Renderer/src/ImGuiLayer.cpp
-    Engine/Renderer/src/Shader.cpp
-    Engine/Renderer/src/Texture.cpp
-    Engine/Renderer/src/Camera.cpp
-    Engine/Renderer/src/Quad.cpp
+    ${ENGINE_DIR}/Renderer/include/Renderer.hpp
+    ${ENGINE_DIR}/Renderer/include/ImGuiLayer.hpp
+    ${ENGINE_DIR}/Renderer/include/Shader.hpp
+    ${ENGINE_DIR}/Renderer/include/Texture.hpp
+    ${ENGINE_DIR}/Renderer/include/Camera.hpp
+    ${ENGINE_DIR}/Renderer/src/Renderer.cpp
+    ${ENGINE_DIR}/Renderer/src/ImGuiLayer.cpp
+    ${ENGINE_DIR}/Renderer/src/Shader.cpp
+    ${ENGINE_DIR}/Renderer/src/Texture.cpp
+    ${ENGINE_DIR}/Renderer/src/Camera.cpp
     
     # Components
-    Engine/Components/Renderable.hpp
-    Engine/Components/Transform.hpp
-    Engine/Components/PlayerComp.hpp
-    Engine/Components/EnemyComp.hpp
-    Engine/Components/RenderLayer.hpp
-    Engine/Components/Collider.hpp
-    Engine/Components/HitBox.hpp
-    Engine/Components/Animator.hpp
-    #Engine/Components/Camera.hpp
+    ${ENGINE_DIR}/Components/Renderable.hpp
+    ${ENGINE_DIR}/Components/Transform.hpp
+    ${ENGINE_DIR}/Components/PlayerComp.hpp
+    ${ENGINE_DIR}/Components/EnemyComp.hpp
+    ${ENGINE_DIR}/Components/RenderLayer.hpp
+    ${ENGINE_DIR}/Components/Collider.hpp
+    ${ENGINE_DIR}/Components/HitBox.hpp
+    ${ENGINE_DIR}/Components/Animator.hpp
 )
 
-# Public includes
+# Public includes so your game can see the engine headers.
 target_include_directories(Engine PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/Engine
+    ${ENGINE_DIR}                           
     ${GLAD_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/glfw/include
     $<TARGET_PROPERTY:EnTT::EnTT,INTERFACE_INCLUDE_DIRECTORIES>
@@ -125,8 +145,7 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/externals/stb
 )
 
-target_compile_definitions(Engine PUBLIC IMGUI_ENABLE_DOCKING)
-
+# Give engine dependencies.
 target_link_libraries(Engine PRIVATE
     OpenGL::GL
     glfw
@@ -135,97 +154,103 @@ target_link_libraries(Engine PRIVATE
     imgui
 )
 
-#--------------------------------*
+#-----------------------------------
 # Solution Explorer Organization 
-#--------------------------------*
+#-----------------------------------
 
-# Core 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/include PREFIX "Engine/Core/include" FILES
-    Engine/Core/include/EngineCore.hpp
-    Engine/Core/include/Layer.hpp
-    Engine/Core/include/Input.hpp
-    Engine/Core/include/Console.hpp
-)
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Core/src PREFIX "Engine/Core/src" FILES
-    Engine/Core/src/EngineCore.cpp
-    Engine/Core/src/Input.cpp
-    Engine/Core/src/Console.cpp
-)
+#IF you add new files, this will help manage them in visual studios solution explorer.
+# If you want to add a new folder, add it like this,
+#   target_sources (Engine PRIVATE
+#       ${ENGINE_DIR}/Audio/include/AudioEngine.hpp
+#       ${ENGINE_DIR}/Audio/src/AudioEngine.cpp
+#   )
+#   Then add to include dirs:
+#   target_include_directories(Engine PUBLIC ${ENGINE_DIR}/Audio/include)
+#
 
-# Buffers 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/include PREFIX "Engine/Buffers/include" FILES
-    Engine/Buffers/include/VBO.hpp
-    Engine/Buffers/include/VAO.hpp
-    Engine/Buffers/include/EBO.hpp
-    Engine/Buffers/include/FBO.hpp
+# Core
+source_group(TREE ${ENGINE_DIR}/Core/include   PREFIX "Engine/Core/include" FILES
+    ${ENGINE_DIR}/Core/include/EngineCore.hpp
+    ${ENGINE_DIR}/Core/include/Layer.hpp
+    ${ENGINE_DIR}/Core/include/Input.hpp
+    ${ENGINE_DIR}/Core/include/Console.hpp
 )
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Buffers/src PREFIX "Engine/Buffers/src" FILES
-    Engine/Buffers/src/VBO.cpp
-    Engine/Buffers/src/VAO.cpp
-    Engine/Buffers/src/EBO.cpp
-    Engine/Buffers/src/FBO.cpp
+source_group(TREE ${ENGINE_DIR}/Core/src       PREFIX "Engine/Core/src"     FILES
+    ${ENGINE_DIR}/Core/src/EngineCore.cpp
+    ${ENGINE_DIR}/Core/src/Input.cpp
+    ${ENGINE_DIR}/Core/src/Console.cpp
 )
 
-# Renderer 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/include PREFIX "Engine/Renderer/include" FILES
-    Engine/Renderer/include/Renderer.hpp
-    Engine/Renderer/include/ImGuiLayer.hpp
-    Engine/Renderer/include/Shader.hpp
-    Engine/Renderer/include/Texture.hpp
-    Engine/Renderer/include/Camera.hpp
-    Engine/Renderer/include/Quad.hpp
+# Buffers
+source_group(TREE ${ENGINE_DIR}/Buffers/include PREFIX "Engine/Buffers/include" FILES
+    ${ENGINE_DIR}/Buffers/include/VBO.hpp
+    ${ENGINE_DIR}/Buffers/include/VAO.hpp
+    ${ENGINE_DIR}/Buffers/include/EBO.hpp
+    ${ENGINE_DIR}/Buffers/include/FBO.hpp
 )
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Renderer/src PREFIX "Engine/Renderer/src" FILES
-    Engine/Renderer/src/Renderer.cpp
-    Engine/Renderer/src/ImGuiLayer.cpp
-    Engine/Renderer/src/Shader.cpp
-    Engine/Renderer/src/Texture.cpp
-    Engine/Renderer/src/Camera.cpp
-    Engine/Renderer/src/Quad.cpp
+source_group(TREE ${ENGINE_DIR}/Buffers/src     PREFIX "Engine/Buffers/src"    FILES
+    ${ENGINE_DIR}/Buffers/src/VBO.cpp
+    ${ENGINE_DIR}/Buffers/src/VAO.cpp
+    ${ENGINE_DIR}/Buffers/src/EBO.cpp
+    ${ENGINE_DIR}/Buffers/src/FBO.cpp
 )
 
-# Components 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Engine/Components PREFIX "Engine/Components" FILES
-    Engine/Components/Renderable.hpp
-    Engine/Components/Transform.hpp
-    Engine/Components/PlayerComp.hpp
-    Engine/Components/EnemyComp.hpp
-    Engine/Components/RenderLayer.hpp
-    Engine/Components/Collider.hpp
-    Engine/Components/HitBox.hpp
-    Engine/Components/Animator.hpp
-    #Engine/Components/Camera.hpp
+# Renderer
+source_group(TREE ${ENGINE_DIR}/Renderer/include PREFIX "Engine/Renderer/include" FILES
+    ${ENGINE_DIR}/Renderer/include/Renderer.hpp
+    ${ENGINE_DIR}/Renderer/include/ImGuiLayer.hpp
+    ${ENGINE_DIR}/Renderer/include/Shader.hpp
+    ${ENGINE_DIR}/Renderer/include/Texture.hpp
+    ${ENGINE_DIR}/Renderer/include/Camera.hpp
+)
+source_group(TREE ${ENGINE_DIR}/Renderer/src     PREFIX "Engine/Renderer/src"    FILES
+    ${ENGINE_DIR}/Renderer/src/Renderer.cpp
+    ${ENGINE_DIR}/Renderer/src/ImGuiLayer.cpp
+    ${ENGINE_DIR}/Renderer/src/Shader.cpp
+    ${ENGINE_DIR}/Renderer/src/Texture.cpp
+    ${ENGINE_DIR}/Renderer/src/Camera.cpp
 )
 
-#------------------------*
+# Components
+source_group(TREE ${ENGINE_DIR}/Components PREFIX "Engine/Components" FILES
+    ${ENGINE_DIR}/Components/Renderable.hpp
+    ${ENGINE_DIR}/Components/Transform.hpp
+    ${ENGINE_DIR}/Components/PlayerComp.hpp
+    ${ENGINE_DIR}/Components/EnemyComp.hpp
+    ${ENGINE_DIR}/Components/RenderLayer.hpp
+    ${ENGINE_DIR}/Components/Collider.hpp
+    ${ENGINE_DIR}/Components/HitBox.hpp
+    ${ENGINE_DIR}/Components/Animator.hpp
+    # ${ENGINE_DIR}/Components/Camera.hpp
+)
+
+#------------------------
 # Game Project
-#------------------------*
+#------------------------
 
-# Explicitly add headers to source group for better VS integration
-file(GLOB QUATREFOIL_HEADERS "QuatreFoil/include/*.hpp")
+#This is what builds and adds the game.
+# Replace everything relevant with your game.
 
-# Include the headers in the 'include' folder for QuatreFoil project
-include_directories(QuatreFoil/include)
 
-source_group("include" FILES ${QUATREFOIL_HEADERS})
-source_group("src" FILES ${QUATREFOIL_SOURCES})
-
-set(QUATREFOIL_SOURCES
-    QuatreFoil/src/QuatreFoil.cpp
-    QuatreFoil/src/EntryPoint.cpp
-    QuatreFoil/src/Player.cpp
-    QuatreFoil/src/Enemy.cpp
-    QuatreFoil/src/EnemySpawner.cpp
+#  Gather headers & sources for ExampleGame
+file(GLOB EXAMPLE_HEADERS "${GAME_DIR}/include/*.hpp")
+set(EXAMPLE_SOURCES
+    ${GAME_DIR}/src/ExampleGame.cpp
+    ${GAME_DIR}/src/EntryPoint.cpp
 )
 
-add_executable(QuatreFoil ${QUATREFOIL_SOURCES} ${QUATREFOIL_HEADERS})
+# Create executable.
+add_executable(${PROJECT_NAME}
+ ${EXAMPLE_SOURCES}
+ ${EXAMPLE_HEADERS}
+)
 
-source_group("src" FILES ${QUATREFOIL_SOURCES})
-source_group("include" FILES ${QUATREFOIL_HEADERS})
+# Organize in visual studio.
+source_group("ExampleGame/src" FILES ${EXAMPLE_SOURCES})
+source_group("ExampleGame/include" FILES ${EXAMPLE_HEADERS})
 
-
-
-target_link_libraries(QuatreFoil PRIVATE 
+# Link game to the engine and dependencies
+target_link_libraries(${PROJECT_NAME} PRIVATE 
 Engine
 OpenGL::GL
 glfw
@@ -234,18 +259,23 @@ EnTT::EnTT
 imgui
 )
 
-#------------------------*
+#------------------------
 # Shader Management
-#------------------------*
-file(GLOB QUATREFOIL_SHADERS "QuatreFoil/Assets/Shaders/*.glsl")
-source_group("Assets\\Shaders" FILES ${QUATREFOIL_SHADERS})
+#------------------------
+# Copies each .glsl file into build/Assets/shaders/ so ExampleGame can load them at runtime.
+file(GLOB EXAMPLE_SHADERS "${GAME_DIR}/Assets/Shaders/*.glsl")
+source_group("ExampleGame/Assets/Shaders" FILES ${EXAMPLE_SHADERS})
 
-foreach(shader ${QUATREFOIL_SHADERS})
+foreach(shader IN LISTS EXAMPLE_SHADERS)
     get_filename_component(shader_name ${shader} NAME)
-    configure_file(${shader} ${CMAKE_CURRENT_BINARY_DIR}/Assets/shaders/${shader_name} COPYONLY)
+    configure_file(
+        ${shader}
+        ${CMAKE_CURRENT_BINARY_DIR}/Assets/shaders/${shader_name}
+        COPYONLY
+    )
 endforeach()
-
-#------------------------*
+#------------------------
 # Startup Project
-#------------------------*
-set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT QuatreFoil)
+#----------------------
+set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+
