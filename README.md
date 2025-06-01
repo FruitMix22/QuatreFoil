@@ -1,57 +1,46 @@
-# QuatreFoil Engine ⚙️
+# 🎮 Quatrefoil - Game Build
 
-Welcome to the **QuatreFoil Engine**, a modular 2D game engine built with OpenGL and C++ using modern programming practices for my own education.
+Welcome to the playable build of **Quatrefoil**!
 
-This branch contains the full source code for the engine, and example code on how to get up and runninng.
+## 📥 Download & Play
+
+👉 [Click here to download the game](https://github.com/FruitMix22/Game-Development-Project/releases/tag/Game-V1.0_alpha)  
+(*Windows only, no installation required*)
+
+Once downloaded, just double-click the `Quatrefoil.exe` to play.
+
+## ℹ️ About the Game
+
+Quatrefoil is a fast-paced 2D action game developed in C++ using OpenGL.  
+Enemies spawn in waves, you survive and fight them off — good luck.
+
+## 🎮 Controls
+A to move left
+D to move right
+Left Arrow to attack left
+Right Arrow to attack right
+To 'combo' attack left, then right to do a slash,
+also can be alternated such as right to left.
+
+## 🧪 Built With
+
+- OpenGL (Custom Game Engine)
+- C++
+- ImGui (for debugging tools and overlays)
+
+## 🚀 Want to See the Code?
+
+If you're curious how the game works under the hood or want to modify it:
+
+- 🔧 **[Game Source Code](https://github.com/FruitMix22/Game-Development-Project/tree/Base2D)** — branch with game logic.
+- 🛠️ **[Game Engine](https://github.com/FruitMix22/Game-Development-Project/tree/engine-main)** — reusable custom engine.
 
 ---
+## 🎨 Credits
 
-## 🧰 Requirements
+This game uses sprite assets from the following artists:
 
-Make sure you have the following installed:
+- **[Warrior-Free-Animation-Set](https://clembod.itch.io/warrior-free-animation-set)** — Public domain sprites used for UI elements and enemies.
+- **[pixel-art-slime](https://diogo-vernier.itch.io/pixel-art-slime/devlog/708883/free-animated-pixel-art-slime)** — Public domain sprites used for UI elements and enemies.
 
-| Dependency     | Version / Notes                        |
-|----------------|----------------------------------------|
-| 🛠️ CMake        | v3.15+ (for building the project)       |
-| 💻 OpenGL       | 3.3+ Core profile                       |
-
-
-Below are already packed within the release, so no extra resources required.
-| Dependency     | Version / Notes                        |
-|----------------|----------------------------------------|
-| 🖼️ GLFW        | Provided via `/externals`               |
-| ⚙️ GLAD         | Included in the project                 |
-| 💼 ImGui        | Already integrated                      |
-| 🧠 EnTT         | Header-only ECS, included               |
-| 🐧 OS Support   | Only windows has been tested                |
-
----
-
-## To get started
-
-- Download the **latest** release of the engine.
-  -Current latest release: Unreleased right now.
-
-- **Unzip** the zippped folder where you would like your engine to be.
-
-- Run `RunCmake.bat` to build the solution for visual studio.
-
----
-
-## Requirements to render something
- In the example code it will show how to render a simple rectangle to the screen.
- It also shows the use of shaders, uniforms, and how to use ImGui.
-
- At minimum to render something you will need:
- - An entry point that creates an instance of the engine, and your game layer.
- - An entity registry.
- - An entity with a renderable component and an RenderLayer component.
-   - Attatch a VAO and Shader to this renderable component.
-   - The renderlayer component just orders in which entites shoould be rendered.
- - In the render function in your game layer, run the Rendender.
-
-The renderer renders entities by obtaining all entites with a renderable component.
-
-⚠️ ***WARNING***
-- All folders are in the correct place, if moved, CMakeLists.txt will need to be updated.
-
+Assets are used with permission for commercial use. Credit is not required by the authors but is given here out of appreciation.
