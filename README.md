@@ -32,7 +32,7 @@ also can be alternated such as right to left.
 
 If you're curious how the game works under the hood or want to modify it:
 
-- 🔧 **[Game Source Code](https://github.com/FruitMix22/Game-Development-Project/tree/Base2D)** — branch with game logic.
+- 🔧 **Game source code is within this branch.
 - 🛠️ **[Game Engine](https://github.com/FruitMix22/Game-Development-Project/tree/engine-main)** — reusable custom engine.
 
 ---
