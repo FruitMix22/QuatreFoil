@@ -46,8 +46,7 @@ find_package(OpenGL REQUIRED)
 # --- EnTT ---
 # EnTT is fetched from github automatically.
 include(FetchContent)
-FetchContent_Declare
-(entt 
+FetchContent_Declare(entt
     GIT_REPOSITORY https://github.com/skypjack/entt.git
     GIT_TAG v3.12.2
 )
@@ -56,9 +55,7 @@ FetchContent_MakeAvailable(entt)
 
 # --- ImGui ---
 #Also fetches from GitHub.
-FetchContent_Declare
-(
-    imgui
+FetchContent_Declare(imgui
     GIT_REPOSITORY https://github.com/ocornut/imgui.git
     GIT_TAG docking
 )
@@ -82,7 +79,6 @@ target_include_directories(imgui PUBLIC
 
 # Enable docking support for ImGui.
 target_compile_definitions(imgui PUBLIC IMGUI_ENABLE_DOCKING)
-
 #---------------------
 # Engine Library
 #---------------------
