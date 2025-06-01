@@ -4,7 +4,7 @@ Welcome to the playable build of **Quatrefoil**!
 
 ## 📥 Download & Play
 
-👉 [Click here to download the game](https://github.com/FruitMix22/Game-Development-Project/releases/tag/Game-V1.0_alpha)  
+👉 [Click here to download the game](https://github.com/FruitMix22/QuatreFoil/releases/tag/Game-V1.0_alpha)  
 (*Windows only, no installation required*)
 
 Once downloaded, just double-click the `Quatrefoil.exe` to play.
@@ -33,7 +33,7 @@ also can be alternated such as right to left.
 If you're curious how the game works under the hood or want to modify it:
 
 - 🔧 Game source code is within this branch.
-- 🛠️ **[Game Engine](https://github.com/FruitMix22/Game-Development-Project/tree/engine-main)** — reusable custom engine.
+- 🛠️ **[Game Engine](https://github.com/FruitMix22/QuatreFoil/tree/engine-main)** — reusable custom engine.
 
 ---
 ## 🎨 Credits
