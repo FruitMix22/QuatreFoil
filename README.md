@@ -30,8 +30,8 @@ Below are already packed within the release, so no extra resources required.
 ## To get started
 
 - Download the **latest** release of the engine.
-  -Current latest release: Unreleased right now.
-
+  -Current latest release: V1.0-alpha
+  👉 [Click here to download the engine](https://github.com/FruitMix22/QuatreFoil/releases/tag/Engine-V1.0_alpha)  
 - **Unzip** the zippped folder where you would like your engine to be.
 
 - Run `RunCmake.bat` to build the solution for visual studio.
