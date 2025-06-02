@@ -73,7 +73,7 @@ private:
 	std::unique_ptr<Player> m_playerNew;
 	std::unique_ptr<Quad> m_background;
 	std::unique_ptr<EnemySpawner> m_waveSystem;
-	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("../QuatreFoil/Assets/Textures/MenuBackground.png", true);
+	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("Textures/MenuBackground.png", true);
 	
 	int quadChoice = 0; // Current entity selected
 	bool dockspace_built = false; // Has the dock space been built yet?

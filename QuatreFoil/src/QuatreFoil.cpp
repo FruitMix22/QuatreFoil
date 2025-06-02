@@ -411,7 +411,7 @@ void QuatreFoil::generateDockSpace()
 void QuatreFoil::createBackground()
 {
 	m_background = std::make_unique<Quad>(m_registry);
-	m_background->SetTextureImagePath("../QuatreFoil/Assets/Textures/background.png");
+	m_background->SetTextureImagePath("Textures/background.png");
 	m_background->CreateQuad(glm::vec2(200.f, -500.0f), glm::vec2(1600, 389));
 	m_registry.emplace<RenderLayer>(m_background->GetEntity(), RenderLayer::Background);
 }
@@ -437,7 +437,7 @@ void QuatreFoil::generateFloor()
 	for (int i = 0; i < totalTiles; i++)
 	{
 		m_quads.emplace_back(m_registry);
-		m_quads.back().SetTextureImagePath("../QuatreFoil/Assets/Textures/mcGrass.jpg");
+		m_quads.back().SetTextureImagePath("Textures/mcGrass.jpg");
 		m_quads.back().CreateQuad(glm::vec2(xPositionTile, -910), glm::vec2(60, 80));
 		m_registry.emplace<RenderLayer>(m_quads.back().GetEntity(), RenderLayer::MidGround);
 		xPositionTile += 120.f;

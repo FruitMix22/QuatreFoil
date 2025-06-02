@@ -50,8 +50,8 @@ private:
 	entt::registry& m_registry; // Registry that holds all entities
 	entt::entity m_quad; // Quad entity id
 
-	const char* m_vertexPath = "../QuatreFoil/Assets/Shaders/TriangleVert.glsl";
-	const char* m_fragPath = "../QuatreFoil/Assets/Shaders/TriangleFrag.glsl";
+	const char* m_vertexPath = "Shaders/TriangleVert.glsl";
+	const char* m_fragPath = "Shaders/TriangleFrag.glsl";
 	const char* m_imagePath = "";
 
 	float m_quadVerts[16] =
