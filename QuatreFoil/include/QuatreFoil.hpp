@@ -74,7 +74,7 @@ private:
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
 	std::unique_ptr<Player> m_playerNew;
 	std::unique_ptr<EnemySpawner> m_waveSystem;
-	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("Textures/MenuBackground.jpg", true);
+	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("../QuatreFoil/Assets/Textures/MenuBackground.jpg", true);
 	
 	int quadChoice = 0; // Current entity selected
 	bool dockspace_built = false; // Has the dock space been built yet?
