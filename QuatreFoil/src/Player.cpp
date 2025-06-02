@@ -20,11 +20,11 @@ void Player::CreatePlayer()
 	m_player->SetTextureImagePath("../QuatreFoil/Assets/Textures/warriorSpriteSheet.png");
 	m_player->SetVertexPath("../QuatreFoil/Assets/Shaders/playerVert.glsl");
 	m_player->SetFragPath("../QuatreFoil/Assets/Shaders/playerFrag.glsl");
-	m_player->CreateQuad(glm::vec2(250, -660), glm::vec2(60, 60));
+	m_player->CreateQuad(glm::vec2(250, -720), glm::vec2(120, 120));
 	m_registry.emplace<PlayerComp>(m_player->GetEntity());
 	m_registry.emplace<RenderLayer>(m_player->GetEntity(), RenderLayer::Characters);
 	m_registry.emplace<Animator>(m_player->GetEntity(), glm::vec2(414.f,748.f), glm::vec2(69.f, 44.f));
-	m_registry.emplace<Collider>(m_player->GetEntity(), 20.f);
+	m_registry.emplace<Collider>(m_player->GetEntity(), 40.f);
 	transformPlayerComp = &m_registry.get<Transform>(m_player->GetEntity());
 
 	// Create hit box
@@ -36,7 +36,7 @@ void Player::CreatePlayer()
 	//m_hitBoxDebug->GetEntity()
 	m_registry.emplace<RenderLayer>(m_hitBoxDebug->GetEntity(), RenderLayer::UI);
 	m_registry.emplace<HitBox>(m_hitBoxDebug->GetEntity());
-	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 10.f);
+	m_registry.emplace<Collider>(m_hitBoxDebug->GetEntity(), 30.f);
 
 	auto& playerRenderComp = m_registry.get<Renderable>(m_player->GetEntity());
 	playerRenderComp.m_shader->SetUniform("colour", glm::vec4(1.f, 1.f, 1.f, 1.f));
@@ -46,7 +46,7 @@ void Player::ResetPlayer()
 {
 	auto& transformComp = m_registry.get<Transform>(m_player->GetEntity());
 	transformComp.position = glm::vec2(250, -660);
-	transformComp.scale = glm::vec2(60, 60);
+	transformComp.scale = glm::vec2(120, 120);
 
 	auto& playerComp = m_registry.get<PlayerComp>(m_player->GetEntity());
 	playerComp.hasBeenHit = false;
@@ -70,8 +70,8 @@ void Player::moveX(float const speed, float const dt)
 		auto& animatorComp = m_registry.get<Animator>(m_player->GetEntity());
 		animatorComp.setAnimState(Animator::animState::Running);
 		// Flip player if moving left or right
-		if (speed < 0) { transformPlayerComp->scale = glm::vec2(-60, 60); }
-		else { transformPlayerComp->scale = glm::vec2(60, 60); }
+		if (speed < 0) { transformPlayerComp->scale = glm::vec2(-120, 120); }
+		else { transformPlayerComp->scale = glm::vec2(120, 120); }
 	}
 	else
 	{
@@ -115,7 +115,7 @@ void Player::SpawnHitboxRight()
 			//Make it do more damage
 			playerComp.damage = 100;
 			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(30.f, -10.0f);
-			transformPlayerComp->scale = glm::vec2(60, 60);
+			transformPlayerComp->scale = glm::vec2(120, 120);
 			canAttack = false;
 			hitboxTimeActive = 0.f;
 			Console::Log("Player did COMBBOOOO.");
@@ -126,7 +126,7 @@ void Player::SpawnHitboxRight()
 			auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
 			animationComp.setAnimState(Animator::animState::Attacking);
 			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(30.f, -10.0f);
-			transformPlayerComp->scale = glm::vec2(60, 60);
+			transformPlayerComp->scale = glm::vec2(120, 120);
 			canAttack = false;
 			hitboxTimeActive = 0.f;
 			Console::Log("Player Attacked.");
@@ -153,7 +153,7 @@ void Player::SpawnHitboxLeft()
 			//Make it do more damage
 			playerComp.damage = 100;
 			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
-			transformPlayerComp->scale = glm::vec2(-60, 60);
+			transformPlayerComp->scale = glm::vec2(-120, 120);
 			canAttack = false;
 			hitboxTimeActive = 0.f;
 			Console::Log("Player did COMBBOOOO.");
@@ -164,7 +164,7 @@ void Player::SpawnHitboxLeft()
 			auto& animationComp = m_registry.get<Animator>(m_player->GetEntity());
 			animationComp.setAnimState(Animator::animState::Attacking);
 			transformHitBoxComp.position = transformPlayerComp->position + glm::vec2(-40.f, -10.0f);
-			transformPlayerComp->scale = glm::vec2(-60, 60);
+			transformPlayerComp->scale = glm::vec2(-120, 120);
 			canAttack = false;
 			hitboxTimeActive = 0.f;
 			Console::Log("Player Attacked.");

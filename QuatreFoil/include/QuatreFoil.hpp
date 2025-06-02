@@ -40,14 +40,12 @@ public:
 	void OnImGuiRender() override;
 	void OnRender() override;
 
-	// Start game
-	void StartGame();
 	// Generate floor for the game.
 	void generateFloor();
+	// Start game
+	void StartGame();
 	// Generate dock space for the ImGui panels.
 	void generateDockSpace();
-	// TEST Spawn new entity in centre of screen.
-	void spawnNewEntity();
 	// Create background.
 	void createBackground();
 
@@ -73,8 +71,9 @@ private:
 
 	std::vector<Quad> m_quads; // All quad's (ie..floors) go here.
 	std::unique_ptr<Player> m_playerNew;
+	std::unique_ptr<Quad> m_background;
 	std::unique_ptr<EnemySpawner> m_waveSystem;
-	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("../QuatreFoil/Assets/Textures/MenuBackground.jpg", true);
+	std::shared_ptr<Texture> menuBackground = std::make_shared<Texture>("../QuatreFoil/Assets/Textures/MenuBackground.png", true);
 	
 	int quadChoice = 0; // Current entity selected
 	bool dockspace_built = false; // Has the dock space been built yet?

@@ -20,7 +20,7 @@ void Enemy::CreateEnemy(float posX)
 		m_enemy->SetTextureImagePath("../QuatreFoil/Assets/Textures/enemySlime.png");
 		m_enemy->SetVertexPath("../QuatreFoil/Assets/Shaders/playerVert.glsl");
 		m_enemy->SetFragPath("../QuatreFoil/Assets/Shaders/playerFrag.glsl");
-		m_enemy->CreateQuad(glm::vec2(posX, -680), glm::vec2(30, 40));
+		m_enemy->CreateQuad(glm::vec2(posX, -750), glm::vec2(60, 80));
 		m_registry.emplace<EnemyComp>(m_enemy->GetEntity());
 		m_registry.emplace<RenderLayer>(m_enemy->GetEntity(), RenderLayer::Characters);
 		m_registry.emplace<Collider>(m_enemy->GetEntity(), 20.f);
@@ -82,12 +82,12 @@ void Enemy::Update(float dt)
 			transformEnemyComp.position.x += enemyComp->speed * direction.x * dt;
 			if (direction.x >= 0)
 			{
-				transformEnemyComp.scale = glm::vec2(30,40);
+				transformEnemyComp.scale = glm::vec2(60,80);
 			}
 			else
 			{
 
-				transformEnemyComp.scale = glm::vec2(-30,40);
+				transformEnemyComp.scale = glm::vec2(-60,80);
 			}
 		}
 	}
