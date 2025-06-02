@@ -2,6 +2,8 @@
 
 Welcome to the playable build of **Quatrefoil**!
 
+![Game Logo](background.png)
+
 ## 📥 Download & Play
 
 👉 [Click here to download the game](https://github.com/FruitMix22/QuatreFoil/releases/tag/Game-V1.0_alpha)  
