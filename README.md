@@ -14,7 +14,7 @@ Once downloaded, just double-click the `Quatrefoil.exe` to play.
 ## ℹ️ About the Game
 
 Quatrefoil is a fast-paced 2D action game developed in C++ using OpenGL.  
-Enemies spawn in waves, you survive and fight them off — good luck.
+Enemies spawn in waves, you survive and fight them off, good luck.
 
 ## 🎮 Controls
 A to move left
@@ -42,7 +42,7 @@ If you're curious how the game works under the hood or want to modify it:
 
 This game uses sprite assets from the following artists:
 
-- **[Warrior-Free-Animation-Set](https://clembod.itch.io/warrior-free-animation-set)** — Public domain sprites used for UI elements and enemies.
-- **[pixel-art-slime](https://diogo-vernier.itch.io/pixel-art-slime/devlog/708883/free-animated-pixel-art-slime)** — Public domain sprites used for UI elements and enemies.
+- **[Warrior-Free-Animation-Set](https://clembod.itch.io/warrior-free-animation-set)** - Public domain sprites used for the player.
+- **[pixel-art-slime](https://diogo-vernier.itch.io/pixel-art-slime/devlog/708883/free-animated-pixel-art-slime)** - Public domain sprites used for enemies.
 
 Assets are used with permission for commercial use. Credit is not required by the authors but is given here out of appreciation.
